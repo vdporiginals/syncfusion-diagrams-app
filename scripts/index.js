@@ -39,24 +39,24 @@ var text = JSON.stringify(allShapes);
 // Initializing symbol palette
 var commPalette = new ej.diagrams.SymbolPalette({
     expandMode: 'Single',
-    palettes : [
-        {id: 'quickshapes', expanded:false, symbols: quickComm, title: 'Quick Entities'},
-        {id: 'person', expanded:true, symbols: persons, title:'Person'},
-        {id: 'Communication', expanded:false, symbols: communication, title: 'Communication'},
-        {id: 'Application', expanded: false, symbols: application, title: 'Application'},
-        {id: 'CommmunicationLink', expanded: false, symbols: commLink, title: 'Communication Link'},
-        {id: 'Analysis', expanded: false, symbols: analysis, title: 'Analysis'},
-        {id: 'CommunicationSignal', expanded: false, symbols: commSignal, title: 'Communication Signal'},
-        {id: 'AreaandLocation', expanded: false, symbols: area, title: 'Area and Location'},
-        {id: 'OtherCommunicationElement', expanded: false, symbols: others, title: 'Other Communication Element'},
-        {id: 'CommLabelPalette', expanded: false, symbols: commlabel, title: 'Label'},
+    palettes: [
+        { id: 'quickshapes', expanded: false, symbols: quickComm, title: 'Quick Entities' },
+        { id: 'person', expanded: true, symbols: persons, title: 'Person' },
+        { id: 'Communication', expanded: false, symbols: communication, title: 'Communication' },
+        { id: 'Application', expanded: false, symbols: application, title: 'Application' },
+        { id: 'CommmunicationLink', expanded: false, symbols: commLink, title: 'Communication Link' },
+        { id: 'Analysis', expanded: false, symbols: analysis, title: 'Analysis' },
+        { id: 'CommunicationSignal', expanded: false, symbols: commSignal, title: 'Communication Signal' },
+        { id: 'AreaandLocation', expanded: false, symbols: area, title: 'Area and Location' },
+        { id: 'OtherCommunicationElement', expanded: false, symbols: others, title: 'Other Communication Element' },
+        { id: 'CommLabelPalette', expanded: false, symbols: commlabel, title: 'Label' },
     ],
-    symbolHeight: 75, symbolWidth: 275, 
+    symbolHeight: 75, symbolWidth: 275,
     width: '100%', height: '100%',
     enableSearch: true,
     // symbolMargin:{ left: 5, right: 5, top: 12, bottom: 12},
     getSymbolInfo: (symbol) => {
-        return { 
+        return {
             fit: true,
             tooltip: (symbol.addInfo !== null && symbol.addInfo !== undefined) ? symbol.addInfo[0].toolTip : symbol.id,
             description: {
@@ -70,25 +70,25 @@ var commPalette = new ej.diagrams.SymbolPalette({
 
 var theoryPalette = new ej.diagrams.SymbolPalette({
     expandMode: 'Single',
-    palettes : [
-        {id: 'quickshapestheory', expanded:false, symbols: quickTheory, title: 'Quick Entities'},
-        {id: 'system', expanded:true, symbols: system, title:'System'},
-        {id: 'theory', expanded:false, symbols: thoery, title:'Theory'},
-        {id: 'fundamental', expanded:false, symbols: fundamental, title:'Fundamental'},
-        {id: 'interface', expanded:false, symbols: interface, title:'Interface'},
-        {id: 'signal', expanded:false, symbols: theorySignal, title:'Signal'},
-        {id: 'instrument', expanded:false, symbols: instrument, title:'Instrument'},
-        {id: 'functionpallete', expanded:false, symbols: functions, title:'Function'},
-        {id: 'stability', expanded:false, symbols: stability, title:'Stability'},
-        {id: 'label', expanded:false, symbols: thoerylabel, title:'Label'},
-        {id: 'operator', expanded:false, symbols: operatorTheory, title:'Operator'},
+    palettes: [
+        { id: 'quickshapestheory', expanded: false, symbols: quickTheory, title: 'Quick Entities' },
+        { id: 'system', expanded: true, symbols: system, title: 'System' },
+        { id: 'theory', expanded: false, symbols: thoery, title: 'Theory' },
+        { id: 'fundamental', expanded: false, symbols: fundamental, title: 'Fundamental' },
+        { id: 'interface', expanded: false, symbols: interface, title: 'Interface' },
+        { id: 'signal', expanded: false, symbols: theorySignal, title: 'Signal' },
+        { id: 'instrument', expanded: false, symbols: instrument, title: 'Instrument' },
+        { id: 'functionpallete', expanded: false, symbols: functions, title: 'Function' },
+        { id: 'stability', expanded: false, symbols: stability, title: 'Stability' },
+        { id: 'label', expanded: false, symbols: thoerylabel, title: 'Label' },
+        { id: 'operator', expanded: false, symbols: operatorTheory, title: 'Operator' },
     ],
     symbolHeight: 75, symbolWidth: 300,
     width: '100%', height: '100%',
     enableSearch: true,
     // symbolMargin:{ left: 5, right: 5, top: 12, bottom: 12},
     getSymbolInfo: (symbol) => {
-        return { 
+        return {
             fit: true,
             tooltip: (symbol.addInfo !== null && symbol.addInfo !== undefined) ? symbol.addInfo[0].toolTip : symbol.id,
             description: {
@@ -150,14 +150,22 @@ function switchToComm() {
     theoryButton.firstElementChild.classList.remove('disabled-button');
     openCommTab();
 }
+let main = allShapes.find(a => a.id === 'mainArea');
+console.log(main);
 
+function dragOver(args) {
+    if (args.target) {
+        console.log(args);
+    }
+}
+ej.diagrams.Diagram.Inject(ej.diagrams.UndoRedo, ej.diagrams.DiagramContextMenu, ej.diagrams.Snapping);
 // Initializing and appending diagram
 var diagram = new ej.diagrams.Diagram({
     width: '2000px', height: '2000px',
     rulerSettings: {
         showRulers: true,
         horizontalRuler: { interval: 10, segmentWidth: 100, thickness: 20, tickAlignment: "RightOrBottom" },
-        verticalRuler: { interval: 10, segmentWidth: 100, thickness: 20, tickAlignment: "RightOrBottom"}
+        verticalRuler: { interval: 10, segmentWidth: 100, thickness: 20, tickAlignment: "RightOrBottom" }
     },
     bridgeDirection: 'Left',
     contextMenuSettings: {
@@ -165,16 +173,38 @@ var diagram = new ej.diagrams.Diagram({
         items: [{
             id: 'edit',
             text: 'Edit1'
-        }],
+        },...personShapesContext, ...groupPeopleContext, ...communicationHolder],
         showCustomMenuOnly: true,
     },
-    contextMenuOpen: function (args) {
-        onOpenContextMenu(args);
+    contextMenuClick: function (args) {
+        //do your custom action here.
+        console.log(args?.item?.id,)
     },
-    created: function(args) {
+    contextMenuOpen: function (args) {
+        if (diagram.selectedItems.nodes[0]) {
+            let bpmnShape = diagram.selectedItems.nodes[0];
+            //do your custom action here.
+            console.log(bpmnShape.id);
+            if (bpmnShape.id.startsWith('person')) {
+                args.hiddenItems = [...groupPeopleContextMapped, ...communicationHolderMapped];
+            }
+
+            if (bpmnShape.id.startsWith('groupOfPeople')) {
+                args.hiddenItems = [...personShapesContextMapped, ...communicationHolderMapped];
+            }
+
+            if (bpmnShape.id.startsWith('communicationHolder')) {
+                args.hiddenItems = [...personShapesContextMapped, ...groupPeopleContextMapped];
+            }
+        } else {
+            args.hiddenItems = [...personShapesContextMapped, ...groupPeopleContextMapped, ...communicationHolderMapped];
+        }
+        // onOpenContextMenu(args);
+    },
+    created: function (args) {
         getModelData();
         openModelPage('main-project-model-comm');
-      }
+    }
 });
 diagram.appendTo('#diagram');
 const blankDiagram = diagram.saveDiagram();
@@ -189,7 +219,7 @@ for (let i = 0; i < canvasSymbols.length; i++) {
     let cWidth = canvasSymbols[i].width;
     let cHeight = canvasSymbols[i].height;
     let ctx = canvasSymbols[i].getContext('2d');
-    let cData = ctx.getImageData(6 * cWidth / 14, 0 , 8 * cWidth / 14, cHeight - 55);
+    let cData = ctx.getImageData(6 * cWidth / 14, 0, 8 * cWidth / 14, cHeight - 55);
     ctx.clearRect(0, 0, cWidth, cHeight);
     canvasSymbols[i].setAttribute('height', cHeight - 55);
     canvasSymbols[i].setAttribute('width', 2 * cWidth / 14);
@@ -223,14 +253,14 @@ for (let i = 0; i < canvasSymbols.length; i++) {
     groupElement.appendChild(textElement);
     let shapeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     let rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    rect.setAttribute('height', cHeight -55);
+    rect.setAttribute('height', cHeight - 55);
     rect.setAttribute('width', 2 * cWidth / 14);
     rect.setAttribute('vector-effect', 'non-scaling-stroke');
     rect.setAttribute('fill', 'transparent');
     rect.setAttribute('stroke-width', '0');
     shapeGroup.appendChild(rect);
     let canvas = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
-    canvas.setAttribute('height', cHeight -55);
+    canvas.setAttribute('height', cHeight - 55);
     canvas.setAttribute('width', cHeight - 55);
     canvas.setAttribute('vector-effect', 'non-scaling-stroke');
     parent.removeChild(canvasSymbols[i]);
@@ -287,7 +317,7 @@ for (let i = 0; i < symbolPalleteSymbols.length; i++) {
     let arr = transform.split(' ');
     transform = '';
     for (let j = 0; j < arr.length; j++) {
-        if ( !arr[j].includes('translate') && !arr[j].includes('scale')) {
+        if (!arr[j].includes('translate') && !arr[j].includes('scale')) {
             transform += arr[j] + ' ';
         }
     }
@@ -454,10 +484,10 @@ $('#export-pdf-btn').on('click', () => {
     // doc.fromHTML(source, 10, 10, {'width': 180});
     // doc.autoPrint();
     // doc.output("dataurlnewwindow");
-    
-        doc.fromHTML(source, {
-            callback(doc){
-                doc.save("SPL_Export.pdf");
-            }
-        });
+
+    doc.fromHTML(source, {
+        callback(doc) {
+            doc.save("SPL_Export.pdf");
+        }
+    });
 })
