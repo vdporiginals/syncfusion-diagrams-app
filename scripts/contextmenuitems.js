@@ -781,7 +781,7 @@ var menuItems = [
     {
         id: 'communicationElement',
         list: [
-            {
+            {   id: 'communicationElementPicture',
                 onClick: '',
                 text: 'Replace Communication Element with picture',
             },
@@ -879,6 +879,7 @@ var menuItems = [
         id: 'entity',
         list: [
             {
+                id: 'entityElementPicture',
                 onClick: '',
                 text: 'Replace entity with picture',
             },
@@ -1092,6 +1093,7 @@ var menuItems = [
         id: 'functionstatus',
         list: [
             {
+                id: 'functionstatusElementPicture',
                 onClick: '',
                 text: 'Replace entity with Picture',
             },
@@ -1119,6 +1121,7 @@ var menuItems = [
         id: 'picture',
         list: [
             {
+                id: 'loadPicktureFromFile',
                 onClick: '',
                 text: 'Insert or load picture form file',
             },

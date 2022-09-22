@@ -159,6 +159,37 @@ function dragOver(args) {
     }
 }
 ej.diagrams.Diagram.Inject(ej.diagrams.UndoRedo, ej.diagrams.DiagramContextMenu, ej.diagrams.Snapping);
+$("#fileUploadToDiagrams").change(function () {
+    const file = this.files[0];
+    console.log(file);
+    if (file) {
+        let reader = new FileReader();
+        if (file.type.startsWith('video/')) {
+            diagram.selectedItems.properties.nodes[0].shape = {
+                type: 'HTML',
+                content: `<video width="400" controls>
+            <source src="${URL.createObjectURL(file)}" id="video_here">
+              Your browser does not support HTML5 video.
+          </video>`
+            }
+        }
+        if (file.type.startsWith('image/')) {
+            reader.onload = function (event) {
+                diagram.selectedItems.properties.nodes[0].shape = {
+                    type: 'Image',
+                    source: event.target.result
+                }
+                $('#imgPreview').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+});
+let pictureId = ['replaceGroupPeoplePicture', 'replacePersonPicture', 'communicationElementPicture',
+    'entityElementPicture',
+    'functionstatusElementPicture',
+    'loadPicktureFromFile',
+    'replaceCommunicationHolderPicture'];
 // Initializing and appending diagram
 var diagram = new ej.diagrams.Diagram({
     width: '2000px', height: '2000px',
@@ -173,12 +204,18 @@ var diagram = new ej.diagrams.Diagram({
         items: [{
             id: 'edit',
             text: 'Edit1'
-        },...personShapesContext, ...groupPeopleContext, ...communicationHolder],
+        }, ...personShapesContext, ...groupPeopleContext, ...communicationHolder],
         showCustomMenuOnly: true,
     },
     contextMenuClick: function (args) {
         //do your custom action here.
-        console.log(args?.item?.id,)
+        // shape: 
+
+        if (pictureId.includes(args.item.id)) {
+            $('#fileUploadToDiagrams').click();
+        }
+
+        console.log(diagram.selectedItems.properties.nodes[0].shape, diagram.selectedItems, args.item.id)
     },
     contextMenuOpen: function (args) {
         if (diagram.selectedItems.nodes[0]) {
