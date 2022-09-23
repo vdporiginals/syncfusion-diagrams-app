@@ -159,11 +159,11 @@ function dragOver(args) {
     }
 }
 ej.diagrams.Diagram.Inject(ej.diagrams.UndoRedo, ej.diagrams.DiagramContextMenu, ej.diagrams.Snapping);
-let currentItem = null;
+let currentItem = '';
 let nodeAppendData = {
     // Position of the node
     offsetX: 250,
-    offsetY: 650,
+    offsetY: 450,
     // Size of the node
     width: 400,
     height: 400,
@@ -179,11 +179,11 @@ let nodeAppendData = {
 };
 $("#fileUploadToDiagrams").change(function () {
     const file = this.files[0];
-    console.log(file);
+    console.log(file, currentItem);
     if (file) {
         let reader = new FileReader();
         if (file.type.startsWith('video/')) {
-            if (currentItem.includes('add')) {
+            if (currentItem.includes('add') || currentItem.startsWith('add')) {
                 nodeAppendData.shape = {
                     type: 'HTML',
                     content: `<video width="400" height="278" controls>
@@ -194,6 +194,7 @@ $("#fileUploadToDiagrams").change(function () {
                 nodeAppendData.width = 400;
                 nodeAppendData.height = 278;
                 diagram.add(nodeAppendData);
+                $("#fileUploadToDiagrams").val('');
             } else {
                 diagram.selectedItems.properties.nodes[0].shape = {
                     type: 'HTML',
@@ -204,6 +205,7 @@ $("#fileUploadToDiagrams").change(function () {
                 }
                 diagram.selectedItems.properties.nodes[0].width = 400;
                 diagram.selectedItems.properties.nodes[0].height = 278;
+                $("#fileUploadToDiagrams").val('');
             }
         }
 
@@ -218,6 +220,7 @@ $("#fileUploadToDiagrams").change(function () {
                 nodeAppendData.width = 400;
                 nodeAppendData.height = 100;
                 diagram.add(nodeAppendData);
+                $("#fileUploadToDiagrams").val('');
             } else {
                 diagram.selectedItems.properties.nodes[0].shape = {
                     content: `<audio controls>
@@ -228,6 +231,7 @@ $("#fileUploadToDiagrams").change(function () {
                 diagram.add(nodeAppendData);
                 diagram.selectedItems.properties.nodes[0].width = 400;
                 diagram.selectedItems.properties.nodes[0].height = 100;
+                $("#fileUploadToDiagrams").val('');
             }
         }
         
@@ -239,6 +243,7 @@ $("#fileUploadToDiagrams").change(function () {
                     source: event.target.result
                 }
                 $('#imgPreview').attr('src', event.target.result);
+                $("#fileUploadToDiagrams").val('');
             }
             reader.readAsDataURL(file);
         }
@@ -274,7 +279,7 @@ var diagram = new ej.diagrams.Diagram({
             $('#fileUploadToDiagrams').attr('accept', 'image/*');
             $('#fileUploadToDiagrams').click();
         }
-        if (args.item.id.includes('Video')) {
+        if (args.item.id.includes('Video') || args.item.id.includes('video')) {
             $('#fileUploadToDiagrams').attr('accept', 'video/*');
             $('#fileUploadToDiagrams').click();
         }
