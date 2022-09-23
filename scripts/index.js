@@ -159,21 +159,80 @@ function dragOver(args) {
     }
 }
 ej.diagrams.Diagram.Inject(ej.diagrams.UndoRedo, ej.diagrams.DiagramContextMenu, ej.diagrams.Snapping);
+let currentItem = null;
+let nodeAppendData = {
+    // Position of the node
+    offsetX: 250,
+    offsetY: 650,
+    // Size of the node
+    width: 400,
+    height: 400,
+    // sets the type of the shape as image
+    shape: {
+        type: 'Image',
+        source: 'http://www.syncfusion.com/content/images/nuget/sync_logo_icon.png'
+    },
+    //Customizes the appearances such as text, font, fill, and stroke.
+    style: {
+        fill: 'none'
+    }
+};
 $("#fileUploadToDiagrams").change(function () {
     const file = this.files[0];
     console.log(file);
     if (file) {
         let reader = new FileReader();
         if (file.type.startsWith('video/')) {
-            diagram.selectedItems.properties.nodes[0].shape = {
-                type: 'HTML',
-                content: `<video width="400" controls>
-            <source src="${URL.createObjectURL(file)}" id="video_here">
-              Your browser does not support HTML5 video.
-          </video>`
+            if (currentItem.includes('add')) {
+                nodeAppendData.shape = {
+                    type: 'HTML',
+                    content: `<video width="400" height="278" controls>
+                <source src="${URL.createObjectURL(file)}" id="video_here">
+                  Your browser does not support HTML5 video.
+              </video>`
+                }
+                nodeAppendData.width = 400;
+                nodeAppendData.height = 278;
+                diagram.add(nodeAppendData);
+            } else {
+                diagram.selectedItems.properties.nodes[0].shape = {
+                    type: 'HTML',
+                    content: `<video width="400" height="278" controls>
+                <source src="${URL.createObjectURL(file)}" id="video_here">
+                  Your browser does not support HTML5 video.
+              </video>`
+                }
+                diagram.selectedItems.properties.nodes[0].width = 400;
+                diagram.selectedItems.properties.nodes[0].height = 278;
             }
         }
+
+        if (file.type.startsWith('audio/')) {
+            if (currentItem.includes('add')) {
+                nodeAppendData.shape = {
+                    content: `<audio controls>
+                <source src="${URL.createObjectURL(file)}" type="audio/mpeg">
+              Your browser does not support the audio element.
+              </audio>`
+                }
+                nodeAppendData.width = 400;
+                nodeAppendData.height = 100;
+                diagram.add(nodeAppendData);
+            } else {
+                diagram.selectedItems.properties.nodes[0].shape = {
+                    content: `<audio controls>
+                    <source src="${URL.createObjectURL(file)}" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                  </audio>`
+                }
+                diagram.add(nodeAppendData);
+                diagram.selectedItems.properties.nodes[0].width = 400;
+                diagram.selectedItems.properties.nodes[0].height = 100;
+            }
+        }
+        
         if (file.type.startsWith('image/')) {
+
             reader.onload = function (event) {
                 diagram.selectedItems.properties.nodes[0].shape = {
                     type: 'Image',
@@ -210,11 +269,19 @@ var diagram = new ej.diagrams.Diagram({
     contextMenuClick: function (args) {
         //do your custom action here.
         // shape: 
-
-        if (pictureId.includes(args.item.id)) {
+        currentItem = args.item.id;
+        if (args.item.id.includes('Picture')) {
+            $('#fileUploadToDiagrams').attr('accept', 'image/*');
             $('#fileUploadToDiagrams').click();
         }
-
+        if (args.item.id.includes('Video')) {
+            $('#fileUploadToDiagrams').attr('accept', 'video/*');
+            $('#fileUploadToDiagrams').click();
+        }
+        if (args.item.id.includes('Audio')) {
+            $('#fileUploadToDiagrams').attr('accept', 'audio/*');
+            $('#fileUploadToDiagrams').click();
+        }
         console.log(diagram.selectedItems.properties.nodes[0].shape, diagram.selectedItems, args.item.id)
     },
     contextMenuOpen: function (args) {
@@ -222,7 +289,17 @@ var diagram = new ej.diagrams.Diagram({
             let bpmnShape = diagram.selectedItems.nodes[0];
             //do your custom action here.
             console.log(bpmnShape.id);
-            if (bpmnShape.id.startsWith('person')) {
+            let personChecker = ['person', 'manager',
+                'teamLead',
+                'customer',
+                'client',
+                'contractor',
+                'other',
+                'user',
+                'agent',
+                'inspector',
+                'employee'];
+            if (bpmnShape.id.includes('Person') || personChecker.some(a => bpmnShape.id.startsWith(a))) {
                 args.hiddenItems = [...groupPeopleContextMapped, ...communicationHolderMapped];
             }
 
