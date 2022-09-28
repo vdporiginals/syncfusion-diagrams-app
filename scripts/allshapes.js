@@ -2588,6 +2588,149 @@ var everyShape = [
       fontSize: 10,
     },
   },
+    {
+    id: "communicationHolder",
+    addInfo: [
+      {
+        title: "Comunication Holder",
+        toolTip: "Hold Person Communication",
+      },
+    ],
+    shape: {
+      type: "Native",
+      content:
+        '<g transform="translate(2,2)">\n                    <rect vector-effect="non-scaling-stroke" height="100" width="210" stroke="black" stroke-width="1" fill="white"/>\n                    <foreignObject class="symbol-text-container" x="26.25" width="157.5" height="100" visibility="hidden">\n                        <div style="height: 100px" class="flex-container">\n                            <div width="157.5" class="symbol-text-element">\n                                Communication Holder\n                            </div>\n                        </div>\n                    </foreignObject></g>',
+    },
+    annotations: [
+      {
+        content: "Communication Holder",
+      },
+    ],
+    width: 210,
+    height: 100,
+    ports: [
+      {
+        id: "LeftMiddle",
+        offset: {
+          x: 0,
+          y: 0.5,
+        },
+        visibility: 1,
+        shape: "X",
+        width: 4,
+        height: 4,
+      },
+      {
+        id: "TopCenter",
+        offset: {
+          x: 0.5,
+          y: 0,
+        },
+        visibility: 1,
+        shape: "X",
+        width: 4,
+        height: 4,
+      },
+      {
+        id: "RightMidlle",
+        offset: {
+          x: 1,
+          y: 0.5,
+        },
+        visibility: 1,
+        shape: "X",
+        width: 4,
+        height: 4,
+      },
+      {
+        id: "BottomCenter",
+        offset: {
+          x: 0.5,
+          y: 1,
+        },
+        visibility: 1,
+        shape: "X",
+        width: 4,
+        height: 4,
+      },
+    ],
+    style: {
+      fill: "white",
+      fontSize: 10,
+    },
+  },
+  {
+    id: "ellipseBasic",
+    addInfo: [
+      {
+        title: "Related",
+        toolTip: "Related",
+      },
+    ],
+    shape: {
+      type: "Basic",
+      shape: "Ellipse",
+      content:
+        '<g transform="translate(2,2)">\n                    <rect vector-effect="non-scaling-stroke" height="100" width="210" stroke="black" stroke-width="1" fill="white"/>\n                    <foreignObject class="symbol-text-container" x="26.25" width="157.5" height="100" visibility="hidden">\n                        <div style="height: 100px" class="flex-container">\n                            <div width="157.5" class="symbol-text-element">\n                                Related\n                            </div>\n                        </div>\n                    </foreignObject></g>',
+    },
+    annotations: [
+      {
+        content: "Related",
+      },
+    ],
+    width: 100,
+    height: 100,
+    ports: [
+      {
+        id: "LeftMiddle",
+        offset: {
+          x: 0,
+          y: 0.5,
+        },
+        visibility: 1,
+        shape: "X",
+        width: 4,
+        height: 4,
+      },
+      {
+        id: "TopCenter",
+        offset: {
+          x: 0.5,
+          y: 0,
+        },
+        visibility: 1,
+        shape: "X",
+        width: 4,
+        height: 4,
+      },
+      {
+        id: "RightMidlle",
+        offset: {
+          x: 1,
+          y: 0.5,
+        },
+        visibility: 1,
+        shape: "X",
+        width: 4,
+        height: 4,
+      },
+      {
+        id: "BottomCenter",
+        offset: {
+          x: 0.5,
+          y: 1,
+        },
+        visibility: 1,
+        shape: "X",
+        width: 4,
+        height: 4,
+      },
+    ],
+    style: {
+      fill: "white",
+      fontSize: 10,
+    },
+  },
   {
     id: "externalCommunicationHolder",
     addInfo: [
