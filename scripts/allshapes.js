@@ -2588,7 +2588,7 @@ var everyShape = [
       fontSize: 10,
     },
   },
-    {
+  {
     id: "communicationHolder",
     addInfo: [
       {
@@ -23231,5 +23231,15 @@ var everyShape = [
     ],
     height: 60,
     width: 50,
+  },
+  {
+    id: "itemHidden",
+    shape: {
+      type: "Native",
+      content:
+        '<g transform="translate(2,2)">\n                    <rect vector-effect="non-scaling-stroke" height="12" width="10" stroke="none" fill="none"/>\n                    <circle vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" fill="none" cx="5" cy="5" r="5"/>\n                    <path vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" fill="none" d="M 2 11 L 8 11 M 2 12 L 8 12"/>     \n                </g>',
+    },
+    height: 0,
+    width: 0,
   },
 ];

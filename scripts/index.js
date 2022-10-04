@@ -358,6 +358,44 @@ $("#fileUploadToDiagrams").change(function () {
     }
   }
 });
+
+function relatePersonOperatingPrinciple() {
+  const item1 = diagram.nodes[0];
+  let findItem = allShapes.find((x) => x.id === "principle");
+  findItem.offsetX = item1.offsetX;
+  findItem.offsetY = item1.offsetY + 300;
+  findItem.width = 150;
+  findItem.height = 100;
+  diagram.add(findItem);
+  let findItem2 = allShapes.find((x) => x.id === "ellipseBasic");
+  findItem2.offsetX = item1.offsetX + 400;
+  findItem2.offsetY = item1.offsetY + 150;
+  diagram.add(findItem2);
+  let findItem3 = allShapes.find((x) => x.id === "itemHidden");
+  findItem3.offsetX = item1.offsetX + 600;
+  findItem3.offsetY = item1.offsetY + 145;
+  diagram.add(findItem3);
+  diagram.connectors = [
+    {
+      id: "connector1",
+      sourceID: diagram.nodes[0].id,
+      targetID: diagram.nodes[2].id,
+      type: "Orthogonal",
+    },
+    {
+      id: "connector2",
+      sourceID: diagram.nodes[1].id,
+      targetID: diagram.nodes[2].id,
+      type: "Orthogonal",
+    },
+    {
+      id: "connector3",
+      sourceID: diagram.nodes[2].id,
+      targetID: diagram.nodes[3].id,
+      type: "Orthogonal",
+    },
+  ];
+}
 let pictureId = [
   "replaceGroupPeoplePicture",
   "replacePersonPicture",
@@ -418,27 +456,7 @@ var diagram = new ej.diagrams.Diagram({
       $("#fileUploadToDiagrams").click();
     }
     if (args.item.id === "relatePersonOperatingPrinciple") {
-      const item1 = diagram.nodes[0];
-      let findItem = allShapes.find((x) => x.id === "principle");
-      findItem.offsetX = item1.offsetX;
-      findItem.offsetY = item1.offsetY + 200;
-      diagram.add(findItem);
-      let findItem2 = allShapes.find((x) => x.id === "ellipseBasic");
-      findItem2.offsetX = item1.offsetX + 400;
-      findItem2.offsetY = 250;
-      diagram.add(findItem2);
-      diagram.connectors = [
-        {
-          id: "connector1",
-          sourceID: diagram.nodes[0].id,
-          targetID: diagram.nodes[2].id,
-        },
-        {
-          id: "connector2",
-          sourceID: diagram.nodes[1].id,
-          targetID: diagram.nodes[2].id,
-        },
-      ];
+      relatePersonOperatingPrinciple();
     }
   },
   contextMenuOpen: function (args) {
