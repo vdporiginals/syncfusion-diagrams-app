@@ -45,12 +45,6 @@ allShapes = everyShape;
 
 var text = JSON.stringify(allShapes);
 
-// var a = document.createElement("a");
-// var file = new Blob([text], {type: 'text/plain'});
-// a.href = URL.createObjectURL(file);
-// a.download = 'my.json';
-// a.click();
-
 // Initializing symbol palette
 var commPalette = new ej.diagrams.SymbolPalette({
   expandMode: "Single",
@@ -361,17 +355,17 @@ $("#fileUploadToDiagrams").change(function () {
 
 function relatePersonOperatingPrinciple() {
   const item1 = diagram.nodes[0];
-  let findItem = allShapes.find((x) => x.id === "principle");
+  let findItem = getItemById("principle");
   findItem.offsetX = item1.offsetX;
   findItem.offsetY = item1.offsetY + 300;
   findItem.width = 150;
   findItem.height = 100;
   diagram.add(findItem);
-  let findItem2 = allShapes.find((x) => x.id === "ellipseBasic");
+  let findItem2 = getItemById("ellipseBasic");
   findItem2.offsetX = item1.offsetX + 400;
   findItem2.offsetY = item1.offsetY + 150;
   diagram.add(findItem2);
-  let findItem3 = allShapes.find((x) => x.id === "itemHidden");
+  let findItem3 = getItemById("itemHidden");
   findItem3.offsetX = item1.offsetX + 600;
   findItem3.offsetY = item1.offsetY + 145;
   diagram.add(findItem3);
@@ -405,6 +399,81 @@ let pictureId = [
   "loadPicktureFromFile",
   "replaceCommunicationHolderPicture",
 ];
+
+function onGroupsOfPeopleNode(args) {
+  let findPeople = getItemById("personNoframe");
+  let continuityPerson = getItemById("continuityPerson");
+  let nodes = [...diagram.nodes];
+  const randomId1 = randomId();
+  const randomId2 = randomId();
+  const randomId3 = randomId();
+  const randomId4 = randomId();
+  const item1 = {
+    id: `${findPeople.id}${randomId1}`,
+    offsetX: args.element.offsetX - 70,
+    offsetY: args.element.offsetY,
+    addInfo: findPeople.addInfo,
+    shape: findPeople.shape,
+    height: 140,
+    width: 60,
+  };
+  const item2 = {
+    id: `${findPeople.id}${randomId2}`,
+    offsetX: args.element.offsetX,
+    offsetY: args.element.offsetY,
+    addInfo: findPeople.addInfo,
+    shape: findPeople.shape,
+    height: 140,
+    width: 60,
+  };
+  const item3 = {
+    id: `${continuityPerson.id}${randomId3}`,
+    offsetX: args.element.offsetX + 70,
+    offsetY: args.element.offsetY,
+    addInfo: continuityPerson.addInfo,
+    shape: continuityPerson.shape,
+    width: 70,
+    height: 40,
+  };
+  const group = {
+    id: "group" + randomId4,
+    children: [
+      `${findPeople.id}${randomId1}`,
+      `${findPeople.id}${randomId2}`,
+      `${continuityPerson.id}${randomId3}`,
+    ],
+    addInfo: [
+      {
+        title: "Group of People",
+        toolTip: "Represents a Group of People",
+      },
+    ],
+    annotations: [
+      {
+        content: "Group Name",
+        verticalAlignment: "Bottom",
+        offset: {
+          x: 0.5,
+          y: 1,
+        },
+        margin: {
+          top: 20,
+        },
+      },
+    ],
+    style: {
+      fontSize: 10,
+      fill: "transparent",
+    },
+    offsetX: args.element.offsetX,
+    offsetY: args.element.offsetY,
+  };
+  nodes = nodes.concat([item1, item2, item3, group]);
+  nodes = nodes.filter((x) => !x.id || x.id !== args.element.id);
+  setTimeout(() => {
+    diagram.nodes = nodes;
+  }, 100);
+}
 
 // Initializing and appending diagram
 var diagram = new ej.diagrams.Diagram({
@@ -493,7 +562,6 @@ var diagram = new ej.diagrams.Diagram({
           ...communicationHolderMapped,
         ];
       }
-
       if (bpmnShape.id.startsWith("communicationHolder")) {
         args.hiddenItems = [
           ...personShapesContextMapped,
@@ -507,11 +575,15 @@ var diagram = new ej.diagrams.Diagram({
         ...communicationHolderMapped,
       ];
     }
-    // onOpenContextMenu(args);
   },
   created: function (args) {
     getModelData();
     openModelPage("main-project-model-comm");
+  },
+  drop: function (args) {
+    if (args.element.id.startsWith("groupOfPeople")) {
+      onGroupsOfPeopleNode(args);
+    }
   },
 });
 diagram.appendTo("#diagram");
@@ -607,6 +679,18 @@ function getTitleById(id) {
     return "";
   }
 }
+
+function getItemById(id) {
+  let shape = allShapes.find((x) => x.id === id);
+  if (shape !== undefined) {
+    return shape;
+  }
+}
+
+function randomId() {
+  return (Math.random() + 1).toString(36).substring(7);
+}
+
 //#endregion
 
 //#region code for symbol arrangement
@@ -707,6 +791,7 @@ function setCursor(cursor) {
   document.getElementById("right-section").style.cursor = cursor;
   document.getElementById("middle-section").style.cursor = cursor;
 }
+
 function startLeftDrag() {
   isLeftDrag = true;
 }
@@ -749,7 +834,6 @@ function resetColumn() {
   let container = document.getElementById("container");
   container.style.gridTemplateColumns = "1fr 5px 4fr 5px 1fr";
 }
-//#endregion
 
 const loadDiagram = (data) => {
   const prevTool = diagram.tool;
@@ -810,13 +894,8 @@ $("#export-svg-btn").on("click", () => {
   diagram.exportDiagram(options);
 });
 $("#export-pdf-btn").on("click", () => {
-  console.log(diagram);
   const doc = new PDFDocument();
   const source = document.getElementById("diagram_diagramLayer_div");
-  // doc.fromHTML(source, 10, 10, {'width': 180});
-  // doc.autoPrint();
-  // doc.output("dataurlnewwindow");
-
   doc.fromHTML(source, {
     callback(doc) {
       doc.save("SPL_Export.pdf");

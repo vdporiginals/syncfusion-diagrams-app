@@ -3540,7 +3540,6 @@ function openSubContextMenu(menuList, top, left, parent) {
   for (let i = 0; i < menuList.length; i++) {
     let listItem = document.createElement("li");
     listItem.classList.add("e-menu-item", "grey-onhover");
-    console.log(menuList[i].icon);
     if (menuList[i].icon != undefined) {
       let iconSpan = document.createElement("span");
       iconSpan.classList.add(menuList[i].icon);
