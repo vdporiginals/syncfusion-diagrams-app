@@ -400,14 +400,13 @@ let pictureId = [
   "replaceCommunicationHolderPicture",
 ];
 
-function onGroupsOfPeopleNode(args) {
+function onDrogGroupsOfPeopleNode(args) {
   let findPeople = getItemById("personNoframe");
   let continuityPerson = getItemById("continuityPerson");
-  let nodes = [...diagram.nodes];
+  let nodes = getNodesDiagramNodes([...diagram.nodes]);
   const randomId1 = randomId();
   const randomId2 = randomId();
   const randomId3 = randomId();
-  const randomId4 = randomId();
   const item1 = {
     id: `${findPeople.id}${randomId1}`,
     offsetX: args.element.offsetX - 70,
@@ -436,7 +435,7 @@ function onGroupsOfPeopleNode(args) {
     height: 40,
   };
   const group = {
-    id: "group" + randomId4,
+    id: `groupofpeople-${findPeople.id}${randomId1}-${findPeople.id}${randomId2}-${continuityPerson.id}${randomId3}`,
     children: [
       `${findPeople.id}${randomId1}`,
       `${findPeople.id}${randomId2}`,
@@ -469,10 +468,55 @@ function onGroupsOfPeopleNode(args) {
     offsetY: args.element.offsetY,
   };
   nodes = nodes.concat([item1, item2, item3, group]);
+  const positionItem = document
+    .getElementById(args.element.id)
+    .getBoundingClientRect();
   nodes = nodes.filter((x) => !x.id || x.id !== args.element.id);
   setTimeout(() => {
     diagram.nodes = nodes;
+    const element = document.getElementById("dialogGroupofPeople");
+    element.style.paddingTop = positionItem.top - 30 + "px";
+    element.style.paddingLeft = positionItem.left + 210 + "px";
+    element.style.display = "block";
   }, 100);
+}
+
+function onClickApplyGroupOfPeople() {
+  const element = document.getElementById("dialogGroupofPeople");
+  element.style.display = "none";
+}
+
+function onClickCancelGroupOfPeople() {
+  const element = document.getElementById("dialogGroupofPeople");
+  element.style.display = "none";
+}
+
+idContinuityPerson = "";
+function onDrogContinuityPerson(args) {
+  const positionItem = document
+    .getElementById(args.element.id)
+    .getBoundingClientRect();
+  idContinuityPerson = args.element.id;
+  const element = document.getElementById("dialogContinuityPerson");
+  element.style.paddingTop = positionItem.top + "px";
+  element.style.paddingLeft = positionItem.left + 220 + "px";
+  element.style.display = "block";
+}
+
+function onClickApplyContinuityPerson() {
+  const element = document.getElementById("dialogContinuityPerson");
+  element.style.display = "none";
+  let nodes = getNodesDiagramNodes([...diagram.nodes]);
+  const value = document.getElementById("input-continuity-size").value;
+  const node = nodes.find((x) => x.id === idContinuityPerson);
+  node.width = node.width * value;
+  node.height = node.height * value;
+  diagram.nodes = nodes;
+}
+
+function onClickCancelContinuityPerson() {
+  const element = document.getElementById("dialogContinuityPerson");
+  element.style.display = "none";
 }
 
 // Initializing and appending diagram
@@ -582,7 +626,10 @@ var diagram = new ej.diagrams.Diagram({
   },
   drop: function (args) {
     if (args.element.id.startsWith("groupOfPeople")) {
-      onGroupsOfPeopleNode(args);
+      onDrogGroupsOfPeopleNode(args);
+    }
+    if (args.element.id.startsWith("continuityPerson")) {
+      onDrogContinuityPerson(args);
     }
   },
 });
@@ -685,6 +732,25 @@ function getItemById(id) {
   if (shape !== undefined) {
     return shape;
   }
+}
+
+function getNodesDiagramNodes(data) {
+  return data.map((x) => {
+    return {
+      id: x.properties.id,
+      offsetX: x.properties.offsetX,
+      offsetY: x.properties.offsetY,
+      addInfo: x.properties.addInfo,
+      shape: x.properties.shape,
+      height: x.properties.height,
+      width: x.properties.width,
+      annotations: x.properties.annotations,
+      style: x.properties.style,
+      children: x.properties.id.includes("groupofpeople")
+        ? x.properties.id.split("-").filter((x) => x !== "groupofpeople")
+        : undefined,
+    };
+  });
 }
 
 function randomId() {

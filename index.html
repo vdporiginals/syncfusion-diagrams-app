@@ -2919,6 +2919,55 @@
       id="subContextWrapper"
       class="e-contextmenu-wrapper e-diagram-menu e-lib e-keyboard"
     ></div>
+    <div id="dialogGroupofPeople" class="dialog-group-of-people">
+      <div class="dialog-group-of-people-content">
+        <div>Group Of People</div>
+        <div class="d-flex">
+          <div class="w-112px">Options</div>
+          <select class="w-200px">
+            <option id="option1" selected>Option 1</option>
+            <option id="option2">Option 2</option>
+            <option id="option3">Option 3</option>
+            <option id="option4">Option 4</option>
+          </select>
+        </div>
+        <div class="d-flex">
+          <div class="w-112px">Format</div>
+          <select class="w-200px">
+            <option id="formatPerson" selected>Person</option>
+            <option id="formatP">p</option>
+          </select>
+        </div>
+        <div class="d-flex">
+          <div class="w-112px">Start Number</div>
+          <input type="number" class="w-200px" />
+        </div>
+        <div class="d-flex">
+          <div class="w-112px">Group Name</div>
+          <input type="text" class="w-200px" />
+        </div>
+        <div class="d-flex group-button-dialog-group-of-people">
+          <button class="m-r-8" onclick="onClickApplyGroupOfPeople()">
+            Apply
+          </button>
+          <button onclick="onClickCancelGroupOfPeople()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div id="dialogContinuityPerson" class="dialog-group-of-people">
+      <div class="dialog-group-of-people-content">
+        <div class="d-flex">
+          <div class="w-112px">Continuity Size</div>
+          <input type="text" class="w-200px" id="input-continuity-size" />
+        </div>
+        <div class="d-flex group-button-dialog-group-of-people">
+          <button class="m-r-8" onclick="onClickApplyContinuityPerson()">
+            Apply
+          </button>
+          <button onclick="onClickCancelContinuityPerson()">Cancel</button>
+        </div>
+      </div>
+    </div>
     <script>
       setTimeout(() => {
         $("#overlay").addClass("hidden");
