@@ -560,6 +560,10 @@ function onClickCancelNodeTableComm() {
   element.style.display = "none";
 }
 
+function onClickAllowCross() {
+  diagram.constraints = 500 | (2 | 2048);
+}
+
 // Initializing and appending diagram
 var diagram = new ej.diagrams.Diagram({
   width: "2000px",
@@ -593,6 +597,7 @@ var diagram = new ej.diagrams.Diagram({
     ],
     showCustomMenuOnly: true,
   },
+
   contextMenuClick: function (args) {
     //do your custom action here.
     // shape:

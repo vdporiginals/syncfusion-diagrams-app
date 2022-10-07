@@ -1129,6 +1129,10 @@ function openTheoryTab() {
   }
 }
 
+function showTooltipNodes() {
+  console.log("showTooltipNodes", diagram.nodes);
+}
+
 function showHideDialog() {
   let dialog = openDialog("Show Hide Model");
   let container = document.createElement("div");
