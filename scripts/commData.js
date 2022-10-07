@@ -2659,6 +2659,16 @@ function getCommOthers() {
   return otherData.map((data) => drawShape(data));
 }
 
+function getItemCommOthers(id) {
+  const find = otherData.find((x) => x.id === id);
+  return drawShape(find);
+}
+
+function getItembyIdCommOthers(id) {
+  const find = otherData.find((x) => x.id === id);
+  return find;
+}
+
 //#region Quick Elements
 let quickElementsComm = [
   {

@@ -9,7 +9,6 @@ let area = getCommAreAndLocation();
 let others = getCommOthers();
 let commlabel = getCommLabel();
 let quickComm = getQuickComm();
-
 let system = getThoerySystem();
 let thoery = getTheory();
 let fundamental = getThoeryFundamental();
@@ -519,6 +518,48 @@ function onClickCancelContinuityPerson() {
   element.style.display = "none";
 }
 
+function onDrogNodeTableComm(args) {
+  const positionItem = document
+    .getElementById(args.element.id)
+    .getBoundingClientRect();
+  const element = document.getElementById("dialogNodeTableComm");
+  element.style.paddingTop = positionItem.top + "px";
+  element.style.paddingLeft = positionItem.left + 220 + "px";
+  element.style.display = "block";
+}
+
+function onClickApplyNodeTableComm() {
+  const element = document.getElementById("dialogNodeTableComm");
+  element.style.display = "none";
+  const nodes = getNodesDiagramNodes([...diagram.nodes]);
+  let itemSub = getItembyIdCommOthers("nodeTableComm");
+  const value = document.getElementById("input-node-table-comm").value;
+  itemSub.annotation.columnNo = Number(value);
+  itemSub.annotation.content = [];
+  for (let ix = 0; ix < Number(value); ix++) {
+    if (ix === 0) {
+      itemSub.annotation.content = itemSub.annotation.content.concat([
+        "Node Number",
+        "Information",
+      ]);
+    } else {
+      itemSub.annotation.content = itemSub.annotation.content.concat([
+        ix.toString(),
+        "value" + ix,
+      ]);
+    }
+  }
+  let item = drawShape(itemSub);
+  item.offsetX = nodes[0].offsetX;
+  item.offsetY = nodes[0].offsetY;
+  diagram.nodes = [item];
+}
+
+function onClickCancelNodeTableComm() {
+  const element = document.getElementById("dialogNodeTableComm");
+  element.style.display = "none";
+}
+
 // Initializing and appending diagram
 var diagram = new ej.diagrams.Diagram({
   width: "2000px",
@@ -625,11 +666,15 @@ var diagram = new ej.diagrams.Diagram({
     openModelPage("main-project-model-comm");
   },
   drop: function (args) {
+    console.log(args);
     if (args.element.id.startsWith("groupOfPeople")) {
       onDrogGroupsOfPeopleNode(args);
     }
     if (args.element.id.startsWith("continuityPerson")) {
       onDrogContinuityPerson(args);
+    }
+    if (args.element.id.startsWith("nodeTableComm")) {
+      onDrogNodeTableComm(args);
     }
   },
 });
