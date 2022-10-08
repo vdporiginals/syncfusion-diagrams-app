@@ -490,12 +490,10 @@ function onClickCancelGroupOfPeople() {
   element.style.display = "none";
 }
 
-idContinuityPerson = "";
 function onDrogContinuityPerson(args) {
   const positionItem = document
     .getElementById(args.element.id)
     .getBoundingClientRect();
-  idContinuityPerson = args.element.id;
   const element = document.getElementById("dialogContinuityPerson");
   element.style.paddingTop = positionItem.top + "px";
   element.style.paddingLeft = positionItem.left + 220 + "px";
@@ -507,7 +505,7 @@ function onClickApplyContinuityPerson() {
   element.style.display = "none";
   let nodes = getNodesDiagramNodes([...diagram.nodes]);
   const value = document.getElementById("input-continuity-size").value;
-  const node = nodes.find((x) => x.id === idContinuityPerson);
+  const node = nodes.find((x) => x.id === idElementActive);
   node.width = node.width * value;
   node.height = node.height * value;
   diagram.nodes = nodes;
@@ -560,9 +558,38 @@ function onClickCancelNodeTableComm() {
   element.style.display = "none";
 }
 
+function onDrogGroupOrAddEntities(args) {
+  const positionItem = document
+    .getElementById(args.element.id)
+    .getBoundingClientRect();
+  const element = document.getElementById("dialogGroupOrAddEntities");
+  element.style.paddingTop = positionItem.top + "px";
+  element.style.paddingLeft = positionItem.left + 70 + "px";
+  element.style.display = "block";
+}
+
+function onClickApplyGroupOrAddEntities() {
+  const element = document.getElementById("dialogGroupOrAddEntities");
+  element.style.display = "none";
+  const nodes = getNodesDiagramNodes([...diagram.nodes]);
+  const value = document.getElementById("input-group-or-add-entities").value;
+  const find = nodes.find((x) => x.id === idElementActive);
+  find.height = (find.height * value) / 2;
+  find.offsetX = find.offsetX;
+  find.offsetY = find.offsetY;
+  diagram.nodes = [...nodes];
+}
+
+function onClickCancelGroupOrAddEntities() {
+  const element = document.getElementById("dialogGroupOrAddEntities");
+  element.style.display = "none";
+}
+
 function onClickAllowCross() {
   diagram.constraints = 500 | (2 | 2048);
 }
+
+idElementActive = "";
 
 // Initializing and appending diagram
 var diagram = new ej.diagrams.Diagram({
@@ -672,6 +699,8 @@ var diagram = new ej.diagrams.Diagram({
   },
   drop: function (args) {
     console.log(args);
+    console.log(args.element.id);
+    idElementActive = args.element.id;
     if (args.element.id.startsWith("groupOfPeople")) {
       onDrogGroupsOfPeopleNode(args);
     }
@@ -680,6 +709,9 @@ var diagram = new ej.diagrams.Diagram({
     }
     if (args.element.id.startsWith("nodeTableComm")) {
       onDrogNodeTableComm(args);
+    }
+    if (args.element.id.startsWith("group")) {
+      onDrogGroupOrAddEntities(args);
     }
   },
 });
