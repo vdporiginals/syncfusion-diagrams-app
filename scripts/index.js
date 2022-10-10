@@ -629,19 +629,31 @@ var diagram = new ej.diagrams.Diagram({
     //do your custom action here.
     // shape:
     currentItem = args.item.id;
-    if (args.item.id.includes("Picture")) {
+    console.log(diagram.selectedItems.properties)
+    let idCheck = args.item.id.toLowerCase();
+    if (idCheck.includes("picture")) {
       $("#fileUploadToDiagrams").attr("accept", "image/*");
       $("#fileUploadToDiagrams").click();
     }
-    if (args.item.id.includes("Video") || args.item.id.includes("video")) {
+    if (idCheck.includes("video")) {
       $("#fileUploadToDiagrams").attr("accept", "video/*");
       $("#fileUploadToDiagrams").click();
     }
-    if (args.item.id.includes("Audio")) {
+    if (idCheck.includes("audio")) {
       $("#fileUploadToDiagrams").attr("accept", "audio/*");
       $("#fileUploadToDiagrams").click();
     }
-    if (args.item.id === "relatePersonOperatingPrinciple") {
+    if (idCheck.includes('sketch')){
+      sketchContextClick(idCheck);
+    }
+    if (idCheck.includes('text')){
+      addTextOnClick();
+    }
+    if(idCheck.includes('communication')){
+      addCommHolderOnClick();
+    }
+    
+    if (idCheck.includes('principle')) {
       relatePersonOperatingPrinciple();
     }
   },
@@ -718,6 +730,33 @@ var diagram = new ej.diagrams.Diagram({
 diagram.appendTo("#diagram");
 const blankDiagram = diagram.saveDiagram();
 
+function addTextOnClick(){
+  let findItem = drawShape(otherData.find(a=> a.id === 'callOut'));
+  let addItem = diagram.add(findItem); 
+  let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
+  let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
+  addItem.offsetX = offsetXD + 250;
+  addItem.offsetY = offsetYD + 50;
+}
+
+function addCommHolderOnClick(){
+  let findItem = drawShape(personData.find(a=> a.id === 'communicationHolder'));
+  let addItem = diagram.add(findItem); 
+  let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
+  let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
+  addItem.offsetX = offsetXD + 250;
+  addItem.offsetY = offsetYD + 50;
+}
+
+function sketchContextClick(idCheck){
+  let findItem = drawShape(personData.find(a=> idCheck.includes(a.id.toLowerCase())));
+  let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
+  let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
+  diagram.remove(diagram.selectedItems.properties.nodes[0]); 
+  let addItem = diagram.add(findItem); 
+  addItem.offsetX = offsetXD;
+  addItem.offsetY = offsetYD;
+}
 //#region code for canvas to svg tranformation
 let canvasSymbols = document.querySelectorAll(".e-symbol-draggable > canvas");
 for (let i = 0; i < canvasSymbols.length; i++) {
