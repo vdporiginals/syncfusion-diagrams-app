@@ -490,9 +490,9 @@ var tabs = [
           {
             groups: [
               {
-                id: "selectedEntity",
-                text: "Selected Entity",
-                toolTip: "Selected Entity",
+                id: "container",
+                text: "Container",
+                toolTip: "Container",
                 width: "75px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
@@ -535,7 +535,7 @@ var tabs = [
                 id: "fromclipboard",
                 text: "From Clipboard",
                 toolTip: "From Clipboard",
-                width: "100px",
+                width: "56px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
