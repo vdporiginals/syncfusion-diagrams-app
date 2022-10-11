@@ -602,27 +602,37 @@ function onDrogMainArea(args) {
 function onClickApplyMainArea() {
   const element = document.getElementById("dialogMainArea");
   element.style.display = "none";
-  let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
-  let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
-  const mainArea = areaData.find((a) => a.id === "mainArea");
-  let siteOfOperation = areaData.find((a) => a.id === "siteOfOperation");
-  siteOfOperation.id = "siteOfOperation1";
-  siteOfOperation.height = 50;
-  siteOfOperation.width = 50;
-  siteOfOperation.offsetX = offsetXD;
-  siteOfOperation.offsetY = offsetYD;
-  diagram.add(drawShape(siteOfOperation));
-  siteOfOperation.id = "siteOfOperation2";
-  siteOfOperation.offsetX = offsetXD + 50;
-  siteOfOperation.offsetY = offsetYD + 50;
-  diagram.add(drawShape(siteOfOperation));
-  mainArea.children = ["siteOfOperation1", "siteOfOperation2"];
-  let findItem = drawShape(mainArea);
+  const offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
+  const offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
+  let mainArea = areaData.find((a) => a.id === "mainArea");
   diagram.remove(diagram.selectedItems.properties.nodes[0]);
+  mainArea.annotation.height = undefined;
+  mainArea.annotation.width = undefined;
+  let findItem = drawShape(mainArea);
   let addItem = diagram.add(findItem);
-  addItem.offsetX = offsetXD;
-  addItem.offsetY = offsetYD;
-  console.log(diagram.nodes);
+
+  let siteOfOperation = everyShape.find((a) => a.id === "siteOfOperation");
+  siteOfOperation.margin = {
+    top: 20,
+    left: 20,
+    right: 20,
+    bottom: 20,
+  };
+  diagram.addChild(addItem, siteOfOperation, 1);
+  let siteOfOperation2 = everyShape.find((a) => a.id === "siteOfOperation");
+  siteOfOperation2.id = "siteOfOperation2";
+  siteOfOperation2.margin = {
+    top: 20,
+    left: 20,
+    right: 20,
+    bottom: 20,
+  };
+  diagram.addChild(addItem, siteOfOperation2, 2);
+  setTimeout(() => {
+    diagram.nodes[0].offsetX = offsetXD;
+    diagram.nodes[0].offsetY = offsetYD;
+    diagram.nodes[2].offsetY = 200;
+  }, 1);
 }
 
 function onClickCancelMainArea() {

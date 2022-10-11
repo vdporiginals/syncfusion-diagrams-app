@@ -203,7 +203,6 @@ var tabs = [
           },
         ],
       },
-
       {
         text: "Style",
         alignType: ej.Ribbon.AlignType.Rows,
@@ -473,6 +472,149 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "flaticon-home-icon-silhouette",
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "insert",
+    text: "Insert",
+    groups: [
+      {
+        text: "Diagram Parts",
+        content: [
+          {
+            groups: [
+              {
+                id: "selectedEntity",
+                text: "Selected Entity",
+                toolTip: "Selected Entity",
+                width: "75px",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-click",
+                },
+              },
+              {
+                id: "list",
+                text: "List",
+                toolTip: "List",
+                width: "75px",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-click",
+                },
+              },
+              {
+                id: "picture",
+                text: "Picture",
+                toolTip: "Picture",
+                width: "75px",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-click",
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: "",
+        content: [
+          {
+            groups: [
+              {
+                id: "fromclipboard",
+                text: "From Clipboard",
+                toolTip: "From Clipboard",
+                width: "100px",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-website-1",
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: "Container",
+        content: [
+          {
+            groups: [
+              {
+                id: "function",
+                text: "Function",
+                toolTip: "Function",
+                width: "100px",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-website-1",
+                },
+              },
+              {
+                id: "application",
+                text: "Application",
+                toolTip: "Application",
+                width: "100px",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-website-1",
+                },
+              },
+              {
+                id: "Result",
+                text: "Result",
+                toolTip: "Result",
+                width: "100px",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-website-1",
+                },
+              },
+              {
+                id: "Collection",
+                text: "Collection",
+                toolTip: "Collection",
+                width: "100px",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-website-1",
+                },
+              },
+              {
+                id: "Dictionary",
+                text: "Dictionary",
+                toolTip: "Dictionary",
+                width: "100px",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-website-1",
+                },
+              },
+              {
+                id: "mainarea",
+                text: "Main Area",
+                toolTip: "Main Area",
+                width: "100px",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-website-1",
                 },
               },
             ],

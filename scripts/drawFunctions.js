@@ -2393,11 +2393,11 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
       targetPoint,
     };
   } else {
-    let height = annotation.height !== undefined ? annotation.height : 80;
-    let width = annotation.width !== undefined ? annotation.width : 150;
+    let height = annotation?.height !== undefined ? annotation.height : 80;
+    let width = annotation?.width !== undefined ? annotation.width : 150;
     let text =
-      annotation.content !== undefined
-        ? annotation.content[0].content
+      annotation?.content !== undefined
+        ? annotation?.content[0]?.content
         : annotation;
     let textLen;
     if (String(text).length === 1) {
@@ -2436,17 +2436,17 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     </foreignObject>`,
       },
       annotations:
-        annotation.content !== undefined
-          ? annotation.content
+        annotation?.content !== undefined
+          ? annotation?.content
           : [{ content: annotation }],
       width: width,
       height: height,
-      ports: annotation.ports !== undefined ? annotation.ports : rectPorts,
+      ports: annotation?.ports !== undefined ? annotation?.ports : rectPorts,
       constraints:
         ej.diagrams.NodeConstraints.Default &
         ~ej.diagrams.NodeConstraints.Rotate,
       style: {
-        ...annotation.style,
+        ...annotation?.style,
         fill: "white",
         fontSize: 10,
       },

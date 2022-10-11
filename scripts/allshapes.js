@@ -9777,7 +9777,7 @@ var everyShape = [
         },
       },
     ],
-    width: 800,
+    width: 200,
     height: 200,
     ports: [],
     style: {
