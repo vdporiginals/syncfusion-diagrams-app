@@ -580,7 +580,7 @@ let areaData = [
         strokeWidth: 4,
       },
       height: 200,
-      width: 800,
+      width: 200,
     },
     menuId: "location",
     toolTip: "Identify The Main Area",

@@ -589,6 +589,57 @@ function onClickAllowCross() {
   diagram.constraints = 500 | (2 | 2048);
 }
 
+function onDrogMainArea(args) {
+  const positionItem = document
+    .getElementById(args.element.id)
+    .getBoundingClientRect();
+  const element = document.getElementById("dialogMainArea");
+  element.style.paddingTop = positionItem.top + "px";
+  element.style.paddingLeft = positionItem.left + 70 + "px";
+  element.style.display = "block";
+}
+
+function onClickApplyMainArea() {
+  const element = document.getElementById("dialogMainArea");
+  element.style.display = "none";
+  const offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
+  const offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
+  let mainArea = areaData.find((a) => a.id === "mainArea");
+  diagram.remove(diagram.selectedItems.properties.nodes[0]);
+  mainArea.annotation.height = undefined;
+  mainArea.annotation.width = undefined;
+  let findItem = drawShape(mainArea);
+  let addItem = diagram.add(findItem);
+
+  let siteOfOperation = everyShape.find((a) => a.id === "siteOfOperation");
+  siteOfOperation.margin = {
+    top: 20,
+    left: 20,
+    right: 20,
+    bottom: 20,
+  };
+  diagram.addChild(addItem, siteOfOperation, 1);
+  let siteOfOperation2 = everyShape.find((a) => a.id === "siteOfOperation");
+  siteOfOperation2.id = "siteOfOperation2";
+  siteOfOperation2.margin = {
+    top: 20,
+    left: 20,
+    right: 20,
+    bottom: 20,
+  };
+  diagram.addChild(addItem, siteOfOperation2, 2);
+  setTimeout(() => {
+    diagram.nodes[0].offsetX = offsetXD;
+    diagram.nodes[0].offsetY = offsetYD;
+    diagram.nodes[2].offsetY = 200;
+  }, 1);
+}
+
+function onClickCancelMainArea() {
+  const element = document.getElementById("dialogMainArea");
+  element.style.display = "none";
+}
+
 idElementActive = "";
 
 // Initializing and appending diagram
@@ -629,7 +680,7 @@ var diagram = new ej.diagrams.Diagram({
     //do your custom action here.
     // shape:
     currentItem = args.item.id;
-    console.log(diagram.selectedItems.properties)
+    console.log(diagram.selectedItems.properties);
     let idCheck = args.item.id.toLowerCase();
     if (idCheck.includes("picture")) {
       $("#fileUploadToDiagrams").attr("accept", "image/*");
@@ -643,17 +694,17 @@ var diagram = new ej.diagrams.Diagram({
       $("#fileUploadToDiagrams").attr("accept", "audio/*");
       $("#fileUploadToDiagrams").click();
     }
-    if (idCheck.includes('sketch')){
+    if (idCheck.includes("sketch")) {
       sketchContextClick(idCheck);
     }
-    if (idCheck.includes('text')){
+    if (idCheck.includes("text")) {
       addTextOnClick();
     }
-    if(idCheck.includes('communication')){
+    if (idCheck.includes("communication")) {
       addCommHolderOnClick();
     }
-    
-    if (idCheck.includes('principle')) {
+
+    if (idCheck.includes("principle")) {
       relatePersonOperatingPrinciple();
     }
   },
@@ -725,35 +776,42 @@ var diagram = new ej.diagrams.Diagram({
     if (args.element.id.startsWith("group")) {
       onDrogGroupOrAddEntities(args);
     }
+    if (args.element.id.startsWith("mainArea")) {
+      onDrogMainArea(args);
+    }
   },
 });
 diagram.appendTo("#diagram");
 const blankDiagram = diagram.saveDiagram();
 
-function addTextOnClick(){
-  let findItem = drawShape(otherData.find(a=> a.id === 'callOut'));
-  let addItem = diagram.add(findItem); 
+function addTextOnClick() {
+  let findItem = drawShape(otherData.find((a) => a.id === "callOut"));
+  let addItem = diagram.add(findItem);
   let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
   let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
   addItem.offsetX = offsetXD + 250;
   addItem.offsetY = offsetYD + 50;
 }
 
-function addCommHolderOnClick(){
-  let findItem = drawShape(personData.find(a=> a.id === 'communicationHolder'));
-  let addItem = diagram.add(findItem); 
+function addCommHolderOnClick() {
+  let findItem = drawShape(
+    personData.find((a) => a.id === "communicationHolder")
+  );
+  let addItem = diagram.add(findItem);
   let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
   let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
   addItem.offsetX = offsetXD + 250;
   addItem.offsetY = offsetYD + 50;
 }
 
-function sketchContextClick(idCheck){
-  let findItem = drawShape(personData.find(a=> idCheck.includes(a.id.toLowerCase())));
+function sketchContextClick(idCheck) {
+  let findItem = drawShape(
+    personData.find((a) => idCheck.includes(a.id.toLowerCase()))
+  );
   let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
   let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
-  diagram.remove(diagram.selectedItems.properties.nodes[0]); 
-  let addItem = diagram.add(findItem); 
+  diagram.remove(diagram.selectedItems.properties.nodes[0]);
+  let addItem = diagram.add(findItem);
   addItem.offsetX = offsetXD;
   addItem.offsetY = offsetYD;
 }
