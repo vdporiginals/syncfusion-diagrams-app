@@ -764,13 +764,6 @@ var diagram = new ej.diagrams.Diagram({
     setTimeout(() => {
       diagram.add(group2);
     });
-    // Trường họp chỉ di chuyển container
-    // setTimeout(() => {
-    //   diagram.add(group);
-    //   setTimeout(()=>{
-    //     diagram.add(group2);
-    //   })
-    // });
     // Test group énd
     if (diagram.selectedItems.nodes[0]) {
       let bpmnShape = diagram.selectedItems.nodes[0];
