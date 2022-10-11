@@ -326,8 +326,8 @@ $("#fileUploadToDiagrams").change(function () {
         diagram.selectedItems.properties.nodes[0].shape = {
           content: `<audio controls>
                     <source src="${URL.createObjectURL(
-                      file
-                    )}" type="audio/mpeg">
+            file
+          )}" type="audio/mpeg">
                   Your browser does not support the audio element.
                   </audio>`,
         };
@@ -609,6 +609,7 @@ function onClickApplyMainArea() {
   mainArea.annotation.height = undefined;
   mainArea.annotation.width = undefined;
   let findItem = drawShape(mainArea);
+  console.log(findItem)
   let addItem = diagram.add(findItem);
 
   let siteOfOperation = everyShape.find((a) => a.id === "siteOfOperation");
@@ -642,6 +643,16 @@ function onClickCancelMainArea() {
 
 idElementActive = "";
 
+//creation of the TextElement.
+function getTextElement(text, color) {
+  let findItem = drawShape(areaData.find((a) => a.id === "mainArea"));
+  let textElement = new ej.diagrams.DiagramElement(findItem);
+  textElement.id = randomId();
+  textElement.width = 80;
+  textElement.height = 35;
+  textElement.offsetX = color;
+  return textElement;
+}
 // Initializing and appending diagram
 var diagram = new ej.diagrams.Diagram({
   width: "2000px",
@@ -661,6 +672,9 @@ var diagram = new ej.diagrams.Diagram({
       tickAlignment: "RightOrBottom",
     },
   },
+  click: (args) => {
+    console.log(args)
+  },
   bridgeDirection: "Left",
   contextMenuSettings: {
     show: true,
@@ -675,7 +689,8 @@ var diagram = new ej.diagrams.Diagram({
     ],
     showCustomMenuOnly: true,
   },
-
+  setNodeTemplate: (obj, diagram) => {
+  },
   contextMenuClick: function (args) {
     //do your custom action here.
     // shape:
@@ -709,10 +724,59 @@ var diagram = new ej.diagrams.Diagram({
     }
   },
   contextMenuOpen: function (args) {
+    // Test group
+    let nodes = [{
+      id: "rectangle1",
+      offsetX: 100,
+      offsetY: 100,
+      width: 100,
+      height: 100,
+      annotations: [{
+        content: 'rectangle1'
+      }]
+    }, {
+      id: "rectangle2",
+      offsetX: 200,
+      offsetY: 200,
+      width: 100,
+      height: 100,
+      annotations: [{
+        content: 'rectangle2'
+      }]
+    },{
+      id: "rectangle3",
+      offsetX: 100,
+      offsetY: 100,
+      width: 500,
+      height: 500,
+      annotations: [{
+        content: 'rectangle3'
+      }]
+    }];
+    diagram.add(nodes[2]);
+    diagram.add(nodes[0]);
+    diagram.add(nodes[1]);
+    let group2 = {
+      id: 'group23',
+      children: ['rectangle3', 'rectangle1', 'rectangle2']
+    };
+    // Trường họp di chuyển item bên trong container
+    setTimeout(() => {
+      diagram.add(group2);
+    });
+    // Trường họp chỉ di chuyển container
+    // setTimeout(() => {
+    //   diagram.add(group);
+    //   setTimeout(()=>{
+    //     diagram.add(group2);
+    //   })
+    // });
+    // Test group énd
     if (diagram.selectedItems.nodes[0]) {
       let bpmnShape = diagram.selectedItems.nodes[0];
       //do your custom action here.
       console.log(bpmnShape.id);
+      addCommunicationFunction();
       let personChecker = [
         "person",
         "manager",
@@ -791,6 +855,20 @@ function addTextOnClick() {
   let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
   addItem.offsetX = offsetXD + 250;
   addItem.offsetY = offsetYD + 50;
+}
+let countComm = 0;
+function addCommunicationFunction(id, annotations) {
+  countComm++;
+  if (countComm > 10000) {
+    countComm = 1;
+  }
+  let find = applicationRects.find((a) => a.id === id);
+  find.annotation = annotations;
+  let findItem = drawShape(find);
+  findItem.id = findItem.id + countComm;
+  let addItem = diagram.add(findItem);
+  addItem.offsetX = addItem.offsetX + 250;
+  addItem.offsetY = addItem.offsetY + 150;
 }
 
 function addCommHolderOnClick() {

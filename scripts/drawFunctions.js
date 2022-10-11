@@ -551,6 +551,48 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
         ej.diagrams.NodeConstraints.Default &
         ~ej.diagrams.NodeConstraints.Rotate,
     };
+  } else if (type === "CommunicationGrouped") {
+    node = {
+      id,
+      addInfo: [
+        {
+          title,
+          toolTip,
+        },
+      ],
+      shape: {
+        type: "Native",
+        content: `<g  transform="translate(2, 2)">
+                    <rect vector-effect="non-scaling-stroke" width="500" height="150" stroke="black" fill="transparent" stroke-width="1" />
+                    <rect x="25" y="25" width="200" height="100" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
+                    <rect x="270" y="025" height="100" width="200"  fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1"/>
+                </g>`,
+      },
+      annotations: [
+        {
+          content: annotation[0],
+          offset: { x: 0.26, y: 0.5 },
+        },
+        {
+          content: annotation[1],
+          offset: { x: 0.76, y: 0.5 },
+        },
+        {
+          content: annotation[2],
+          offset: { x: 0.5, y: 0 },
+          margin: { bottom: 10 },
+        },
+      ],
+      style: {
+        fill: "none",
+        fontSize: 10,
+      },
+      height: 108,
+      width: 414,
+      constraints:
+        ej.diagrams.NodeConstraints.Default &
+        ~ej.diagrams.NodeConstraints.Rotate,
+    };
   } else if (type === "ECF") {
     node = {
       id,

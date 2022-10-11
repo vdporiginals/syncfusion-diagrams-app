@@ -338,6 +338,14 @@ let applicationRects = [
     type: "WhatWeDo",
   },
   {
+    id: "communicationFunctionGrouped",
+    title: "Communication Function",
+    annotation: ["Communication Function", "Communication Function", "Communication Function"],
+    menuId: "entity",
+    toolTip: "What We Do as Entity",
+    type: "CommunicationGrouped",
+  },
+  {
     id: "whatWeDo1",
     title: "What We Do",
     annotation: "draw New Shape",

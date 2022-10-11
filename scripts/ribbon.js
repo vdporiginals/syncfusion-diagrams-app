@@ -1525,6 +1525,15 @@ $(function () {
       alert("Expanded");
     },
   });
+  $('#Ribbon_function').on('click', ()=>{
+    addCommunicationFunction('communicationFunctionGrouped',  ["Communication Function", "Communication Function", "Communication Function"]);
+  });
+  $('#Ribbon_application').on('click', ()=>{
+    addCommunicationFunction('communicationFunctionGrouped',  ["Application 1", "Application 2", "Application"]);
+  });
+  $('#Ribbon_Result').on('click', ()=>{
+    addCommunicationFunction('communicationFunctionGrouped',  ["Communication Result 1", "Communication Result 2", "Communication Result"]);
+  });
   $("#Ribbon_toCommunicationDomain span:first-child").addClass(
     "disabled-button"
   );
