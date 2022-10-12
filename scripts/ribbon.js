@@ -623,6 +623,142 @@ var tabs = [
       },
     ],
   },
+  // {
+  //   id: "equations",
+  //   text: "Equations",
+  //   groups: [
+  //     {
+  //       text: "",
+  //       content: [
+  //         {
+  //           groups: [
+  //             {
+  //               id: "Bracket",
+  //               text: "Bracket",
+  //               toolTip: "Bracket",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //             {
+  //               id: "Decorator",
+  //               text: "Decorator",
+  //               toolTip: "Decorator",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //             {
+  //               id: "Sum_products",
+  //               text: "Sum & products",
+  //               toolTip: "Sum & products",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //             {
+  //               id: "Integral",
+  //               text: "Integral",
+  //               toolTip: "Integral",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //             {
+  //               id: "Script",
+  //               text: "Script",
+  //               toolTip: "Script",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //             {
+  //               id: "Fraction_radical",
+  //               text: "Fraction & radical",
+  //               toolTip: "Fraction & radical",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //             {
+  //               id: "Labeled_Arrow",
+  //               text: "Labeled Arrow",
+  //               toolTip: "Labeled Arrow",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //             {
+  //               id: "Underbar_Overbar",
+  //               text: "Underbar & Overbar",
+  //               toolTip: "Underbar & Overbar",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //             {
+  //               id: "Bracket",
+  //               text: "Bracket",
+  //               toolTip: "Bracket",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //             {
+  //               id: "Bracket",
+  //               text: "Bracket",
+  //               toolTip: "Bracket",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //             {
+  //               id: "Bracket",
+  //               text: "Bracket",
+  //               toolTip: "Bracket",
+  //               width: "75px",
+  //               buttonSettings: {
+  //                 contentType: ej.ContentType.TextAndImage,
+  //                 imagePosition: ej.ImagePosition.ImageTop,
+  //                 prefixIcon: "flaticon-click",
+  //               },
+  //             },
+  //           ],
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     id: "edit",
     text: "Edit",
@@ -1525,14 +1661,26 @@ $(function () {
       alert("Expanded");
     },
   });
-  $('#Ribbon_function').on('click', ()=>{
-    addCommunicationFunction('communicationFunctionGrouped',  ["Communication Function", "Communication Function", "Communication Function"]);
+  $("#Ribbon_function").on("click", () => {
+    addCommunicationFunction("communicationFunctionGrouped", [
+      "Communication Function",
+      "Communication Function",
+      "Communication Function",
+    ]);
   });
-  $('#Ribbon_application').on('click', ()=>{
-    addCommunicationFunction('communicationFunctionGrouped',  ["Application 1", "Application 2", "Application"]);
+  $("#Ribbon_application").on("click", () => {
+    addCommunicationFunction("communicationFunctionGrouped", [
+      "Application 1",
+      "Application 2",
+      "Application",
+    ]);
   });
-  $('#Ribbon_Result').on('click', ()=>{
-    addCommunicationFunction('communicationFunctionGrouped',  ["Communication Result 1", "Communication Result 2", "Communication Result"]);
+  $("#Ribbon_Result").on("click", () => {
+    addCommunicationFunction("communicationFunctionGrouped", [
+      "Communication Result 1",
+      "Communication Result 2",
+      "Communication Result",
+    ]);
   });
   $("#Ribbon_toCommunicationDomain span:first-child").addClass(
     "disabled-button"

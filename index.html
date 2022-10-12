@@ -22,6 +22,10 @@
     <script>
       $.extend(ej, Syncfusion);
     </script>
+    <script
+      src="//ej2.syncfusion.com/javascript/demos/dialog/draggable/datasource.js"
+      type="text/javascript"
+    ></script>
   </head>
   <body onresize="resetColumn()">
     <div id="overlay" class="loading-overlay">
@@ -2946,12 +2950,6 @@
           <div class="w-112px">Group Name</div>
           <input type="text" class="w-200px" />
         </div>
-        <div class="d-flex group-button-dialog-group-of-people">
-          <button class="m-r-8" onclick="onClickApplyGroupOfPeople()">
-            Apply
-          </button>
-          <button onclick="onClickCancelGroupOfPeople()">Cancel</button>
-        </div>
       </div>
     </div>
     <div id="dialogContinuityPerson" class="dialog-group-of-people">
@@ -2959,12 +2957,6 @@
         <div class="d-flex">
           <div class="w-112px">Continuity Size</div>
           <input type="text" class="w-200px" id="input-continuity-size" />
-        </div>
-        <div class="d-flex group-button-dialog-group-of-people">
-          <button class="m-r-8" onclick="onClickApplyContinuityPerson()">
-            Apply
-          </button>
-          <button onclick="onClickCancelContinuityPerson()">Cancel</button>
         </div>
       </div>
     </div>
@@ -2995,18 +2987,38 @@
       </div>
     </div>
     <div id="dialogMainArea" class="dialog-group-of-people">
-      <div class="dialog-group-of-people-content">
-        <div class="d-flex">
-          <input type="text" class="w-200px" id="input-group-or-add-entities" />
+      <div class="dialog-main-area p-l-20 p-r-20">
+        <div class="m-b-20">Types</div>
+        <div class="d-flex justify-content-space-between m-b-20">
+          <div class="d-flex">
+            <input type="radio" name="colors" id="house" class="m-r-4" />
+            <div>House</div>
+          </div>
+          <div class="d-flex">
+            <input type="radio" name="colors" id="map" class="m-r-4" />
+            <div>Map</div>
+          </div>
+          <div class="d-flex">
+            <input type="radio" name="colors" id="regular" class="m-r-4" />
+            <div>Regular</div>
+          </div>
+          <div class="d-flex">
+            <input
+              type="radio"
+              name="colors"
+              id="regularwithmap"
+              class="m-r-4"
+            />
+            <div>Regular With Map</div>
+          </div>
         </div>
-        <div class="d-flex group-button-dialog-group-of-people">
-          <button class="m-r-8" onclick="onClickApplyMainArea()">
-            Apply
-          </button>
-          <button onclick="onClickCancelMainArea()">Cancel</button>
+        <div class="d-flex">
+          <div>Numbers</div>
+          <input class="w-100" type="text" id="input-group-or-add-entities" />
         </div>
       </div>
     </div>
+    <div id="confirmDialog"></div>
     <script>
       setTimeout(() => {
         $("#overlay").addClass("hidden");

@@ -198,7 +198,7 @@ var theoryPalette = new ej.diagrams.SymbolPalette({
     };
   },
 });
-// Appending symbol palette
+
 commPalette.appendTo("#symbol-palette-comm");
 theoryPalette.appendTo("#symbol-palette-theory");
 
@@ -326,8 +326,8 @@ $("#fileUploadToDiagrams").change(function () {
         diagram.selectedItems.properties.nodes[0].shape = {
           content: `<audio controls>
                     <source src="${URL.createObjectURL(
-            file
-          )}" type="audio/mpeg">
+                      file
+                    )}" type="audio/mpeg">
                   Your browser does not support the audio element.
                   </audio>`,
         };
@@ -467,53 +467,39 @@ function onDrogGroupsOfPeopleNode(args) {
     offsetY: args.element.offsetY,
   };
   nodes = nodes.concat([item1, item2, item3, group]);
-  const positionItem = document
-    .getElementById(args.element.id)
-    .getBoundingClientRect();
   nodes = nodes.filter((x) => !x.id || x.id !== args.element.id);
   setTimeout(() => {
     diagram.nodes = nodes;
-    const element = document.getElementById("dialogGroupofPeople");
-    element.style.paddingTop = positionItem.top - 30 + "px";
-    element.style.paddingLeft = positionItem.left + 210 + "px";
-    element.style.display = "block";
+    openModal(
+      "Group of People",
+      "#dialogGroupofPeople",
+      onClickApplyGroupOfPeople
+    );
   }, 100);
 }
 
 function onClickApplyGroupOfPeople() {
-  const element = document.getElementById("dialogGroupofPeople");
-  element.style.display = "none";
-}
-
-function onClickCancelGroupOfPeople() {
-  const element = document.getElementById("dialogGroupofPeople");
-  element.style.display = "none";
+  hiddenModal();
 }
 
 function onDrogContinuityPerson(args) {
-  const positionItem = document
-    .getElementById(args.element.id)
-    .getBoundingClientRect();
-  const element = document.getElementById("dialogContinuityPerson");
-  element.style.paddingTop = positionItem.top + "px";
-  element.style.paddingLeft = positionItem.left + 220 + "px";
-  element.style.display = "block";
+  openModal(
+    "Continuity Size",
+    "#dialogContinuityPerson",
+    onClickApplyContinuityPerson
+  );
 }
 
 function onClickApplyContinuityPerson() {
-  const element = document.getElementById("dialogContinuityPerson");
-  element.style.display = "none";
   let nodes = getNodesDiagramNodes([...diagram.nodes]);
   const value = document.getElementById("input-continuity-size").value;
   const node = nodes.find((x) => x.id === idElementActive);
   node.width = node.width * value;
   node.height = node.height * value;
   diagram.nodes = nodes;
-}
-
-function onClickCancelContinuityPerson() {
-  const element = document.getElementById("dialogContinuityPerson");
-  element.style.display = "none";
+  setTimeout(() => {
+    hiddenModal();
+  }, 100);
 }
 
 function onDrogNodeTableComm(args) {
@@ -580,28 +566,15 @@ function onClickApplyGroupOrAddEntities() {
   diagram.nodes = [...nodes];
 }
 
-function onClickCancelGroupOrAddEntities() {
-  const element = document.getElementById("dialogGroupOrAddEntities");
-  element.style.display = "none";
-}
-
 function onClickAllowCross() {
   diagram.constraints = 500 | (2 | 2048);
 }
 
-function onDrogMainArea(args) {
-  const positionItem = document
-    .getElementById(args.element.id)
-    .getBoundingClientRect();
-  const element = document.getElementById("dialogMainArea");
-  element.style.paddingTop = positionItem.top + "px";
-  element.style.paddingLeft = positionItem.left + 70 + "px";
-  element.style.display = "block";
+function onDrogMainArea() {
+  openModal("Main Area", "#dialogMainArea", onClickApplyMainArea);
 }
 
 function onClickApplyMainArea() {
-  const element = document.getElementById("dialogMainArea");
-  element.style.display = "none";
   const offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
   const offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
   let mainArea = areaData.find((a) => a.id === "mainArea");
@@ -609,7 +582,6 @@ function onClickApplyMainArea() {
   mainArea.annotation.height = undefined;
   mainArea.annotation.width = undefined;
   let findItem = drawShape(mainArea);
-  console.log(findItem)
   let addItem = diagram.add(findItem);
 
   let siteOfOperation = everyShape.find((a) => a.id === "siteOfOperation");
@@ -633,12 +605,8 @@ function onClickApplyMainArea() {
     diagram.nodes[0].offsetX = offsetXD;
     diagram.nodes[0].offsetY = offsetYD;
     diagram.nodes[2].offsetY = 200;
+    hiddenModal();
   }, 1);
-}
-
-function onClickCancelMainArea() {
-  const element = document.getElementById("dialogMainArea");
-  element.style.display = "none";
 }
 
 idElementActive = "";
@@ -673,7 +641,7 @@ var diagram = new ej.diagrams.Diagram({
     },
   },
   click: (args) => {
-    console.log(args)
+    console.log(args);
   },
   bridgeDirection: "Left",
   contextMenuSettings: {
@@ -689,8 +657,7 @@ var diagram = new ej.diagrams.Diagram({
     ],
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => {
-  },
+  setNodeTemplate: (obj, diagram) => {},
   contextMenuClick: function (args) {
     //do your custom action here.
     // shape:
@@ -725,40 +692,50 @@ var diagram = new ej.diagrams.Diagram({
   },
   contextMenuOpen: function (args) {
     // Test group
-    let nodes = [{
-      id: "rectangle1",
-      offsetX: 100,
-      offsetY: 100,
-      width: 100,
-      height: 100,
-      annotations: [{
-        content: 'rectangle1'
-      }]
-    }, {
-      id: "rectangle2",
-      offsetX: 200,
-      offsetY: 200,
-      width: 100,
-      height: 100,
-      annotations: [{
-        content: 'rectangle2'
-      }]
-    },{
-      id: "rectangle3",
-      offsetX: 100,
-      offsetY: 100,
-      width: 500,
-      height: 500,
-      annotations: [{
-        content: 'rectangle3'
-      }]
-    }];
+    let nodes = [
+      {
+        id: "rectangle1",
+        offsetX: 100,
+        offsetY: 100,
+        width: 100,
+        height: 100,
+        annotations: [
+          {
+            content: "rectangle1",
+          },
+        ],
+      },
+      {
+        id: "rectangle2",
+        offsetX: 200,
+        offsetY: 200,
+        width: 100,
+        height: 100,
+        annotations: [
+          {
+            content: "rectangle2",
+          },
+        ],
+      },
+      {
+        id: "rectangle3",
+        offsetX: 100,
+        offsetY: 100,
+        width: 500,
+        height: 500,
+        annotations: [
+          {
+            content: "rectangle3",
+          },
+        ],
+      },
+    ];
     diagram.add(nodes[2]);
     diagram.add(nodes[0]);
     diagram.add(nodes[1]);
     let group2 = {
-      id: 'group23',
-      children: ['rectangle3', 'rectangle1', 'rectangle2']
+      id: "group23",
+      children: ["rectangle3", "rectangle1", "rectangle2"],
     };
     // Trường họp di chuyển item bên trong container
     setTimeout(() => {
@@ -818,8 +795,6 @@ var diagram = new ej.diagrams.Diagram({
     openModelPage("main-project-model-comm");
   },
   drop: function (args) {
-    console.log(args);
-    console.log(args.element.id);
     idElementActive = args.element.id;
     if (args.element.id.startsWith("groupOfPeople")) {
       onDrogGroupsOfPeopleNode(args);
@@ -830,11 +805,11 @@ var diagram = new ej.diagrams.Diagram({
     if (args.element.id.startsWith("nodeTableComm")) {
       onDrogNodeTableComm(args);
     }
-    if (args.element.id.startsWith("group")) {
-      onDrogGroupOrAddEntities(args);
-    }
+    // if (args.element.id.startsWith("group")) {
+    //   onDrogGroupOrAddEntities(args);
+    // }
     if (args.element.id.startsWith("mainArea")) {
-      onDrogMainArea(args);
+      onDrogMainArea();
     }
   },
 });
@@ -1157,6 +1132,40 @@ const loadDiagram = (data) => {
   diagram.tool = prevTool;
   diagram.dataBind();
 };
+
+let confirmDialogObjSub;
+function openModal(textHeader, id, functionApply) {
+  var confirmDialogObj = new ej.popups.Dialog({
+    header: textHeader,
+    content: $(id).html(),
+    showCloseIcon: true,
+    closeOnEscape: false,
+    width: "350px",
+    allowDragging: true,
+    isModal: true,
+    target: document.getElementById("target"),
+    animationSettings: { effect: "None" },
+    close: function () {
+      $("#confirmDialog").html("");
+    },
+    buttons: [
+      {
+        click: functionApply,
+        buttonModel: { content: "Apply" },
+      },
+      {
+        click: hiddenModal,
+        buttonModel: { content: "Cancel" },
+      },
+    ],
+  });
+  confirmDialogObj.appendTo("#confirmDialog");
+  confirmDialogObjSub = confirmDialogObj;
+}
+
+function hiddenModal() {
+  confirmDialogObjSub.hide();
+}
 
 $("#open-project-btn").on("click", () => {
   Helpers.selectFile(".json").then((file) => {
