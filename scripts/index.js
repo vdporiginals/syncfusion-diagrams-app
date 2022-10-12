@@ -493,6 +493,7 @@ function onDrogContinuityPerson(args) {
 function onClickApplyContinuityPerson() {
   let nodes = getNodesDiagramNodes([...diagram.nodes]);
   const value = document.getElementById("input-continuity-size").value;
+  console.log(value);
   const node = nodes.find((x) => x.id === idElementActive);
   node.width = node.width * value;
   node.height = node.height * value;
@@ -1143,7 +1144,6 @@ function openModal(textHeader, id, functionApply) {
     width: "350px",
     allowDragging: true,
     isModal: true,
-    target: document.getElementById("target"),
     animationSettings: { effect: "None" },
     close: function () {
       $("#confirmDialog").html("");
