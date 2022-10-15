@@ -954,7 +954,10 @@ var diagram = new ej.diagrams.Diagram({
       let bpmnShape = diagram.selectedItems.nodes[0];
       //do your custom action here.
       console.log(bpmnShape.id);
-      addCommunicationFunction();
+      if (bpmnShape.id.startsWith('addCommunication')) {
+
+        addCommunicationFunction();
+      }
       let personChecker = [
         "person",
         "manager",
