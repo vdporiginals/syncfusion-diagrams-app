@@ -251,11 +251,6 @@ function switchToComm() {
 }
 let main = allShapes.find((a) => a.id === "mainArea");
 
-function dragOver(args) {
-  if (args.target) {
-    console.log(args);
-  }
-}
 ej.diagrams.Diagram.Inject(
   ej.diagrams.UndoRedo,
   ej.diagrams.DiagramContextMenu,
@@ -283,75 +278,75 @@ $("#fileUploadToDiagrams").change(function () {
   const file = this.files[0];
   if (file) {
     let reader = new FileReader();
-    if (file.type.startsWith("video/")) {
-      if (currentItem.includes("add") || currentItem.startsWith("add")) {
-        nodeAppendData.shape = {
-          type: "HTML",
-          content: `<video width="400" height="278" controls>
-                <source src="${URL.createObjectURL(file)}" id="video_here">
-                  Your browser does not support HTML5 video.
-              </video>`,
-        };
-        nodeAppendData.width = 400;
-        nodeAppendData.height = 278;
-        diagram.add(nodeAppendData);
-        $("#fileUploadToDiagrams").val("");
-      } else {
-        diagram.selectedItems.properties.nodes[0].shape = {
-          type: "HTML",
-          content: `<video width="400" height="278" controls>
-                <source src="${URL.createObjectURL(file)}" id="video_here">
-                  Your browser does not support HTML5 video.
-              </video>`,
-        };
-        diagram.selectedItems.properties.nodes[0].width = 400;
-        diagram.selectedItems.properties.nodes[0].height = 278;
-        $("#fileUploadToDiagrams").val("");
-      }
-    }
 
-    if (file.type.startsWith("audio/")) {
-      if (currentItem.includes("add")) {
-        nodeAppendData.shape = {
-          content: `<audio controls>
-                <source src="${URL.createObjectURL(file)}" type="audio/mpeg">
-              Your browser does not support the audio element.
-              </audio>`,
-        };
-        nodeAppendData.width = 400;
-        nodeAppendData.height = 100;
-        diagram.add(nodeAppendData);
-        $("#fileUploadToDiagrams").val("");
-      } else {
-        diagram.selectedItems.properties.nodes[0].shape = {
-          content: `<audio controls>
-                    <source src="${URL.createObjectURL(
-                      file
-                    )}" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                  </audio>`,
-        };
-        diagram.add(nodeAppendData);
-        diagram.selectedItems.properties.nodes[0].width = 400;
-        diagram.selectedItems.properties.nodes[0].height = 100;
-        $("#fileUploadToDiagrams").val("");
-      }
-    }
-
-    if (file.type.startsWith("image/")) {
-      reader.onload = function (event) {
+    reader.onload = function (event) {
+      if (file.type.startsWith("image/")) {
         diagram.selectedItems.properties.nodes[0].shape = {
           type: "Image",
           source: event.target.result,
         };
         $("#imgPreview").attr("src", event.target.result);
         $("#fileUploadToDiagrams").val("");
-      };
-      reader.readAsDataURL(file);
-    }
+      }
+
+      if (file.type.startsWith("video/")) {
+        if (currentItem.includes("add") || currentItem.startsWith("add")) {
+          nodeAppendData.shape = {
+            type: "HTML",
+            content: `<video width="400" height="278" controls>
+                  <source src="${event.target.result}" id="video_here">
+                    Your browser does not support HTML5 video.
+                </video>`,
+          };
+          nodeAppendData.width = 400;
+          nodeAppendData.height = 278;
+          diagram.add(nodeAppendData);
+          $("#fileUploadToDiagrams").val("");
+        } else {
+          diagram.selectedItems.properties.nodes[0].shape = {
+            type: "HTML",
+            content: `<video width="400" height="278" controls>
+                  <source src="${event.target.result}" id="video_here">
+                    Your browser does not support HTML5 video.
+                </video>`,
+          };
+          diagram.selectedItems.properties.nodes[0].width = 400;
+          diagram.selectedItems.properties.nodes[0].height = 278;
+          $("#fileUploadToDiagrams").val("");
+        }
+      }
+
+      if (file.type.startsWith("audio/")) {
+        if (currentItem.includes("add")) {
+          nodeAppendData.shape = {
+            content: `<audio  width="400" height="50" controls>
+                  <source src="${event.target.result}">
+                    Your browser does not support the audio element.
+                </audio>`,
+          };
+          nodeAppendData.width = 400;
+          nodeAppendData.height = 100;
+          diagram.add(nodeAppendData);
+          $("#fileUploadToDiagrams").val("");
+        } else {
+          diagram.selectedItems.properties.nodes[0].shape = {
+            content: `<audio controls>
+                      <source src="${event.target.result}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio>`,
+          };
+          diagram.add(nodeAppendData);
+          diagram.selectedItems.properties.nodes[0].width = 400;
+          diagram.selectedItems.properties.nodes[0].height = 100;
+          $("#fileUploadToDiagrams").val("");
+        }
+      }
+    };
+    reader.readAsDataURL(file);
+
   }
 });
-
+let grouped = 0;
 function relatePersonOperatingPrinciple() {
   const item1 = diagram.nodes[0];
   let findItem = getItemById("principle");
@@ -622,6 +617,270 @@ function getTextElement(text, color) {
   textElement.offsetX = color;
   return textElement;
 }
+
+function dropGrouped(args) {
+  var node = args.element;
+  var parentNode = args.target;
+  setTimeout(() => {
+    // Checking the nodes length greater than one or not
+    if (diagram.nodes.length > 1) {
+      if (!node.children && node.id !== parentNode.id) {
+        //Getting the group node by getObject method by passing parent ID
+        if (args.target.parentId) {
+          var group = diagram.getObject(args.target.parentId);
+          //Added the child into the group by using addChildToGroup
+          diagram.addChildToGroup(group, node);
+          let newNode = diagram.getObject(
+            diagram.nodes[diagram.nodes.length - 1].id
+          );
+          let childNode = diagram.getObject(
+            group.children[group.children.length - 2]
+          );
+          //Passing the first node to getObject method to set width and offset for the group node
+          let firstChild = diagram.getObject(group.children[0]);
+          newNode.offsetX = childNode.offsetX + 100;
+          newNode.offsetY = childNode.offsetY;
+          diagram.dataBind();
+          firstChild.width = group.width;
+          firstChild.offsetX = group.offsetX;
+          firstChild.offsetY = group.offsetY;
+          diagram.dataBind();
+          diagram.refresh();
+        } else {
+          diagram.selectAll();
+          //To group all the nodes, the group method is called
+          diagram.group();
+          let newNode = diagram.getObject(
+            diagram.nodes[diagram.nodes.length - 1].id
+          );
+          if (newNode.children && newNode.children.length > 1) {
+            // diagram.remove(diagram.nodes[diagram.nodes.length - 3]);
+            newNode.style.strokeColor = 'black';
+            newNode.style.strokeWidth = 1;
+          }
+        }
+      }
+    }
+  }, 0);
+}
+
+function communicationDroppedElementChecker(id, parentId) {
+  let allowDropped = ['communicationEntity', 'communicationElement'];
+  let childAllow = ['communicationEntity', 'communicationElement', 'word', 'sentence', 'paragraph', 'question', 'answer', 'picture', 'video', 'audio', 'text', 'principle', 'information'];
+  if (parentId.startsWith('word')) {
+    allowDropped = ['word'];
+    childAllow = ['word'];
+  }
+
+  if (parentId.startsWith('sentence')) {
+    allowDropped = ['sentence'];
+    childAllow = ['word', 'sentence', 'communicationElement', 'principle'];
+  }
+  if (parentId.startsWith('paragraph') || parentId.startsWith('communicationElement') || parentId.startsWith('information') || parentId.startsWith('question') || parentId.startsWith('answer')) {
+    allowDropped = ['sentence', 'communicationElement', 'question', 'information', 'answer'];
+    childAllow = ['word', 'sentence', 'communicationElement', 'principle', 'paragraph'];
+  }
+  if (parentId.startsWith('communicationFunction')) {
+    allowDropped = ['communicationFunction', 'function'];
+    childAllow = ['function', 'communicationFunction'];
+  }
+  if (parentId.startsWith('aspect')) {
+    allowDropped = ['aspect'];
+    childAllow = ['aspect'];
+  }
+  if (parentId.startsWith('dictionary')) {
+    allowDropped = ['dictionary'];
+    childAllow = ['word'];
+  }
+  if (parentId.startsWith('collection')) {
+    allowDropped = ['collection'];
+    childAllow = ['entity'];
+  }
+  if (parentId.startsWith('communicationResult')) {
+    allowDropped = ['communicationResult'];
+    childAllow = ['communicationResult'];
+  }
+  if (parentId.startsWith('action')) {
+    allowDropped = ['action'];
+    childAllow = ['action'];
+  }
+  if (parentId.startsWith('reason')) {
+    allowDropped = ['reason'];
+    childAllow = ['reason'];
+  }
+  if (parentId.startsWith('principle2')) {
+    allowDropped = ['principle2'];
+    childAllow = ['principle'];
+    if (id !== 'principle') {
+      alert('A subset of principle can only accept principle');
+    }
+  }
+  if (parentId.startsWith('principle1')) {
+    allowDropped = ['principle1'];
+    childAllow = ['principle', 'principle2'];
+    if (id !== 'principle' || id !== 'principle2') {
+      alert('the main set of principle can only accept principle and subset of principle');
+    }
+  }
+  if (parentId.startsWith('reference')) {
+    allowDropped = ['reference'];
+    childAllow = ['communicationEntity', 'communicationElement', 'word', 'sentence', 'paragraph', 'question', 'answer', 'picture', 'video', 'audio', 'text', 'principle', 'information'];
+  }
+  if (parentId.startsWith('locationOfOperation') || parentId.startsWith('siteOfOperation')) {
+    allowDropped = ['locationOfOperation', 'siteOfOperation'];
+    childAllow = ['locationOfOperation', 'siteOfOperation'];
+  }
+  if (parentId.startsWith('mainArea')) {
+    allowDropped = ['mainArea'];
+    childAllow = ['locationOfOperation', 'siteOfOperation'];
+  }
+  if (parentId.startsWith('workingareaAL')) {
+    allowDropped = ['workingareaAL'];
+    childAllow = ['locationOfOperation', 'siteOfOperation'];
+  }
+  if (parentId.startsWith('constantCharacteristics')) {
+    allowDropped = ['constantCharacteristics'];
+    childAllow = ['constantCharacteristics'];
+  }
+  if (parentId.startsWith('theory')) {
+    allowDropped = ['theory', 'theorem'];
+    childAllow = ['theory', 'theorem'];
+  }
+  if (parentId.startsWith('utilizationTheory')) {
+    allowDropped = ['utilizationTheory'];
+    childAllow = ['theory', 'theorem'];
+  }
+  return childAllow.some(a => id.startsWith(a)) && allowDropped.some(a => parentId.startsWith(a));
+
+}
+function positionChange(e) {
+  if (e.state === 'Completed') {
+    let height = e.source.height;
+    let offsetY = e.newValue.offsetY;
+    let offsetX = e.newValue.offsetX;
+    let topElementPos = offsetY - (height / 2);
+    let bottomElementPos = offsetY + (height / 2);
+    let width = e.source.width;
+    let leftElementPos = offsetX - (width / 2);
+    let rightElementPos = offsetX + (width / 2);
+    let source = e.source.id ? e.source : e.source?.properties?.nodes[0];
+    let crudDeleteNodes = diagram.crudDeleteNodes.map(a => a.id);
+    setTimeout(() => {
+      if (diagram.nodes.length > 1) {
+        let nodesFil = diagram.nodes.filter(a => !crudDeleteNodes.includes(a.id));
+        nodesFil.forEach(n => {
+          if (source.id && source.id !== n.id && !crudDeleteNodes.includes(n.id)) {
+            let nheight = n.height;
+            let ntopElementPos = n.offsetY - (nheight / 2);
+            let nbottomElementPos = n.offsetY + (nheight / 2);
+            let nwidth = n.width;
+            let nleftElementPos = n.offsetX - (nwidth / 2);
+            let nrightElementPos = n.offsetX + (nwidth / 2);
+            let conditionX = (leftElementPos > nleftElementPos && leftElementPos < nrightElementPos) ||
+              (rightElementPos > nleftElementPos && rightElementPos < nrightElementPos) ||
+              (offsetX > nleftElementPos && offsetX < nrightElementPos);
+            let conditionY = (topElementPos > ntopElementPos && topElementPos < nbottomElementPos) ||
+              (bottomElementPos > ntopElementPos && bottomElementPos < nbottomElementPos) ||
+              (offsetY > ntopElementPos && offsetY < nbottomElementPos);
+
+            if ((conditionX || conditionY) && communicationDroppedElementChecker(source.id, n.id) && !source.parentId) {
+              if (n.parentId) {
+                var group = diagram.getObject(n.parentId);
+
+                if (source.id.startsWith('principle') && n.id.startsWith('principle')) {
+                  if (n.id.startsWith('principle') && source.id.startsWith('principle2')) {
+                    return alert('Consider a principle as a single entity where a subset as multiple entities; a subset of principles includes multiple principles not the other way around')
+                  }
+                  if (source.id.startsWith('principle1') && n.id.startsWith('principle')) {
+                    return alert('The main set of principles includes multiple subsets of principles where each subset includes principle.  A single principle does not include the main set of principles.')
+                  }
+                  if (source.id.startsWith('principle2') && n.id.startsWith('principle2')) {
+                    return alert('A subset of principles includes multiple unique principle.  A subset of principles does not include other subsets of principles.')
+                  }
+                  if (source.id.startsWith('principle1') && n.id.startsWith('principle2')) {
+                    return alert('The main set of principles includes all the subsets of principles.  A subset of principles does not include the main set of principles.')
+                  }
+                  if (source.id.startsWith('principle1') && n.id.startsWith('principle1')) {
+                    return alert('The main set of principles is unique and does not include another main set.  There is only one main set of principles.')
+                  }
+                  return alert('The main set of principles is unique and does not include another main set.  There is only one main set of principles.')
+                }
+
+                if (n.id.startsWith('principle1') && group.children.length >= 10) {
+                  return alert('The number of subset identified in the main set is 10 subsets')
+                }
+                if (n.id.startsWith('constantCharacteristics') && group.children.length >= 5) {
+                  return alert('The number of constant characteristic identified is up to 5')
+                }
+                //Added the child into the group by using addChildToGroup
+                diagram.addChildToGroup(group, source);
+                let newNode = diagram.getObject(
+                  nodesFil[nodesFil.length - 1].id
+                );
+                let childNode = diagram.getObject(
+                  group.children[group.children.length - 2]
+                );
+                newNode.offsetX = childNode.offsetX + 100;
+                newNode.offsetY = childNode.offsetY;
+                diagram.dataBind();
+                //Passing the first node to getObject method to set width and offset for the group node
+                let baseChild = diagram.getObject(
+                  group.children[0]
+                );
+                // setTimeout(() => {
+                group.width = group.width + source.width - 30;
+                baseChild.width = group.width;
+                diagram.dataBind();
+                group.children.forEach((chil, i) => {
+                  if (i > 0) {
+                    let firstChild = diagram.getObject(chil);
+                    let annoContent = firstChild.annotations[0].content;
+                    let previousChild = diagram.getObject(group.children[i - 1]);
+                    let previousAnnoContent = previousChild.annotations[0].content;
+                    firstChild.offsetY = group.offsetY;
+                    if (i - 1 > 0) {
+                      firstChild.offsetX = previousChild.offsetX + previousChild.width / 2 + firstChild.width / 2 + 25;
+                    } else {
+                      firstChild.offsetX = group.offsetX - group.width / 2 + firstChild.width / 2 + 35;
+                    }
+                    if (previousAnnoContent.startsWith(annoContent) && previousAnnoContent.length - annoContent.length < 3) {
+                      firstChild.annotations[0].content = source.annotations[0].content + ' ' + i;
+                      source.annotations[0].content = source.annotations[0].content + '' + (i + 1);
+                    }
+                    diagram.dataBind();
+                  }
+                });
+                setTimeout(() => {
+                  diagram.select([group]);
+                })
+              } else {
+                diagram.clearSelection();
+                diagram.select([n, source]);
+                diagram.group();
+                let newNode = diagram.getObject(
+                  nodesFil[nodesFil.length - 1].id
+                );
+                n.height = newNode.height + 30;
+                n.width = newNode.width + 100;
+                n.offsetX = newNode.offsetX;
+                n.offsetY = newNode.offsetY;
+                n.annotations[0].offset = { x: 0.5, y: -0.1 };
+                source.offsetX = newNode.offsetX;
+                source.offsetY = newNode.offsetY;
+                if (newNode.children && newNode.children.length > 1) {
+                  // diagram.remove(diagram.nodes[diagram.nodes.length - 3]);
+                  newNode.style.strokeColor = 'black';
+                  newNode.style.strokeWidth = 1;
+                }
+              }
+            }
+          }
+        });
+      }
+    }, 0);
+    // console.log(e, diagram.nodes)
+  }
+}
 // Initializing and appending diagram
 var diagram = new ej.diagrams.Diagram({
   width: "2000px",
@@ -641,9 +900,9 @@ var diagram = new ej.diagrams.Diagram({
       tickAlignment: "RightOrBottom",
     },
   },
-  click: (args) => {
-    console.log(args);
+  collectionChange: function (e) {
   },
+  positionChange: positionChange,
   bridgeDirection: "Left",
   contextMenuSettings: {
     show: true,
@@ -658,12 +917,11 @@ var diagram = new ej.diagrams.Diagram({
     ],
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => {},
+  setNodeTemplate: (obj, diagram) => { },
   contextMenuClick: function (args) {
     //do your custom action here.
     // shape:
     currentItem = args.item.id;
-    console.log(diagram.selectedItems.properties);
     let idCheck = args.item.id.toLowerCase();
     if (idCheck.includes("picture")) {
       $("#fileUploadToDiagrams").attr("accept", "image/*");
@@ -692,57 +950,6 @@ var diagram = new ej.diagrams.Diagram({
     }
   },
   contextMenuOpen: function (args) {
-    // Test group
-    let nodes = [
-      {
-        id: "rectangle1",
-        offsetX: 100,
-        offsetY: 100,
-        width: 100,
-        height: 100,
-        annotations: [
-          {
-            content: "rectangle1",
-          },
-        ],
-      },
-      {
-        id: "rectangle2",
-        offsetX: 200,
-        offsetY: 200,
-        width: 100,
-        height: 100,
-        annotations: [
-          {
-            content: "rectangle2",
-          },
-        ],
-      },
-      {
-        id: "rectangle3",
-        offsetX: 100,
-        offsetY: 100,
-        width: 500,
-        height: 500,
-        annotations: [
-          {
-            content: "rectangle3",
-          },
-        ],
-      },
-    ];
-    diagram.add(nodes[2]);
-    diagram.add(nodes[0]);
-    diagram.add(nodes[1]);
-    let group2 = {
-      id: "group23",
-      children: ["rectangle3", "rectangle1", "rectangle2"],
-    };
-    // Trường họp di chuyển item bên trong container
-    setTimeout(() => {
-      diagram.add(group2);
-    });
-    // Test group énd
     if (diagram.selectedItems.nodes[0]) {
       let bpmnShape = diagram.selectedItems.nodes[0];
       //do your custom action here.
@@ -795,6 +1002,17 @@ var diagram = new ej.diagrams.Diagram({
     getModelData();
     openModelPage("main-project-model-comm");
   },
+  //Sets the default values of a node
+  getNodeDefaults: function (node) {
+    var obj = {};
+    if (!obj.children) {
+      obj.constraints =
+        ej.diagrams.NodeConstraints.Default |
+        ej.diagrams.NodeConstraints.AllowDrop;
+    }
+
+    return obj;
+  },
   drop: function (args) {
     idElementActive = args.element.id;
     if (args.element.id.startsWith("groupOfPeople")) {
@@ -812,6 +1030,8 @@ var diagram = new ej.diagrams.Diagram({
     if (args.element.id.startsWith("mainArea")) {
       onDrogMainArea();
     }
+
+    dropGrouped(args);
   },
 });
 diagram.appendTo("#diagram");
