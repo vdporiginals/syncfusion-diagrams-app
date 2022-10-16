@@ -277,73 +277,67 @@ let nodeAppendData = {
 $("#fileUploadToDiagrams").change(function () {
   const file = this.files[0];
   if (file) {
-    let reader = new FileReader();
+    let url = URL.createObjectURL(file);
+    if (file.type.startsWith("image/")) {
+      diagram.selectedItems.properties.nodes[0].shape = {
+        type: "Image",
+        source: url,
+      };
+      $("#fileUploadToDiagrams").val("");
+    }
 
-    reader.onload = function (event) {
-      if (file.type.startsWith("image/")) {
-        diagram.selectedItems.properties.nodes[0].shape = {
-          type: "Image",
-          source: event.target.result,
+    if (file.type.startsWith("video/")) {
+      if (currentItem.includes("add") || currentItem.startsWith("add")) {
+        nodeAppendData.shape = {
+          type: "HTML",
+          content: `<video width="400" height="278" controls>
+                <source src="${url}" id="video_here">
+                  Your browser does not support HTML5 video.
+              </video>`,
         };
-        $("#imgPreview").attr("src", event.target.result);
+        nodeAppendData.width = 400;
+        nodeAppendData.height = 278;
+        diagram.add(nodeAppendData);
+        $("#fileUploadToDiagrams").val("");
+      } else {
+        diagram.selectedItems.properties.nodes[0].shape = {
+          type: "HTML",
+          content: `<video width="400" height="278" controls>
+                <source src="${url}" id="video_here">
+                  Your browser does not support HTML5 video.
+              </video>`,
+        };
+        diagram.selectedItems.properties.nodes[0].width = 400;
+        diagram.selectedItems.properties.nodes[0].height = 278;
         $("#fileUploadToDiagrams").val("");
       }
+    }
 
-      if (file.type.startsWith("video/")) {
-        if (currentItem.includes("add") || currentItem.startsWith("add")) {
-          nodeAppendData.shape = {
-            type: "HTML",
-            content: `<video width="400" height="278" controls>
-                  <source src="${event.target.result}" id="video_here">
-                    Your browser does not support HTML5 video.
-                </video>`,
-          };
-          nodeAppendData.width = 400;
-          nodeAppendData.height = 278;
-          diagram.add(nodeAppendData);
-          $("#fileUploadToDiagrams").val("");
-        } else {
-          diagram.selectedItems.properties.nodes[0].shape = {
-            type: "HTML",
-            content: `<video width="400" height="278" controls>
-                  <source src="${event.target.result}" id="video_here">
-                    Your browser does not support HTML5 video.
-                </video>`,
-          };
-          diagram.selectedItems.properties.nodes[0].width = 400;
-          diagram.selectedItems.properties.nodes[0].height = 278;
-          $("#fileUploadToDiagrams").val("");
-        }
+    if (file.type.startsWith("audio/")) {
+      if (currentItem.includes("add")) {
+        nodeAppendData.shape = {
+          content: `<audio  width="400" height="50" controls>
+                <source src="${url}">
+                  Your browser does not support the audio element.
+              </audio>`,
+        };
+        nodeAppendData.width = 400;
+        nodeAppendData.height = 100;
+        diagram.add(nodeAppendData);
+        $("#fileUploadToDiagrams").val("");
+      } else {
+        diagram.selectedItems.properties.nodes[0].shape = {
+          content: `<audio controls>
+                    <source src="${url}" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                  </audio>`,
+        };
+        diagram.add(nodeAppendData);
+        diagram.selectedItems.properties.nodes[0].width = 400;
+        diagram.selectedItems.properties.nodes[0].height = 100;
+        $("#fileUploadToDiagrams").val("");
       }
-
-      if (file.type.startsWith("audio/")) {
-        if (currentItem.includes("add")) {
-          nodeAppendData.shape = {
-            content: `<audio  width="400" height="50" controls>
-                  <source src="${event.target.result}">
-                    Your browser does not support the audio element.
-                </audio>`,
-          };
-          nodeAppendData.width = 400;
-          nodeAppendData.height = 100;
-          diagram.add(nodeAppendData);
-          $("#fileUploadToDiagrams").val("");
-        } else {
-          diagram.selectedItems.properties.nodes[0].shape = {
-            content: `<audio controls>
-                      <source src="${event.target.result}" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                    </audio>`,
-          };
-          diagram.add(nodeAppendData);
-          diagram.selectedItems.properties.nodes[0].width = 400;
-          diagram.selectedItems.properties.nodes[0].height = 100;
-          $("#fileUploadToDiagrams").val("");
-        }
-      }
-    };
-    reader.readAsDataURL(file);
-
+    }
   }
 });
 let grouped = 0;
@@ -904,7 +898,15 @@ var diagram = new ej.diagrams.Diagram({
       tickAlignment: "RightOrBottom",
     },
   },
+  propertyChange: function (e) {
+    if (e?.oldValue?.shape?.source && e?.oldValue?.shape?.source.startsWith('blob:http') && e?.oldValue?.shape?.source != e?.newValue?.shape?.source) {
+      URL.revokeObjectURL(e?.oldValue?.shape?.source);
+    }
+  },
   collectionChange: function (e) {
+    if (e.type === 'Removal' && e.element?.properties?.shape?.properties && e.element?.properties?.shape?.properties?.source.startsWith('blob:http')) {
+      URL.revokeObjectURL(e.element?.properties?.shape?.properties?.source);
+    }
   },
   positionChange: positionChange,
   bridgeDirection: "Left",
