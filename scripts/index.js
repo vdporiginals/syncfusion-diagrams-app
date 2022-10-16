@@ -636,22 +636,26 @@ function dropGrouped(args) {
         setTimeout(() => {
           if (diagram.nodes.length > 1) {
             let nodesFil = diagram.nodes;
-            if (nodesFil.length <= 2) {
-              diagram.clearSelection();
-              diagram.select([parentNode, source]);
-              diagram.group();
-              let newNode = diagram.getObject(parentNode.id);
-              parentNode.height = newNode.height + 30;
-              parentNode.width = newNode.width + 100;
-              parentNode.offsetX = newNode.offsetX;
-              parentNode.offsetY = newNode.offsetY;
-              parentNode.annotations[0].offset = { x: 0.5, y: -0.1 };
-              source.offsetX = newNode.offsetX;
-              source.offsetY = newNode.offsetY;
-              if (newNode.children && newNode.children.length > 1) {
-                // diagram.remove(diagram.nodes[diagram.nodes.length - 3]);
-                newNode.style.strokeColor = "black";
-                newNode.style.strokeWidth = 1;
+            if (parentNode && nodesFil.length <= 2) {
+              if (communicationDroppedElementChecker(source.id, parentNode.id)) {
+                diagram.clearSelection();
+                diagram.select([parentNode, source]);
+                diagram.group();
+                let newNode = diagram.getObject(source.id);
+                parentNode.height = parentNode.height + 30;
+                parentNode.width = parentNode.width + 100;
+                parentNode.offsetX = parentNode.offsetX;
+                parentNode.offsetY = parentNode.offsetY;
+                parentNode.annotations[0].offset = { x: 0.5, y: -0.1 };
+                diagram.dataBind();
+                newNode.offsetX = parentNode.offsetX;
+                newNode.offsetY = parentNode.offsetY;
+                diagram.dataBind();
+                if (parentNode.children && parentNode.children.length > 1) {
+                  // diagram.remove(diagram.nodes[diagram.nodes.length - 3]);
+                  parentNode.style.strokeColor = "black";
+                  parentNode.style.strokeWidth = 1;
+                }
               }
             } else {
               nodesFil.forEach((n) => {
@@ -685,25 +689,25 @@ function dropGrouped(args) {
                   }
                   if (
                     (conditionX || conditionY) &&
-                    communicationDroppedElementChecker(node.id, n.id) &&
+                    communicationDroppedElementChecker(source.id, n.id) &&
                     group?.children &&
-                    !group?.children?.includes(node.id)
+                    !group?.children?.includes(source.id)
                   ) {
                     if (group.id) {
                       if (
-                        node.id.startsWith("principle") &&
+                        source.id.startsWith("principle") &&
                         n.id.startsWith("principle")
                       ) {
                         if (
                           n.id.startsWith("principle") &&
-                          node.id.startsWith("principle2")
+                          source.id.startsWith("principle2")
                         ) {
                           return alert(
                             "Consider a principle as a single entity where a subset as multiple entities; a subset of principles includes multiple principles not the other way around"
                           );
                         }
                         if (
-                          node.id.startsWith("principle1") &&
+                          source.id.startsWith("principle1") &&
                           n.id.startsWith("principle")
                         ) {
                           return alert(
@@ -711,7 +715,7 @@ function dropGrouped(args) {
                           );
                         }
                         if (
-                          node.id.startsWith("principle2") &&
+                          source.id.startsWith("principle2") &&
                           n.id.startsWith("principle2")
                         ) {
                           return alert(
@@ -719,7 +723,7 @@ function dropGrouped(args) {
                           );
                         }
                         if (
-                          node.id.startsWith("principle1") &&
+                          source.id.startsWith("principle1") &&
                           n.id.startsWith("principle2")
                         ) {
                           return alert(
@@ -727,7 +731,7 @@ function dropGrouped(args) {
                           );
                         }
                         if (
-                          node.id.startsWith("principle1") &&
+                          source.id.startsWith("principle1") &&
                           n.id.startsWith("principle1")
                         ) {
                           return alert(
@@ -756,7 +760,7 @@ function dropGrouped(args) {
                         );
                       }
                       //Added the child into the group by using addChildToGroup
-                      diagram.addChildToGroup(group, node);
+                      diagram.addChildToGroup(group, source);
                       let newNode = diagram.getObject(
                         nodesFil[nodesFil.length - 1].id
                       );
@@ -769,7 +773,7 @@ function dropGrouped(args) {
                       //Passing the first node to getObject method to set width and offset for the group node
                       let baseChild = diagram.getObject(group.children[0]);
                       // setTimeout(() => {
-                      group.width = group.width + node.width - 30;
+                      group.width = group.width + source.width - 30;
                       baseChild.width = group.width;
                       diagram.dataBind();
                       group.children.forEach((chil, i) => {
@@ -800,9 +804,9 @@ function dropGrouped(args) {
                             previousAnnoContent.length - annoContent.length < 3
                           ) {
                             firstChild.annotations[0].content =
-                              node.annotations[0].content + " " + i;
-                            node.annotations[0].content =
-                              node.annotations[0].content + "" + (i + 1);
+                              source.annotations[0].content + " " + i;
+                            source.annotations[0].content =
+                              source.annotations[0].content + "" + (i + 1);
                           }
                           diagram.dataBind();
                         }
@@ -1186,7 +1190,7 @@ var diagram = new ej.diagrams.Diagram({
   propertyChange: function (e) {
     if (
       e?.oldValue?.shape?.source &&
-      e?.oldValue?.shape?.source.startsWith("blob:http") &&
+      e?.oldValue?.shape?.source?.startsWith("blob:http") &&
       e?.oldValue?.shape?.source != e?.newValue?.shape?.source
     ) {
       URL.revokeObjectURL(e?.oldValue?.shape?.source);
