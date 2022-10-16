@@ -1195,8 +1195,8 @@ var diagram = new ej.diagrams.Diagram({
   collectionChange: function (e) {
     if (
       e.type === "Removal" &&
-      e.element?.properties?.shape?.properties &&
-      e.element?.properties?.shape?.properties?.source.startsWith("blob:http")
+      e?.element?.properties?.shape?.properties &&
+      e?.element?.properties?.shape?.properties?.source?.startsWith("blob:http")
     ) {
       URL.revokeObjectURL(e.element?.properties?.shape?.properties?.source);
     }
