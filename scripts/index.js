@@ -464,7 +464,7 @@ function onDrogGroupsOfPeopleNode(args) {
     diagram.nodes = nodes;
     openModal(
       "Group of People",
-      "#dialogGroupofPeople",
+      "dialogGroupofPeople",
       onClickApplyGroupOfPeople
     );
   }, 100);
@@ -477,7 +477,7 @@ function onClickApplyGroupOfPeople() {
 function onDrogContinuityPerson(args) {
   openModal(
     "Continuity Size",
-    "#dialogContinuityPerson",
+    "dialogContinuityPerson",
     onClickApplyContinuityPerson
   );
 }
@@ -485,7 +485,6 @@ function onDrogContinuityPerson(args) {
 function onClickApplyContinuityPerson() {
   let nodes = getNodesDiagramNodes([...diagram.nodes]);
   const value = document.getElementById("input-continuity-size").value;
-  console.log(value);
   const node = nodes.find((x) => x.id === idElementActive);
   node.width = node.width * value;
   node.height = node.height * value;
@@ -496,13 +495,11 @@ function onClickApplyContinuityPerson() {
 }
 
 function onDrogNodeTableComm(args) {
-  const positionItem = document
-    .getElementById(args.element.id)
-    .getBoundingClientRect();
-  const element = document.getElementById("dialogNodeTableComm");
-  element.style.paddingTop = positionItem.top + "px";
-  element.style.paddingLeft = positionItem.left + 220 + "px";
-  element.style.display = "block";
+  openModal(
+    "Continuity Size",
+    "dialogNodeTableComm",
+    onClickApplyNodeTableComm
+  );
 }
 
 function onClickApplyNodeTableComm() {
@@ -532,11 +529,6 @@ function onClickApplyNodeTableComm() {
   diagram.nodes = [item];
 }
 
-function onClickCancelNodeTableComm() {
-  const element = document.getElementById("dialogNodeTableComm");
-  element.style.display = "none";
-}
-
 function onDrogGroupOrAddEntities(args) {
   const positionItem = document
     .getElementById(args.element.id)
@@ -564,7 +556,7 @@ function onClickAllowCross() {
 }
 
 function onDrogMainArea() {
-  openModal("Main Area", "#dialogMainArea", onClickApplyMainArea);
+  openModal("Main Area", "dialogMainArea", onClickApplyMainArea);
 }
 
 function onClickApplyMainArea() {
@@ -634,8 +626,10 @@ function dropGrouped(args) {
         let source = node.id ? node : node?.properties?.nodes[0];
         let crudDeleteNodes = diagram.crudDeleteNodes.map((a) => a.id);
         if (diagram.nodes.length > 1) {
-          let nodesFil = diagram.nodes.filter(a => !crudDeleteNodes.includes(a.id));
-          console.log(nodesFil)
+          let nodesFil = diagram.nodes.filter(
+            (a) => !crudDeleteNodes.includes(a.id)
+          );
+          console.log(nodesFil);
           if (parentNode && nodesFil.length <= 2) {
             if (communicationDroppedElementChecker(source.id, parentNode.id)) {
               diagram.clearSelection();
@@ -968,6 +962,7 @@ function communicationDroppedElementChecker(id, parentId) {
     allowDropped.some((a) => parentId.startsWith(a))
   );
 }
+
 function positionChange(e) {
   if (e.state === "Completed") {
     let height = e.source.height;
@@ -981,7 +976,9 @@ function positionChange(e) {
     let source = e.source.id ? e.source : e.source?.properties?.nodes[0];
     let crudDeleteNodes = diagram.crudDeleteNodes.map((a) => a.id);
     if (diagram.nodes.length > 1) {
-      let nodesFil = diagram.nodes.filter(a => !crudDeleteNodes.includes(a.id));
+      let nodesFil = diagram.nodes.filter(
+        (a) => !crudDeleteNodes.includes(a.id)
+      );
       if (nodesFil.length <= 2) {
         diagram.clearSelection();
         diagram.select([nodesFil[0], source]);
@@ -1165,6 +1162,7 @@ function positionChange(e) {
     // console.log(e, diagram.nodes)
   }
 }
+
 // Initializing and appending diagram
 var diagram = new ej.diagrams.Diagram({
   width: "2000px",
@@ -1217,7 +1215,7 @@ var diagram = new ej.diagrams.Diagram({
     ],
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => { },
+  setNodeTemplate: (obj, diagram) => {},
   contextMenuClick: function (args) {
     //do your custom action here.
     // shape:
@@ -1332,10 +1330,10 @@ var diagram = new ej.diagrams.Diagram({
     if (args.element.id.startsWith("mainArea")) {
       onDrogMainArea();
     }
-
     dropGrouped(args);
   },
 });
+
 diagram.appendTo("#diagram");
 const blankDiagram = diagram.saveDiagram();
 
@@ -1347,7 +1345,9 @@ function addTextOnClick() {
   addItem.offsetX = offsetXD + 250;
   addItem.offsetY = offsetYD + 50;
 }
+
 let countComm = 0;
+
 function addCommunicationFunction(id, annotations) {
   countComm++;
   if (countComm > 10000) {
@@ -1658,9 +1658,10 @@ const loadDiagram = (data) => {
 
 let confirmDialogObjSub;
 function openModal(textHeader, id, functionApply) {
+  const content = onGetHtmlDialog(id);
   var confirmDialogObj = new ej.popups.Dialog({
     header: textHeader,
-    content: $(id).html(),
+    content: content,
     showCloseIcon: true,
     closeOnEscape: false,
     width: "350px",
@@ -1683,6 +1684,114 @@ function openModal(textHeader, id, functionApply) {
   });
   confirmDialogObj.appendTo("#confirmDialog");
   confirmDialogObjSub = confirmDialogObj;
+}
+
+function onGetHtmlDialog(id) {
+  if (id === "dialogContinuityPerson") {
+    return `<div id="dialogContinuityPerson" class="dialog-group-of-people">
+    <div class="dialog-group-of-people-content">
+      <div class="d-flex">
+        <div class="w-112px">Continuity Size</div>
+        <input type="number" class="w-200px" id="input-continuity-size" />
+      </div>
+    </div>
+  </div>`;
+  }
+  if (id === "dialogNodeTableComm") {
+    return `<div id="dialogNodeTableComm" class="dialog-group-of-people">
+    <div class="dialog-group-of-people-content">
+      <div class="d-flex">
+        <input type="text" class="w-200px" id="input-node-table-comm" />
+      </div>
+      <div class="d-flex group-button-dialog-group-of-people">
+        <button class="m-r-8" onclick="onClickApplyNodeTableComm()">
+          Apply
+        </button>
+        <button onclick="onClickCancelNodeTableComm()">Cancel</button>
+      </div>
+    </div>
+  </div>`;
+  }
+  if (id === "dialogGroupOrAddEntities") {
+    return `<div id="dialogGroupOrAddEntities" class="dialog-group-of-people">
+    <div class="dialog-group-of-people-content">
+      <div class="d-flex">
+        <input type="text" class="w-200px" id="input-group-or-add-entities" />
+      </div>
+      <div class="d-flex group-button-dialog-group-of-people">
+        <button class="m-r-8" onclick="onClickApplyGroupOrAddEntities()">
+          Apply
+        </button>
+        <button onclick="onClickCancelGroupOrAddEntities()">Cancel</button>
+      </div>
+    </div>
+  </div>`;
+  }
+  if (id === "dialogMainArea") {
+    return `<div id="dialogMainArea" class="dialog-group-of-people">
+    <div class="dialog-main-area p-l-20 p-r-20">
+      <div class="m-b-20">Types</div>
+      <div class="d-flex justify-content-space-between m-b-20">
+        <div class="d-flex">
+          <input type="radio" name="colors" id="house" class="m-r-4" />
+          <div>House</div>
+        </div>
+        <div class="d-flex">
+          <input type="radio" name="colors" id="map" class="m-r-4" />
+          <div>Map</div>
+        </div>
+        <div class="d-flex">
+          <input type="radio" name="colors" id="regular" class="m-r-4" />
+          <div>Regular</div>
+        </div>
+        <div class="d-flex">
+          <input
+            type="radio"
+            name="colors"
+            id="regularwithmap"
+            class="m-r-4"
+          />
+          <div>Regular With Map</div>
+        </div>
+      </div>
+      <div class="d-flex">
+        <div>Numbers</div>
+        <input class="w-100" type="text" id="input-group-or-add-entities" />
+      </div>
+    </div>
+  </div>`;
+  }
+  if (id === "dialogGroupofPeople") {
+    return `<div id="dialogGroupofPeople" class="dialog-group-of-people">
+    <div class="dialog-group-of-people-content">
+      <div>Group Of People</div>
+      <div class="d-flex">
+        <div class="w-112px">Options</div>
+        <select class="w-200px">
+          <option id="option1" selected>Option 1</option>
+          <option id="option2">Option 2</option>
+          <option id="option3">Option 3</option>
+          <option id="option4">Option 4</option>
+        </select>
+      </div>
+      <div class="d-flex">
+        <div class="w-112px">Format</div>
+        <select class="w-200px">
+          <option id="formatPerson" selected>Person</option>
+          <option id="formatP">p</option>
+        </select>
+      </div>
+      <div class="d-flex">
+        <div class="w-112px">Start Number</div>
+        <input type="number" class="w-200px" />
+      </div>
+      <div class="d-flex">
+        <div class="w-112px">Group Name</div>
+        <input type="text" class="w-200px" />
+      </div>
+    </div>
+  </div>`;
+  }
 }
 
 function hiddenModal() {
