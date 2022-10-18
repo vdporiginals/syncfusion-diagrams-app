@@ -347,7 +347,7 @@ let grouped = 0;
 function relatePersonOperatingPrinciple() {
   const item1 = diagram.nodes[0];
   let findItem = getItemById("principle");
-  findItem.offsetX = item1.offsetX;
+  findItem.offsetX = item1.offsetX + 50;
   findItem.offsetY = item1.offsetY + 300;
   findItem.width = 150;
   findItem.height = 100;
@@ -366,12 +366,30 @@ function relatePersonOperatingPrinciple() {
       sourceID: diagram.nodes[0].id,
       targetID: diagram.nodes[2].id,
       type: "Orthogonal",
+      segments: [
+        {
+          type: "Orthogonal",
+          direction: "Right",
+        },
+      ],
+      constraints:
+        ej.diagrams.ConnectorConstraints.Default |
+        ej.diagrams.ConnectorConstraints.DragSegmentThumb,
     },
     {
       id: "connector2",
       sourceID: diagram.nodes[1].id,
       targetID: diagram.nodes[2].id,
       type: "Orthogonal",
+      segments: [
+        {
+          type: "Orthogonal",
+          direction: "Right",
+        },
+      ],
+      constraints:
+        ej.diagrams.ConnectorConstraints.Default |
+        ej.diagrams.ConnectorConstraints.DragSegmentThumb,
     },
     {
       id: "connector3",
