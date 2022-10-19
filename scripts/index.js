@@ -695,7 +695,7 @@ function dropGrouped(args) {
   setTimeout(() => {
     // Checking the nodes length greater than one or not
     if (diagram.nodes.length > 1) {
-      if (!node.children && node.id !== parentNode.id) {
+      if (!node.children && node.id !== parentNode.id && !node.parentId) {
         //Getting the group node by getObject method by passing parent ID
         if (args.target.parentId && communicationDroppedElementChecker(node, parentNode)) {
           var group = diagram.getObject(args.target.parentId);
