@@ -122,6 +122,11 @@ var commPalette = new ej.diagrams.SymbolPalette({
       },
     };
   },
+  getNodeDefaults: function (symbol) {
+    symbol.constraints =
+      ej.diagrams.NodeConstraints.Default |
+      ej.diagrams.NodeConstraints.AllowDrop;
+  },
 });
 
 var theoryPalette = new ej.diagrams.SymbolPalette({
@@ -196,6 +201,11 @@ var theoryPalette = new ej.diagrams.SymbolPalette({
         wrap: "WrapWithOverflow",
       },
     };
+  },
+  getNodeDefaults: function (symbol) {
+    symbol.constraints =
+      ej.diagrams.NodeConstraints.Default |
+      ej.diagrams.NodeConstraints.AllowDrop;
   },
 });
 
@@ -624,215 +634,157 @@ function getTextElement(text, color) {
   textElement.offsetX = color;
   return textElement;
 }
+function checkDropAlert(group, source, n) {
+  let checkedSource = source.addInfo[0].menuId;
+  let checkedNode = n.addInfo[0].menuId;
+  if (
+    checkedSource === "principle" &&
+    checkedNode === "principle"
+  ) {
+    return "While a principle may have multiple parts, for now consider it as one entity.";
+  }
+  if (
+    checkedNode === "principle" &&
+    checkedSource === "principle2"
+  ) {
+    return "Consider a principle as a single entity where a subset as multiple entities; a subset of principles includes multiple principles not the other way around";
+  }
+  if (
+    checkedSource === "principle1" &&
+    checkedNode === "principle") {
+    return "The main set of principles includes multiple subsets of principles where each subset includes principle.  A single principle does not include the main set of principles.";
+  }
+  if (
+    checkedSource === "principle2" &&
+    checkedNode === "principle2"
+  ) {
+    return "A subset of principles includes multiple unique principle.  A subset of principles does not include other subsets of principles.";
+  }
+  if (
+    checkedSource === "principle1" &&
+    checkedNode === "principle2"
+  ) {
+    return "The main set of principles includes all the subsets of principles.  A subset of principles does not include the main set of principles.";
+  }
+  if (
+    checkedSource === "principle1" &&
+    checkedNode === "principle1"
+  ) {
+    return "The main set of principles is unique and does not include another main set.  There is only one main set of principles.";
+  }
 
+  if (
+    checkedNode === "principle1" &&
+    group.children.filter(a => a.startsWith('principle1')).length >= 10
+  ) {
+    return "The number of subset identified in the main set is 10 subsets";
+  }
+  if (
+    checkedNode === "constantCharacteristics" &&
+    group.children.filter(a => a.startsWith('constantCharacteristics')).length >= 5
+  ) {
+    return "The number of constant characteristic identified is up to 5";
+  }
+
+  return false;
+}
 function dropGrouped(args) {
   var node = args.element;
   var parentNode = args.target;
+  let source = node.id ? node : node?.properties?.nodes[0];
   setTimeout(() => {
     // Checking the nodes length greater than one or not
     if (diagram.nodes.length > 1) {
       if (!node.children && node.id !== parentNode.id) {
         //Getting the group node by getObject method by passing parent ID
-        let height = node.height;
-        let offsetY = node.offsetY;
-        let offsetX = node.offsetX;
-        let topElementPos = offsetY - height / 2;
-        let bottomElementPos = offsetY + height / 2;
-        let width = node.width;
-        let leftElementPos = offsetX - width / 2;
-        let rightElementPos = offsetX + width / 2;
-        let source = node.id ? node : node?.properties?.nodes[0];
-        let crudDeleteNodes = diagram.crudDeleteNodes.map((a) => a.id);
-        if (diagram.nodes.length > 1) {
-          let nodesFil = diagram.nodes.filter(
-            (a) => !crudDeleteNodes.includes(a.id)
+        if (args.target.parentId && communicationDroppedElementChecker(node, parentNode)) {
+          var group = diagram.getObject(args.target.parentId);
+          let firstChild = diagram.getObject(group.children[0]);
+          let alerted = checkDropAlert(group, node, firstChild)
+          if (alerted) {
+            return alert(alerted);
+          }
+          //Added the child into the group by using addChildToGroup
+          diagram.addChildToGroup(group, node);
+
+          let newNode = diagram.getObject(
+            diagram.nodes[diagram.nodes.length - 1].id
           );
-          console.log(nodesFil);
-          if (parentNode && nodesFil.length <= 2) {
-            if (communicationDroppedElementChecker(source.id, parentNode.id)) {
-              diagram.clearSelection();
-              diagram.select([parentNode, source]);
-              diagram.group();
-              let newNode = diagram.getObject(source.id);
-              parentNode.height = parentNode.height + 30;
-              parentNode.width = parentNode.width + 100;
-              parentNode.offsetX = parentNode.offsetX;
-              parentNode.offsetY = parentNode.offsetY;
-              parentNode.annotations[0].offset = { x: 0.5, y: -0.1 };
-              diagram.dataBind();
-              newNode.offsetX = parentNode.offsetX;
-              newNode.offsetY = parentNode.offsetY;
-              diagram.dataBind();
-              if (parentNode.children && parentNode.children.length > 1) {
-                // diagram.remove(diagram.nodes[diagram.nodes.length - 3]);
-                parentNode.style.strokeColor = "black";
-                parentNode.style.strokeWidth = 1;
-              }
+          let childNode = diagram.getObject(
+            group.children[group.children.length - 2]
+          );
+
+          //Passing the first node to getObject method to set width and offset for the group node
+          newNode.offsetX = childNode.offsetX + 100;
+          newNode.offsetY = childNode.offsetY;
+          diagram.dataBind();
+          firstChild.offsetX = group.offsetX;
+          firstChild.offsetY = group.offsetY;
+          firstChild.annotations[0].offset = { x: 0.5, y: -0.1 };
+          group.width = group.width + source.width - 30;
+          firstChild.width = group.width;
+          diagram.dataBind();
+          for (let i = 1; i < group.children.length; i++) {
+            const childEl = diagram.getObject(group.children[i]);
+            let annoContent = childEl.annotations[0].content;
+            let previousChild = diagram.getObject(
+              group.children[i - 1]
+            );
+            let previousAnnoContent =
+              previousChild.annotations[0].content;
+            childEl.offsetY = group.offsetY;
+            if (i - 1 > 0) {
+              childEl.offsetX =
+                previousChild.offsetX +
+                previousChild.width / 2 +
+                childEl.width / 2 +
+                25;
+            } else {
+              childEl.offsetX =
+                group.offsetX -
+                group.width / 2 +
+                childEl.width / 2 +
+                35;
             }
-          } else {
-            nodesFil.forEach((n) => {
-              if (
-                source.id &&
-                source.id !== n.id &&
-                !crudDeleteNodes.includes(n.id)
-              ) {
-                let nheight = n.height;
-                let ntopElementPos = n.offsetY - nheight / 2;
-                let nbottomElementPos = n.offsetY + nheight / 2;
-                let nwidth = n.width;
-                let nleftElementPos = n.offsetX - nwidth / 2;
-                let nrightElementPos = n.offsetX + nwidth / 2;
-                let conditionX =
-                  (leftElementPos > nleftElementPos &&
-                    leftElementPos < nrightElementPos) ||
-                  (rightElementPos > nleftElementPos &&
-                    rightElementPos < nrightElementPos) ||
-                  (offsetX > nleftElementPos && offsetX < nrightElementPos);
-                let conditionY =
-                  (topElementPos > ntopElementPos &&
-                    topElementPos < nbottomElementPos) ||
-                  (bottomElementPos > ntopElementPos &&
-                    bottomElementPos < nbottomElementPos) ||
-                  (offsetY > ntopElementPos && offsetY < nbottomElementPos);
-
-                let group = diagram.getObject(n.parentId ? n.parentId : n.id);
-                if (n.id.startsWith("group")) {
-                  group = diagram.getObject(n.id);
-                }
-                if (
-                  (conditionX || conditionY) &&
-                  communicationDroppedElementChecker(source.id, n.id) &&
-                  group?.children &&
-                  !group?.children?.includes(source.id)
-                ) {
-                  if (group.id) {
-                    if (
-                      source.id.startsWith("principle") &&
-                      n.id.startsWith("principle")
-                    ) {
-                      if (
-                        n.id.startsWith("principle") &&
-                        source.id.startsWith("principle2")
-                      ) {
-                        return alert(
-                          "Consider a principle as a single entity where a subset as multiple entities; a subset of principles includes multiple principles not the other way around"
-                        );
-                      }
-                      if (
-                        source.id.startsWith("principle1") &&
-                        n.id.startsWith("principle")
-                      ) {
-                        return alert(
-                          "The main set of principles includes multiple subsets of principles where each subset includes principle.  A single principle does not include the main set of principles."
-                        );
-                      }
-                      if (
-                        source.id.startsWith("principle2") &&
-                        n.id.startsWith("principle2")
-                      ) {
-                        return alert(
-                          "A subset of principles includes multiple unique principle.  A subset of principles does not include other subsets of principles."
-                        );
-                      }
-                      if (
-                        source.id.startsWith("principle1") &&
-                        n.id.startsWith("principle2")
-                      ) {
-                        return alert(
-                          "The main set of principles includes all the subsets of principles.  A subset of principles does not include the main set of principles."
-                        );
-                      }
-                      if (
-                        source.id.startsWith("principle1") &&
-                        n.id.startsWith("principle1")
-                      ) {
-                        return alert(
-                          "The main set of principles is unique and does not include another main set.  There is only one main set of principles."
-                        );
-                      }
-                      return alert(
-                        "The main set of principles is unique and does not include another main set.  There is only one main set of principles."
-                      );
-                    }
-
-                    if (
-                      n.id.startsWith("principle1") &&
-                      group.children.length >= 10
-                    ) {
-                      return alert(
-                        "The number of subset identified in the main set is 10 subsets"
-                      );
-                    }
-                    if (
-                      n.id.startsWith("constantCharacteristics") &&
-                      group.children.length >= 5
-                    ) {
-                      return alert(
-                        "The number of constant characteristic identified is up to 5"
-                      );
-                    }
-                    //Added the child into the group by using addChildToGroup
-                    diagram.addChildToGroup(group, source);
-                    let newNode = diagram.getObject(
-                      nodesFil[nodesFil.length - 1].id
-                    );
-                    let childNode = diagram.getObject(
-                      group.children[group.children.length - 2]
-                    );
-                    newNode.offsetX = childNode.offsetX + 100;
-                    newNode.offsetY = childNode.offsetY;
-                    diagram.dataBind();
-                    //Passing the first node to getObject method to set width and offset for the group node
-                    let baseChild = diagram.getObject(group.children[0]);
-                    // setTimeout(() => {
-                    group.width = group.width + source.width - 30;
-                    baseChild.width = group.width;
-                    diagram.dataBind();
-                    group.children.forEach((chil, i) => {
-                      if (i > 0) {
-                        let firstChild = diagram.getObject(chil);
-                        let annoContent = firstChild.annotations[0].content;
-                        let previousChild = diagram.getObject(
-                          group.children[i - 1]
-                        );
-                        let previousAnnoContent =
-                          previousChild.annotations[0].content;
-                        firstChild.offsetY = group.offsetY;
-                        if (i - 1 > 0) {
-                          firstChild.offsetX =
-                            previousChild.offsetX +
-                            previousChild.width / 2 +
-                            firstChild.width / 2 +
-                            25;
-                        } else {
-                          firstChild.offsetX =
-                            group.offsetX -
-                            group.width / 2 +
-                            firstChild.width / 2 +
-                            35;
-                        }
-                        if (
-                          previousAnnoContent.startsWith(annoContent) &&
-                          previousAnnoContent.length - annoContent.length < 3
-                        ) {
-                          firstChild.annotations[0].content =
-                            source.annotations[0].content + " " + i;
-                          source.annotations[0].content =
-                            source.annotations[0].content + "" + (i + 1);
-                        }
-                        diagram.dataBind();
-                      }
-                    });
-                    setTimeout(() => {
-                      diagram.select([group]);
-                    });
-                  }
-                }
-              }
-            });
+            if (
+              previousAnnoContent.startsWith(annoContent) &&
+              previousAnnoContent.length - annoContent.length < 3
+            ) {
+              childEl.annotations[0].content =
+                source.annotations[0].content + " " + i;
+              source.annotations[0].content =
+                source.annotations[0].content + "" + (i + 1);
+            }
+          }
+          diagram.dataBind();
+          diagram.refresh();
+        } else {
+          if (communicationDroppedElementChecker(source, parentNode)) {
+            diagram.select([parentNode, source]);
+            diagram.group();
+            let group = diagram.getObject(parentNode.parentId)
+            let alerted = checkDropAlert(group, source, parentNode)
+            if (alerted) {
+              diagram.unGroup();
+              return alert(alerted);
+            }
+            let newNode = diagram.getObject(source.id);
+            parentNode.height = parentNode.height + 30;
+            parentNode.width = parentNode.width + 100;
+            parentNode.offsetX = parentNode.offsetX;
+            parentNode.offsetY = parentNode.offsetY;
+            parentNode.annotations[0].offset = { x: 0.5, y: -0.1 };
+            diagram.dataBind();
+            newNode.offsetX = parentNode.offsetX;
+            newNode.offsetY = parentNode.offsetY;
+            diagram.dataBind();
+            if (parentNode.children && parentNode.children.length > 1) {
+              // diagram.remove(diagram.nodes[diagram.nodes.length - 3]);
+              parentNode.style.strokeColor = "black";
+              parentNode.style.strokeWidth = 1;
+            }
           }
         }
-        // console.log(e, diagram.nodes)
       }
     }
   }, 0);
@@ -855,21 +807,21 @@ function communicationDroppedElementChecker(id, parentId) {
     "principle",
     "information",
   ];
-  if (parentId.startsWith("word")) {
+  if (parentId.id.startsWith("word")) {
     allowDropped = ["word"];
     childAllow = ["word"];
   }
 
-  if (parentId.startsWith("sentence")) {
+  if (parentId.id.startsWith("sentence")) {
     allowDropped = ["sentence"];
     childAllow = ["word", "sentence", "communicationElement", "principle"];
   }
   if (
-    parentId.startsWith("paragraph") ||
-    parentId.startsWith("communicationElement") ||
-    parentId.startsWith("information") ||
-    parentId.startsWith("question") ||
-    parentId.startsWith("answer")
+    parentId.id.startsWith("paragraph") ||
+    parentId.id.startsWith("communicationElement") ||
+    parentId.id.startsWith("information") ||
+    parentId.id.startsWith("question") ||
+    parentId.id.startsWith("answer")
   ) {
     allowDropped = [
       "sentence",
@@ -886,51 +838,51 @@ function communicationDroppedElementChecker(id, parentId) {
       "paragraph",
     ];
   }
-  if (parentId.startsWith("communicationFunction")) {
+  if (parentId.id.startsWith("communicationFunction")) {
     allowDropped = ["communicationFunction", "function"];
     childAllow = ["function", "communicationFunction"];
   }
-  if (parentId.startsWith("aspect")) {
+  if (parentId.id.startsWith("aspect")) {
     allowDropped = ["aspect"];
     childAllow = ["aspect"];
   }
-  if (parentId.startsWith("dictionary")) {
+  if (parentId.id.startsWith("dictionary")) {
     allowDropped = ["dictionary"];
     childAllow = ["word"];
   }
-  if (parentId.startsWith("collection")) {
+  if (parentId.id.startsWith("collection")) {
     allowDropped = ["collection"];
     childAllow = ["entity"];
   }
-  if (parentId.startsWith("communicationResult")) {
+  if (parentId.id.startsWith("communicationResult")) {
     allowDropped = ["communicationResult"];
     childAllow = ["communicationResult"];
   }
-  if (parentId.startsWith("action")) {
+  if (parentId.id.startsWith("action")) {
     allowDropped = ["action"];
     childAllow = ["action"];
   }
-  if (parentId.startsWith("reason")) {
+  if (parentId.id.startsWith("reason")) {
     allowDropped = ["reason"];
     childAllow = ["reason"];
   }
-  if (parentId.startsWith("principle2")) {
+  if (parentId.id.startsWith("principle2")) {
     allowDropped = ["principle2"];
     childAllow = ["principle"];
-    if (id !== "principle") {
+    if (id.addInfo[0].menuId === "principle") {
       alert("A subset of principle can only accept principle");
     }
   }
-  if (parentId.startsWith("principle1")) {
+  if (parentId.id.startsWith("principle1")) {
     allowDropped = ["principle1"];
     childAllow = ["principle", "principle2"];
-    if (id !== "principle" || id !== "principle2") {
+    if (id.addInfo[0].menuId !== "principle" && id.addInfo[0].menuId !== "subSetofPrinciple") {
       alert(
         "the main set of principle can only accept principle and subset of principle"
       );
     }
   }
-  if (parentId.startsWith("reference")) {
+  if (parentId.id.startsWith("reference")) {
     allowDropped = ["reference"];
     childAllow = [
       "communicationEntity",
@@ -949,35 +901,35 @@ function communicationDroppedElementChecker(id, parentId) {
     ];
   }
   if (
-    parentId.startsWith("locationOfOperation") ||
-    parentId.startsWith("siteOfOperation")
+    parentId.id.startsWith("locationOfOperation") ||
+    parentId.id.startsWith("siteOfOperation")
   ) {
     allowDropped = ["locationOfOperation", "siteOfOperation"];
     childAllow = ["locationOfOperation", "siteOfOperation"];
   }
-  if (parentId.startsWith("mainArea")) {
+  if (parentId.id.startsWith("mainArea")) {
     allowDropped = ["mainArea"];
     childAllow = ["locationOfOperation", "siteOfOperation"];
   }
-  if (parentId.startsWith("workingareaAL")) {
+  if (parentId.id.startsWith("workingareaAL")) {
     allowDropped = ["workingareaAL"];
     childAllow = ["locationOfOperation", "siteOfOperation"];
   }
-  if (parentId.startsWith("constantCharacteristics")) {
+  if (parentId.id.startsWith("constantCharacteristics")) {
     allowDropped = ["constantCharacteristics"];
     childAllow = ["constantCharacteristics"];
   }
-  if (parentId.startsWith("theory")) {
+  if (parentId.id.startsWith("theory")) {
     allowDropped = ["theory", "theorem"];
     childAllow = ["theory", "theorem"];
   }
-  if (parentId.startsWith("utilizationTheory")) {
+  if (parentId.id.startsWith("utilizationTheory")) {
     allowDropped = ["utilizationTheory"];
     childAllow = ["theory", "theorem"];
   }
   return (
-    childAllow.some((a) => id.startsWith(a)) &&
-    allowDropped.some((a) => parentId.startsWith(a))
+    childAllow.some((a) => id.id.startsWith(a)) &&
+    allowDropped.some((a) => parentId.id.startsWith(a))
   );
 }
 
@@ -1046,7 +998,7 @@ function positionChange(e) {
             }
             if (
               (conditionX || conditionY) &&
-              communicationDroppedElementChecker(source.id, n.id) &&
+              communicationDroppedElementChecker(source, n) &&
               group?.children &&
               !group?.children?.includes(source.id)
             ) {
@@ -1218,7 +1170,7 @@ var diagram = new ej.diagrams.Diagram({
       URL.revokeObjectURL(e.element?.properties?.shape?.properties?.source);
     }
   },
-  positionChange: positionChange,
+  // positionChange: positionChange,
   bridgeDirection: "Left",
   contextMenuSettings: {
     show: true,
@@ -1233,7 +1185,7 @@ var diagram = new ej.diagrams.Diagram({
     ],
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => {},
+  setNodeTemplate: (obj, diagram) => { },
   contextMenuClick: function (args) {
     //do your custom action here.
     // shape:

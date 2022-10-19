@@ -16,7 +16,7 @@ let analysisData = [
     title: "Parent Principle",
     annotation: "Principle",
     menuId: "principle",
-    toolTip: "Represent Actual Principle",
+    toolTip: "Represent Parent Principle",
   },
   {
     id: "referencerect",
@@ -30,7 +30,7 @@ let analysisData = [
     title: "Sentence Analysis",
     annotation: "Sentence Analysis",
     menuId: "sentenceAnalysis",
-    toolTip: "Represent Actual Principle",
+    toolTip: "Represent Sentence Analysis",
   },
   {
     id: "analysis",

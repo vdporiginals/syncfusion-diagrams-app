@@ -7615,7 +7615,7 @@ var everyShape = [
     addInfo: [
       {
         title: "Parent Principle",
-        toolTip: "Represent Actual Principle",
+        toolTip: "Represent Parent Principle",
       },
     ],
     shape: {
@@ -7757,7 +7757,7 @@ var everyShape = [
     addInfo: [
       {
         title: "Sentence Analysis",
-        toolTip: "Represent Actual Principle",
+        toolTip: "Represent Sentence Analysis",
       },
     ],
     shape: {
@@ -7970,7 +7970,7 @@ var everyShape = [
     addInfo: [
       {
         title: "Operating Principle",
-        toolTip: "Represent Actual Principle",
+        toolTip: "Represent Operating Principle",
       },
     ],
     shape: {
