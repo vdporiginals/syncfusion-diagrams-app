@@ -645,36 +645,36 @@ function checkDropAlert(group, source, n) {
   }
   if (
     checkedNode === "principle" &&
-    checkedSource === "principle2"
+    checkedSource === "subSetofPrinciple"
   ) {
     return "Consider a principle as a single entity where a subset as multiple entities; a subset of principles includes multiple principles not the other way around";
   }
   if (
-    checkedSource === "principle1" &&
+    checkedSource === "mainSetofPrinciple" &&
     checkedNode === "principle") {
     return "The main set of principles includes multiple subsets of principles where each subset includes principle.  A single principle does not include the main set of principles.";
   }
   if (
-    checkedSource === "principle2" &&
-    checkedNode === "principle2"
+    checkedSource === "subSetofPrinciple" &&
+    checkedNode === "subSetofPrinciple"
   ) {
     return "A subset of principles includes multiple unique principle.  A subset of principles does not include other subsets of principles.";
   }
   if (
-    checkedSource === "principle1" &&
-    checkedNode === "principle2"
+    checkedSource === "mainSetofPrinciple" &&
+    checkedNode === "subSetofPrinciple"
   ) {
     return "The main set of principles includes all the subsets of principles.  A subset of principles does not include the main set of principles.";
   }
   if (
-    checkedSource === "principle1" &&
-    checkedNode === "principle1"
+    checkedSource === "mainSetofPrinciple" &&
+    checkedNode === "mainSetofPrinciple"
   ) {
     return "The main set of principles is unique and does not include another main set.  There is only one main set of principles.";
   }
 
   if (
-    checkedNode === "principle1" &&
+    checkedNode === "mainSetofPrinciple" &&
     group.children.filter(a => a.startsWith('principle1')).length >= 10
   ) {
     return "The number of subset identified in the main set is 10 subsets";
