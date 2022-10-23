@@ -364,15 +364,15 @@ function relatePersonOperatingPrinciple(text) {
   findItem.addInfo[0].title = text;
   findItem.shape.content = findItem.shape.content.replace("Principle", text);
   findItem.annotations[0].content = text;
-  diagram.add(findItem);
+  diagram.add(drawShape(findItem));
   let findItem2 = getItemById("ellipseBasic");
   findItem2.offsetX = item1.offsetX + 400;
   findItem2.offsetY = item1.offsetY + 150;
-  diagram.add(findItem2);
+  diagram.add(drawShape(findItem2));
   let findItem3 = getItemById("itemHidden");
   findItem3.offsetX = item1.offsetX + 600;
   findItem3.offsetY = item1.offsetY + 145;
-  diagram.add(findItem3);
+  diagram.add(drawShape(findItem3));
   diagram.connectors = [
     {
       id: "connector1",
