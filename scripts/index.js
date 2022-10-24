@@ -357,11 +357,12 @@ $("#fileUploadToDiagrams").change(function () {
   }
 });
 let grouped = 0;
-function relatePersonOperatingPrinciple() {
-  const item1 = diagram.nodes[0];
+function relatePersonOperatingPrinciple(id) {
+  const item1 = diagram.selectedItems.properties.nodes[0];
+  const offset = mapOffsetPrinciple(id);
   let findItem = getItemById("principle");
-  findItem.offsetX = item1.offsetX + 50;
-  findItem.offsetY = item1.offsetY + 300;
+  findItem.offsetX = item1.offsetX + offset.offsetX;
+  findItem.offsetY = item1.offsetY + offset.offsetY;
   findItem.width = 150;
   findItem.height = 100;
   drawPortCircle(findItem);
@@ -414,6 +415,51 @@ function relatePersonOperatingPrinciple() {
     },
   ];
 }
+
+function mapOffsetPrinciple(id) {
+  if (
+    id.includes("personshapesrelatepersonwith") ||
+    id === "personshapesrelatepersonwithpersonaspect"
+  ) {
+    return {
+      offsetX: 50,
+      offsetY: 300,
+    };
+  }
+  if (id.includes("applicationrelateapplicationwith")) {
+    return {
+      offsetX: 0,
+      offsetY: 300,
+    };
+  }
+  return {
+    offsetX: 50,
+    offsetY: 300,
+  };
+}
+
+function funApplicationAddPartToApplication(id) {
+  let type = "groupApplicationPart";
+  let annotation = ["Part1", "Application"];
+  if (id === "applicationaddsubtoapplication") {
+    type = "groupApplicationSub";
+    annotation[0] = "Sub Application 1";
+  }
+  const node = diagram.selectedItems.properties.nodes[0];
+  let item = drawShape({
+    id: "communicationFunctionGrouped" + randomId(),
+    title: "Communication Function",
+    annotation,
+    menuId: "entity",
+    toolTip: "What We Do as Entity",
+    type,
+  });
+  item.offsetX = node.offsetX;
+  item.offsetY = node.offsetY;
+  diagram.add(item);
+  diagram.remove(diagram.selectedItems.properties.nodes[0]);
+}
+
 let pictureId = [
   "replaceGroupPeoplePicture",
   "replacePersonPicture",
@@ -642,21 +688,13 @@ function getTextElement(text, color) {
 function checkDropAlert(group, source, n) {
   let checkedSource = source.addInfo[0].menuId;
   let checkedNode = n.addInfo[0].menuId;
-  if (
-    checkedSource === "principle" &&
-    checkedNode === "principle"
-  ) {
+  if (checkedSource === "principle" && checkedNode === "principle") {
     return "While a principle may have multiple parts, for now consider it as one entity.";
   }
-  if (
-    checkedNode === "principle" &&
-    checkedSource === "subSetofPrinciple"
-  ) {
+  if (checkedNode === "principle" && checkedSource === "subSetofPrinciple") {
     return "Consider a principle as a single entity where a subset as multiple entities; a subset of principles includes multiple principles not the other way around";
   }
-  if (
-    checkedSource === "mainSetofPrinciple" &&
-    checkedNode === "principle") {
+  if (checkedSource === "mainSetofPrinciple" && checkedNode === "principle") {
     return "The main set of principles includes multiple subsets of principles where each subset includes principle.  A single principle does not include the main set of principles.";
   }
   if (
@@ -680,13 +718,14 @@ function checkDropAlert(group, source, n) {
 
   if (
     checkedNode === "mainSetofPrinciple" &&
-    group.children.filter(a => a.startsWith('principle1')).length >= 10
+    group.children.filter((a) => a.startsWith("principle1")).length >= 10
   ) {
     return "The number of subset identified in the main set is 10 subsets";
   }
   if (
     checkedNode === "constantCharacteristics" &&
-    group.children.filter(a => a.startsWith('constantCharacteristics')).length >= 5
+    group.children.filter((a) => a.startsWith("constantCharacteristics"))
+      .length >= 5
   ) {
     return "The number of constant characteristic identified is up to 5";
   }
@@ -702,10 +741,13 @@ function dropGrouped(args) {
     if (diagram.nodes.length > 1) {
       if (!node.children && node.id !== parentNode.id && !node.parentId) {
         //Getting the group node by getObject method by passing parent ID
-        if (args.target.parentId && communicationDroppedElementChecker(node, parentNode)) {
+        if (
+          args.target.parentId &&
+          communicationDroppedElementChecker(node, parentNode)
+        ) {
           var group = diagram.getObject(args.target.parentId);
           let firstChild = diagram.getObject(group.children[0]);
-          let alerted = checkDropAlert(group, node, firstChild)
+          let alerted = checkDropAlert(group, node, firstChild);
           if (alerted) {
             return alert(alerted);
           }
@@ -732,11 +774,8 @@ function dropGrouped(args) {
           for (let i = 1; i < group.children.length; i++) {
             const childEl = diagram.getObject(group.children[i]);
             let annoContent = childEl.annotations[0].content;
-            let previousChild = diagram.getObject(
-              group.children[i - 1]
-            );
-            let previousAnnoContent =
-              previousChild.annotations[0].content;
+            let previousChild = diagram.getObject(group.children[i - 1]);
+            let previousAnnoContent = previousChild.annotations[0].content;
             childEl.offsetY = group.offsetY;
             if (i - 1 > 0) {
               childEl.offsetX =
@@ -746,10 +785,7 @@ function dropGrouped(args) {
                 25;
             } else {
               childEl.offsetX =
-                group.offsetX -
-                group.width / 2 +
-                childEl.width / 2 +
-                35;
+                group.offsetX - group.width / 2 + childEl.width / 2 + 35;
             }
             if (
               previousAnnoContent.startsWith(annoContent) &&
@@ -767,8 +803,8 @@ function dropGrouped(args) {
           if (communicationDroppedElementChecker(source, parentNode)) {
             diagram.select([parentNode, source]);
             diagram.group();
-            let group = diagram.getObject(parentNode.parentId)
-            let alerted = checkDropAlert(group, source, parentNode)
+            let group = diagram.getObject(parentNode.parentId);
+            let alerted = checkDropAlert(group, source, parentNode);
             if (alerted) {
               diagram.unGroup();
               return alert(alerted);
@@ -881,7 +917,10 @@ function communicationDroppedElementChecker(id, parentId) {
   if (parentId.id.startsWith("principle1")) {
     allowDropped = ["principle1"];
     childAllow = ["principle", "principle2"];
-    if (id.addInfo[0].menuId !== "principle" && id.addInfo[0].menuId !== "subSetofPrinciple") {
+    if (
+      id.addInfo[0].menuId !== "principle" &&
+      id.addInfo[0].menuId !== "subSetofPrinciple"
+    ) {
       alert(
         "the main set of principle can only accept principle and subset of principle"
       );
@@ -939,9 +978,11 @@ function communicationDroppedElementChecker(id, parentId) {
 }
 
 function camelize(str) {
-  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-    return index === 0 ? word.toLowerCase() : word.toUpperCase();
-  }).replace(/\s+/g, '');
+  return str
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+      return index === 0 ? word.toLowerCase() : word.toUpperCase();
+    })
+    .replace(/\s+/g, "");
 }
 
 var mappedArrayContext = menuItems.reduce((arr, item) => {
@@ -950,7 +991,7 @@ var mappedArrayContext = menuItems.reduce((arr, item) => {
       brr.push({
         ...b,
         id: camelize(item.id + b.text),
-        parentId: item.id
+        parentId: item.id,
       });
     }
     return brr;
@@ -1006,11 +1047,11 @@ var diagram = new ej.diagrams.Diagram({
         id: "edit",
         text: "Edit1",
       },
-      ...mappedArrayContext
+      ...mappedArrayContext,
     ],
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => { },
+  setNodeTemplate: (obj, diagram) => {},
   contextMenuClick: function (args) {
     //do your custom action here.
     // shape:
@@ -1037,9 +1078,18 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck.includes("communication")) {
       addCommHolderOnClick();
     }
-
-    if (idCheck.includes("principle")) {
-      relatePersonOperatingPrinciple();
+    if (
+      idCheck.includes("principle") ||
+      idCheck === "personshapesrelatepersonwithpersonaspect"
+    ) {
+      relatePersonOperatingPrinciple(idCheck);
+    }
+    console.log(idCheck);
+    if (idCheck === "applicationaddparttoapplication") {
+      funApplicationAddPartToApplication(idCheck);
+    }
+    if (idCheck === "applicationaddsubtoapplication") {
+      funApplicationAddPartToApplication(idCheck);
     }
   },
   contextMenuOpen: function (args) {
@@ -1359,7 +1409,6 @@ for (let i = 0; i < allText.length; i++) {
   allText[i].setAttribute("visibility", "visible");
 }
 //#endregion
-
 
 function setCursor(cursor) {
   document.getElementById("left-section").style.cursor = cursor;
