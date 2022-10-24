@@ -360,11 +360,12 @@ let grouped = 0;
 function relatePersonOperatingPrinciple(id) {
   const item1 = diagram.selectedItems.properties.nodes[0];
   const offset = mapOffsetPrinciple(id);
+  console.log(offset);
   let findItem = getItemById("principle");
   findItem.offsetX = item1.offsetX + offset.offsetX;
   findItem.offsetY = item1.offsetY + offset.offsetY;
   findItem.width = 150;
-  findItem.height = 100;
+  findItem.height = 80;
   drawPortCircle(findItem);
   diagram.add(findItem);
   let findItem2 = getItemById("ellipseBasic");
@@ -426,7 +427,10 @@ function mapOffsetPrinciple(id) {
       offsetY: 300,
     };
   }
-  if (id.includes("applicationrelateapplicationwith")) {
+  if (
+    id.includes("applicationrelateapplicationwith") ||
+    id.includes("commfunctionrelatefunctionwith")
+  ) {
     return {
       offsetX: 0,
       offsetY: 300,
@@ -438,13 +442,9 @@ function mapOffsetPrinciple(id) {
   };
 }
 
-function funApplicationAddPartToApplication(id) {
-  let type = "groupApplicationPart";
-  let annotation = ["Part1", "Application"];
-  if (id === "applicationaddsubtoapplication") {
-    type = "groupApplicationSub";
-    annotation[0] = "Sub Application 1";
-  }
+function funAddPartToApplication(id) {
+  const type = getTypeAddPartToApplication(id);
+  const annotation = getAnnotationAddPartToApplication(id);
   const node = diagram.selectedItems.properties.nodes[0];
   let item = drawShape({
     id: "communicationFunctionGrouped" + randomId(),
@@ -458,6 +458,49 @@ function funApplicationAddPartToApplication(id) {
   item.offsetY = node.offsetY;
   diagram.add(item);
   diagram.remove(diagram.selectedItems.properties.nodes[0]);
+}
+
+function funCommunicationFunctionSub(id) {
+  const node = diagram.selectedItems.properties.nodes[0];
+  let item = drawShape({
+    id: "communicationFunctionGrouped" + randomId(),
+    title: "Communication Function",
+    annotation: [
+      "Communication Function",
+      "Group 1",
+      "Function 1",
+      "Function 2",
+      "Function 3",
+    ],
+    menuId: "entity",
+    toolTip: "What We Do as Entity",
+    type: "CommunicationGrouped2",
+  });
+  item.offsetX = node.offsetX;
+  item.offsetY = node.offsetY;
+  diagram.add(item);
+  diagram.remove(diagram.selectedItems.properties.nodes[0]);
+}
+
+function getAnnotationAddPartToApplication(id) {
+  if (id === "applicationaddsubtoapplication") {
+    return ["Sub Application 1", "Application"];
+  }
+  if (id === "commfunctionaddpartoffunction") {
+    return ["Function 1", "Communication Function"];
+  }
+  return ["Part1", "Application"];
+}
+
+function getTypeAddPartToApplication(id) {
+  const listIdGroupSub = [
+    "applicationaddsubtoapplication",
+    "commfunctionaddpartoffunction",
+  ];
+  if (listIdGroupSub.includes(id)) {
+    return "groupApplicationSub";
+  }
+  return "groupApplicationPart";
 }
 
 let pictureId = [
@@ -1053,10 +1096,16 @@ var diagram = new ej.diagrams.Diagram({
   },
   setNodeTemplate: (obj, diagram) => {},
   contextMenuClick: function (args) {
-    //do your custom action here.
-    // shape:
     currentItem = args.item.id;
+    const listIdNotEvent = [
+      "commfunctionreplacefunctionwithsketch",
+      "applicationreplaceapplicationwithsketch",
+    ];
     let idCheck = args.item.id.toLowerCase();
+    console.log(idCheck);
+    if (listIdNotEvent.includes(idCheck)) {
+      return;
+    }
     if (idCheck.includes("picture")) {
       $("#fileUploadToDiagrams").attr("accept", "image/*");
       $("#fileUploadToDiagrams").click();
@@ -1084,12 +1133,11 @@ var diagram = new ej.diagrams.Diagram({
     ) {
       relatePersonOperatingPrinciple(idCheck);
     }
-    console.log(idCheck);
-    if (idCheck === "applicationaddparttoapplication") {
-      funApplicationAddPartToApplication(idCheck);
+    if (checkIdHanleClickfunAddPartToApplication(idCheck)) {
+      funAddPartToApplication(idCheck);
     }
-    if (idCheck === "applicationaddsubtoapplication") {
-      funApplicationAddPartToApplication(idCheck);
+    if (idCheck === "commfunctionaddsubfunction") {
+      funCommunicationFunctionSub(idCheck);
     }
   },
   contextMenuOpen: function (args) {
@@ -1147,6 +1195,16 @@ var diagram = new ej.diagrams.Diagram({
     dropGrouped(args);
   },
 });
+
+const listIdClick = [
+  "applicationaddparttoapplication",
+  "applicationaddsubtoapplication",
+  "commfunctionaddpartoffunction",
+];
+
+function checkIdHanleClickfunAddPartToApplication(id) {
+  return listIdClick.includes(id);
+}
 
 diagram.appendTo("#diagram");
 const blankDiagram = diagram.saveDiagram();

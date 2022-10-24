@@ -593,6 +593,58 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
         ej.diagrams.NodeConstraints.Default &
         ~ej.diagrams.NodeConstraints.Rotate,
     };
+  } else if (type === "CommunicationGrouped2") {
+    node = {
+      id,
+      addInfo: [
+        {
+          title,
+          toolTip,
+        },
+      ],
+      shape: {
+        type: "Native",
+        content: `<g  transform="translate(2, 2)">
+                    <rect vector-effect="non-scaling-stroke" width="500" height="150" stroke="black" fill="transparent" stroke-width="1" />
+                    <rect x="50" y="50" width="100" height="50" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
+                    <rect x="200" y="50" width="100" height="50" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
+                    <rect x="375" y="50" width="100" height="50" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1"/>
+                    <rect x="25" y="25" vector-effect="non-scaling-stroke" width="300" height="100" stroke="black" fill="transparent" stroke-width="1" />
+                </g>`,
+      },
+      annotations: [
+        {
+          content: annotation[0],
+          offset: { x: 0.5, y: 0 },
+          margin: { bottom: 10 },
+        },
+        {
+          content: annotation[1],
+          offset: { x: 0.35, y: 0.1 },
+        },
+        {
+          content: annotation[2],
+          offset: { x: 0.2, y: 0.5 },
+        },
+        {
+          content: annotation[3],
+          offset: { x: 0.5, y: 0.5 },
+        },
+        {
+          content: annotation[4],
+          offset: { x: 0.85, y: 0.5 },
+        },
+      ],
+      style: {
+        fill: "none",
+        fontSize: 10,
+      },
+      height: 175,
+      width: 500,
+      constraints:
+        ej.diagrams.NodeConstraints.Default &
+        ~ej.diagrams.NodeConstraints.Rotate,
+    };
   } else if (type === "groupApplicationPart") {
     node = {
       id,
