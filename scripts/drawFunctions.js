@@ -60,11 +60,13 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
         content: `<g transform="translate(2,2)">
                     <rect height="40" width="120" stroke-width="0" fill="transparent" />
                     <ellipse vector-effect="non-scaling-stroke" fill="transparent" stroke="black" stroke-width="1" cx="60" cy="20" rx="60" ry="20"/>
-                    <foreignObject class="symbol-text-container" x="${(0.25 * 120) / 2
-          }" width="${120 * 0.75}" height="${40}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 120) / 2
+                    }" width="${120 * 0.75}" height="${40}" visibility="hidden">
                         <div style="height: ${40}px" class="flex-container">
-                            <div width="${120 * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              120 * 0.75
+                            }" class="symbol-text-element">
                                 ${annotation}
                             </div>
                         </div>
@@ -139,11 +141,13 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     <rect x="0" y="0" width="100" height="50" fill="none" stroke-width="0"/>
                     <rect width="90" height="50" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
                     <rect x="90" height="50" width="10" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1"/>
-                    <foreignObject class="symbol-text-container" x="${(0.25 * 100) / 2
-          }" width="${100 * 0.75}" height="${50}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 100) / 2
+                    }" width="${100 * 0.75}" height="${50}" visibility="hidden">
                         <div style="height: ${50}px" class="flex-container">
-                            <div width="${100 * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              100 * 0.75
+                            }" class="symbol-text-element">
                                 ${annotation}
                             </div>
                         </div>
@@ -181,12 +185,15 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     <rect x="0" y="0" width="100" height="50" fill="none" stroke-width="0"/>
                     <rect width="100" height="40" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
                     <rect y="40" height="10" width="100" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1"/>
-                    <foreignObject class="symbol-text-container" x="${(0.25 * 100) / 2
-          }" y="-5" width="${100 * 0.75
-          }" height="${50}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 100) / 2
+                    }" y="-5" width="${
+          100 * 0.75
+        }" height="${50}" visibility="hidden">
                         <div style="height: ${50}px" class="flex-container">
-                            <div width="${100 * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              100 * 0.75
+                            }" class="symbol-text-element">
                                 ${annotation}
                             </div>
                         </div>
@@ -224,11 +231,13 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     <rect x="0" y="0" height="50" width="100" fill="transparent" stroke-width="0"/>
                     <rect width="90" height="40" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
                     <rect x="10" y="10" height="40" width="90"  fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1"/>
-                    <foreignObject class="symbol-text-container" x="${(0.25 * 100) / 2
-          }" width="${100 * 0.75}" height="${50}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 100) / 2
+                    }" width="${100 * 0.75}" height="${50}" visibility="hidden">
                         <div style="height: ${50}px" class="flex-container">
-                            <div width="${100 * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              100 * 0.75
+                            }" class="symbol-text-element">
                                 ${annotation}
                             </div>
                         </div>
@@ -471,8 +480,9 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
         content: `<g  transform="translate(2, 2)">
                     <rect vector-effect="non-scaling-stroke" width="575" height="150" stroke="black" fill="transparent" stroke-width="1" />
                     <rect x="25" y="25" width="200" height="100" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
-                    <foreignObject class="symbol-text-container" x="${0.11 * 575
-          }" width="${100}" height="${150}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      0.11 * 575
+                    }" width="${100}" height="${150}" visibility="hidden">
                         <div style="height: ${150}px" class="flex-container">
                             <div width="${100}" class="symbol-text-element">
                                 ${annotation[0]}
@@ -480,8 +490,9 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                         </div>
                     </foreignObject>
                     <rect x="350" y="025" height="100" width="200"  fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1"/>
-                    <foreignObject class="symbol-text-container" x="${0.65 * 575
-          }" width="${100}" height="${150}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      0.65 * 575
+                    }" width="${100}" height="${150}" visibility="hidden">
                         <div style="height: ${150}px" class="flex-container">
                             <div width="${100}" class="symbol-text-element">
                                 ${annotation[1]}
@@ -582,6 +593,146 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
         ej.diagrams.NodeConstraints.Default &
         ~ej.diagrams.NodeConstraints.Rotate,
     };
+  } else if (type === "CommunicationGrouped2") {
+    node = {
+      id,
+      addInfo: [
+        {
+          title,
+          toolTip,
+        },
+      ],
+      shape: {
+        type: "Native",
+        content: `<g  transform="translate(2, 2)">
+                    <rect vector-effect="non-scaling-stroke" width="500" height="150" stroke="black" fill="transparent" stroke-width="1" />
+                    <rect x="50" y="50" width="100" height="50" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
+                    <rect x="200" y="50" width="100" height="50" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
+                    <rect x="375" y="50" width="100" height="50" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1"/>
+                    <rect x="25" y="25" vector-effect="non-scaling-stroke" width="300" height="100" stroke="black" fill="transparent" stroke-width="1" />
+                </g>`,
+      },
+      annotations: [
+        {
+          content: annotation[0],
+          offset: { x: 0.5, y: 0 },
+          margin: { bottom: 10 },
+        },
+        {
+          content: annotation[1],
+          offset: { x: 0.35, y: 0.1 },
+        },
+        {
+          content: annotation[2],
+          offset: { x: 0.2, y: 0.5 },
+        },
+        {
+          content: annotation[3],
+          offset: { x: 0.5, y: 0.5 },
+        },
+        {
+          content: annotation[4],
+          offset: { x: 0.85, y: 0.5 },
+        },
+      ],
+      style: {
+        fill: "none",
+        fontSize: 10,
+      },
+      height: 175,
+      width: 500,
+      constraints:
+        ej.diagrams.NodeConstraints.Default &
+        ~ej.diagrams.NodeConstraints.Rotate,
+    };
+  } else if (type === "groupApplicationPart") {
+    node = {
+      id,
+      addInfo: [
+        {
+          title,
+          toolTip,
+        },
+      ],
+      shape: {
+        type: "Native",
+        content: `<g  transform="translate(2, 2)">
+                    <rect vector-effect="non-scaling-stroke" width="250" height="150" stroke="black" fill="transparent" stroke-width="1" />
+                    <rect x="25" y="25" width="200" height="100" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
+                </g>`,
+      },
+      annotations: [
+        {
+          content: annotation[0],
+          offset: { x: 0.5, y: 0.5 },
+        },
+        {
+          content: annotation[1],
+          offset: { x: 0.5, y: 0 },
+          margin: { bottom: 10 },
+        },
+      ],
+      style: {
+        fill: "none",
+        fontSize: 10,
+      },
+      height: 130,
+      width: 200,
+      constraints:
+        ej.diagrams.NodeConstraints.Default &
+        ~ej.diagrams.NodeConstraints.Rotate,
+    };
+  } else if (type === "groupApplicationSub") {
+    node = {
+      id,
+      addInfo: [
+        {
+          title,
+          toolTip,
+        },
+      ],
+      shape: {
+        type: "Native",
+        content: `<g  transform="translate(2, 2)">
+                    <rect vector-effect="non-scaling-stroke" width="250" height="170" stroke="black" fill="transparent" stroke-width="1" />
+                    <rect x="25" y="25" width="200" height="100" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
+                    <rect y="125" x="25" height="20" width="200" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1"/>
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 100) / 2
+                    }" y="-5" width="${
+          100 * 0.75
+        }" height="${50}" visibility="hidden">
+                        <div style="height: ${50}px" class="flex-container">
+                            <div width="${
+                              100 * 0.75
+                            }" class="symbol-text-element">
+                                ${annotation}
+                            </div>
+                        </div>
+                    </foreignObject>
+                </g>`,
+      },
+      annotations: [
+        {
+          content: annotation[0],
+          offset: { x: 0.5, y: 0.5 },
+        },
+        {
+          content: annotation[1],
+          offset: { x: 0.5, y: 0 },
+          margin: { bottom: 10 },
+        },
+      ],
+      style: {
+        fill: "none",
+        fontSize: 10,
+      },
+      height: 130,
+      width: 200,
+      constraints:
+        ej.diagrams.NodeConstraints.Default &
+        ~ej.diagrams.NodeConstraints.Rotate,
+    };
   } else if (type === "ECF") {
     node = {
       id,
@@ -595,15 +746,20 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
         type: "Native",
         content: `<g  transform="translate(2,2)">
                         <rect height="100" width="100" fill="transparent" stroke-width="0"/>
-                        <rect x="${100 / (Math.sqrt(2) * 2)}" y="${-100 / (Math.sqrt(2) * 2)
-          }" width="${100 / Math.sqrt(2)}" height="${100 / Math.sqrt(2)
-          }" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" transform="rotate(45)"/>
-                        <foreignObject class="symbol-text-container" x="${(0.25 * 100) / 2
-          }" width="${100 * 0.75
-          }" height="${100}" visibility="hidden">
+                        <rect x="${100 / (Math.sqrt(2) * 2)}" y="${
+          -100 / (Math.sqrt(2) * 2)
+        }" width="${100 / Math.sqrt(2)}" height="${
+          100 / Math.sqrt(2)
+        }" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" transform="rotate(45)"/>
+                        <foreignObject class="symbol-text-container" x="${
+                          (0.25 * 100) / 2
+                        }" width="${
+          100 * 0.75
+        }" height="${100}" visibility="hidden">
                         <div style="height: ${100}px" class="flex-container">
-                            <div width="${100 * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              100 * 0.75
+                            }" class="symbol-text-element">
                                 ${annotation}
                             </div>
                         </div>
@@ -643,17 +799,23 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
       shape: {
         type: "Native",
         content: `<g  ${pointClass} transform="translate(2, 2)">
-                        <rect height="${radius * 2}" width="${radius * 2
-          }" fill="transparent" stroke-width="0" /> 
-                        <circle vector-effect="non-scaling-stroke" cx="${radius}" cy="${radius}" r="${radius}" fill="${annotation.fill
-          }" stroke="black" stroke-width="1"/>
-                        <foreignObject class="symbol-text-container" x="${(0.25 * radius * 2) / 2
-          }" width="${radius * 2 * 0.75}" height="${radius * 2
-          }" visibility="hidden">
-                        <div style="height: ${radius * 2
-          }px" class="flex-container">
-                            <div width="${radius * 2 * 0.75
-          }" class="symbol-text-element">
+                        <rect height="${radius * 2}" width="${
+          radius * 2
+        }" fill="transparent" stroke-width="0" /> 
+                        <circle vector-effect="non-scaling-stroke" cx="${radius}" cy="${radius}" r="${radius}" fill="${
+          annotation.fill
+        }" stroke="black" stroke-width="1"/>
+                        <foreignObject class="symbol-text-container" x="${
+                          (0.25 * radius * 2) / 2
+                        }" width="${radius * 2 * 0.75}" height="${
+          radius * 2
+        }" visibility="hidden">
+                        <div style="height: ${
+                          radius * 2
+                        }px" class="flex-container">
+                            <div width="${
+                              radius * 2 * 0.75
+                            }" class="symbol-text-element">
                                 ${content}
                             </div>
                         </div>
@@ -693,12 +855,15 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     <rect height="120" width="120" stroke-width="0" fill="transparent" />
                     <path vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" fill="transparent" d = "M 0 0 L 0 120 L 120 120 L 120 20 L 100 0 L 0 0"/>
                     <polygon vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" fill="transparent" points="100,0 100,20 120,20"/>
-                    <foreignObject class="symbol-text-container" x="${(0.25 * 120) / 2
-          }" width="${120 * 0.75
-          }" height="${120}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 120) / 2
+                    }" width="${
+          120 * 0.75
+        }" height="${120}" visibility="hidden">
                         <div style="height: ${120}px" class="flex-container">
-                            <div width="${120 * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              120 * 0.75
+                            }" class="symbol-text-element">
                                 My Note
                             </div>
                         </div>
@@ -732,9 +897,11 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
         content: `<g  transform="translate(2, 2)">
                     <rect height="250" width="350" fill="transparent" stroke-width="0"/> 
                     <path fill="transparent" stroke="black" stroke-width="1" vector-effect="non-scaling-stroke" d="M 0 0 L 350 0 L 350 200 L 120 200 L 100 250 L 100 200 L 0 200 L 0 0"/>
-                    <foreignObject class="symbol-text-container" x="${(0.25 * 350) / 2
-          }" width="${350 * 0.75
-          }" height="${250}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 350) / 2
+                    }" width="${
+          350 * 0.75
+        }" height="${250}" visibility="hidden">
                     <div style="height: ${250}px" class="flex-container">
                         <div width="${350 * 0.75}" class="symbol-text-element">
                             ${annotation}
@@ -785,8 +952,9 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
       shape: {
         type: "Native",
         content: `<g  transform="translate(2, 2)">
-                            <rect height="100" width="${100 * columnNo
-          }" fill="transparent" stroke-width="0"/>
+                            <rect height="100" width="${
+                              100 * columnNo
+                            }" fill="transparent" stroke-width="0"/>
                             ${shapeData}
                         </g>`,
       },
@@ -810,8 +978,9 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                 <rect height="70" width="200" fill="transparent" stroke-width="0"/>
                 <path vector-effect="non-scaling-stroke" fill="transparent" stroke="black" stroke-width="1" d="M 0 15 L 175 15 L 175 0 L 200 35 L 175 70 L 175 55 L 0 55 L 0 15"/>
                 </g>
-                <foreignObject class="symbol-text-container" x="${(0.25 * 200) / 2
-      }" width="${200 * 0.75}" height="${70}" visibility="hidden">
+                <foreignObject class="symbol-text-container" x="${
+                  (0.25 * 200) / 2
+                }" width="${200 * 0.75}" height="${70}" visibility="hidden">
                 <div style="height: ${70}px" class="flex-container">
                     <div width="${200 * 0.75}" class="symbol-text-element">
                         ${annotation.content}
@@ -858,12 +1027,15 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     <g>
                         <rect height="90" width="500" fill="none" stroke-width="0"/>
                         <path vector-effect="non-scaling-stroke" fill="transparent" stroke="black" stroke-width="1" d="M 0 45 L 50 0 L 50 20 L 450 20 L 450 0 L 500 45 L 450 90 L 450 70 L 50 70 L 50 90 L 0 45"/>
-                        <foreignObject class="symbol-text-container" x="${(0.25 * 500) / 2
-          }" width="${500 * 0.75
-          }" height="${90}" visibility="hidden">
+                        <foreignObject class="symbol-text-container" x="${
+                          (0.25 * 500) / 2
+                        }" width="${
+          500 * 0.75
+        }" height="${90}" visibility="hidden">
                         <div style="height: ${90}px" class="flex-container">
-                            <div width="${500 * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              500 * 0.75
+                            }" class="symbol-text-element">
                                 ${annotation}
                             </div>
                         </div>
@@ -901,8 +1073,9 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                         <circle vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" cx="25" cy="25" r="25" />
                         <circle vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" cx="525" cy="25" r="25" />
                     </g>
-                    <foreignObject class="symbol-text-container" x="${(0.25 * 550) / 2
-          }" width="${550 * 0.75}" height="${50}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 550) / 2
+                    }" width="${550 * 0.75}" height="${50}" visibility="hidden">
                     <div style="height: ${50}px" class="flex-container">
                         <div width="${550 * 0.75}" class="symbol-text-element">
                             ${annotation}
@@ -1038,8 +1211,9 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     <rect height="20" width="320" fill="transparent" stroke-width="0"/>
                     <rect x="0" y="0" vector-effect="non-scaling-stroke" height="20" width="20" stroke="black" stroke-width="1" fill="transparent"/>
                     <path vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" stroke-dashArray="10 5" fill="transparent" d = "M 20 10 L 320 10"/>
-                    <foreignObject class="symbol-text-container" x="${0.03 * 320
-          }" width="${320 * 0.75}" height="${20}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      0.03 * 320
+                    }" width="${320 * 0.75}" height="${20}" visibility="hidden">
                     <div style="height: ${20}px" class="flex-container">
                         <div width="${320 * 0.75}" class="symbol-text-element">
                             ${annotation}
@@ -1232,12 +1406,15 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                         <rect x = "0" y = "0" vector-effect="non-scaling-stroke" height="90" width="170" stroke="black" stroke-dasharray="8 4" stroke-width="1" fill="Transparent"/>
                         <rect x="30" y="15" width="100" height="50" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
                         <rect x="40" y="25" height="50" width="100"  fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1"/>
-                        <foreignObject class="symbol-text-container" x="${(0.25 * 170) / 2
-          }" width="${170 * 0.75
-          }" height="${90}" visibility="hidden">
+                        <foreignObject class="symbol-text-container" x="${
+                          (0.25 * 170) / 2
+                        }" width="${
+          170 * 0.75
+        }" height="${90}" visibility="hidden">
                         <div style="height: ${90}px" class="flex-container">
-                            <div width="${170 * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              170 * 0.75
+                            }" class="symbol-text-element">
                                 ${annotation}
                             </div>
                         </div>
@@ -1267,12 +1444,15 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                         <g>
                             <rect height="50" width="200" fill="transparent" stroke-width="0" />
                             <path vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" fill="Transparent" d="M 0 0 L 0 50 L 200 50 L 200 0"/>
-                            <foreignObject class="symbol-text-container" x="${(0.25 * 200) / 2
-          }" width="${200 * 0.75
-          }" height="${50}" visibility="hidden">
+                            <foreignObject class="symbol-text-container" x="${
+                              (0.25 * 200) / 2
+                            }" width="${
+          200 * 0.75
+        }" height="${50}" visibility="hidden">
                             <div style="height: ${50}px" class="flex-container">
-                                <div width="${200 * 0.75
-          }" class="symbol-text-element">
+                                <div width="${
+                                  200 * 0.75
+                                }" class="symbol-text-element">
                                     ${annotation.content}
                                 </div>
                             </div>
@@ -1305,12 +1485,15 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                         <g>
                             <rect height="50" width="200" fill="transparent" stroke-width="0" />
                             <path vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" fill="Transparent" d="M 0 50 L 0 0 L 200 0 L 200 50"/>
-                            <foreignObject class="symbol-text-container" x="${(0.25 * 200) / 2
-          }" width="${200 * 0.75
-          }" height="${50}" visibility="hidden">
+                            <foreignObject class="symbol-text-container" x="${
+                              (0.25 * 200) / 2
+                            }" width="${
+          200 * 0.75
+        }" height="${50}" visibility="hidden">
                             <div style="height: ${50}px" class="flex-container">
-                                <div width="${200 * 0.75
-          }" class="symbol-text-element">
+                                <div width="${
+                                  200 * 0.75
+                                }" class="symbol-text-element">
                                     ${annotation.content}
                                 </div>
                             </div>
@@ -1435,22 +1618,28 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                         <rect vector-effect="non-scaling-stroke" x="0" y="0" height="600" width="300" fill="transparent" stroke="black" stroke-width="2" />
                         <rect vector-effect="non-scaling-stroke" x="25" y="25" height="250" width="250" fill="transparent" stroke="black" stroke-width="1" />
                         <rect vector-effect="non-scaling-stroke" x="25" y="325" height="250" width="250" fill="transparent" stroke="black" stroke-width="1" />
-                        <foreignObject class="symbol-text-container" x="${(0.25 * 300) / 2
-          }" y="${50}"width="${300 * 0.75
-          }" height="${100}" visibility="hidden">
+                        <foreignObject class="symbol-text-container" x="${
+                          (0.25 * 300) / 2
+                        }" y="${50}"width="${
+          300 * 0.75
+        }" height="${100}" visibility="hidden">
                             <div style="height: ${100}px" class="flex-container">
-                                <div width="${350 * 0.75
-          }" class="symbol-text-element">
+                                <div width="${
+                                  350 * 0.75
+                                }" class="symbol-text-element">
                                     ${annotation[0]}
                                 </div>
                             </div>
                         </foreignObject>
-                        <foreignObject class="symbol-text-container" x="${(0.25 * 300) / 2
-          }" y="${375}"width="${300 * 0.75
-          }" height="${100}" visibility="hidden">
+                        <foreignObject class="symbol-text-container" x="${
+                          (0.25 * 300) / 2
+                        }" y="${375}"width="${
+          300 * 0.75
+        }" height="${100}" visibility="hidden">
                             <div style="height: ${100}px" class="flex-container">
-                                <div width="${300 * 0.75
-          }" class="symbol-text-element">
+                                <div width="${
+                                  300 * 0.75
+                                }" class="symbol-text-element">
                                     ${annotation[1]}
                                 </div>
                             </div>
@@ -1494,22 +1683,28 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                         <circle vector-effect="non-scaling-stroke" stroke="black" stroke-width="2" fill="transparent" cx="300" cy="300" r="300"/>
                         <ellipse vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" fill="transparent" cx="147.5" cy="300" rx="112.5" ry="220"/>
                         <ellipse vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" fill="transparent" cx="447.5" cy="300" rx="112.5" ry="220"/>
-                        <foreignObject class="symbol-text-container" x="${0.15 * 600
-          }" width="${200 * 0.75
-          }" height="${600}" visibility="hidden">
+                        <foreignObject class="symbol-text-container" x="${
+                          0.15 * 600
+                        }" width="${
+          200 * 0.75
+        }" height="${600}" visibility="hidden">
                         <div style="height: ${600}px" class="flex-container">
-                            <div width="${200 * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              200 * 0.75
+                            }" class="symbol-text-element">
                                 ${annotation[0]}
                             </div>
                         </div>
                         </foreignObject>  
-                        <foreignObject class="symbol-text-container" x="${0.65 * 600
-          }" width="${200 * 0.75
-          }" height="${600}" visibility="hidden">
+                        <foreignObject class="symbol-text-container" x="${
+                          0.65 * 600
+                        }" width="${
+          200 * 0.75
+        }" height="${600}" visibility="hidden">
                         <div style="height: ${600}px" class="flex-container">
-                            <div width="${200 * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              200 * 0.75
+                            }" class="symbol-text-element">
                                 ${annotation[1]}
                             </div>
                         </div>
@@ -1749,8 +1944,9 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
         content: `<g  transform="translate(2, 2)">
                     <rect x = "0" y = "0" vector-effect="non-scaling-stroke" height="80" width="160" stroke="black" stroke-dasharray="8 4" stroke-width="1" fill="transparent"/>
                     <rect x="30" y="20" width="100" height="40" fill="transparent" vector-effect="non-scaling-stroke" stroke="black" stroke-width="1" />
-                    <foreignObject class="symbol-text-container" x="${(0.25 * 160) / 2
-          }" width="${160 * 0.75}" height="${80}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 160) / 2
+                    }" width="${160 * 0.75}" height="${80}" visibility="hidden">
                     <div style="height: ${80}px" class="flex-container">
                         <div width="${0.75 * 160}" class="symbol-text-element">
                             ${annotation}
@@ -1781,9 +1977,11 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     <rect height="50" width="200" stroke-width="0" fill="transparent"/>
                     <path vector-effect="non-scaling-stroke" fill="transparent" stroke="black" stroke-width="1" d = "M 30 50 L 200 50 M 30 50 L 30 15"/>
                     <polygon vector-effect="non-scaling-stroke" fill="black" stroke="black" stroke-width="1" points="25,15 35,15 30,10"/>
-                    <foreignObject class="symbol-text-container" x="${(0.25 * 200) / 2
-          }" y="25" width="${200 * 0.75
-          }" height="${25}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 200) / 2
+                    }" y="25" width="${
+          200 * 0.75
+        }" height="${25}" visibility="hidden">
                     <div style="height: ${25}px" class="flex-container">
                         <div width="${200 * 0.75}" class="symbol-text-element">
                             ${"label"}
@@ -1820,9 +2018,11 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     <rect height="50" width="200" stroke-width="0" fill="transparent"/>
                     <path vector-effect="non-scaling-stroke" fill="transparent" stroke="black" stroke-width="1" d="M 30 50 L 200 50 L 200 15"/>
                     <polygon vector-effect="non-scaling-stroke" fill="black" stroke="black" stroke-width="1" points="195,15 205,15 200 ,10" />
-                    <foreignObject class="symbol-text-container" x="${(0.25 * 200) / 2
-          }" y="25" width="${200 * 0.75
-          }" height="${25}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * 200) / 2
+                    }" y="25" width="${
+          200 * 0.75
+        }" height="${25}" visibility="hidden">
                     <div style="height: ${25}px" class="flex-container">
                         <div width="${200 * 0.75}" class="symbol-text-element">
                             ${"label"}
@@ -1859,9 +2059,11 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     <rect height="100" width="100" stroke-width="0" fill="transparent"/>
                     <path vector-effect="non-scaling-stroke" fill="transparent" stroke="black" stroke-width="1" d="M 50 100 L 100 100 L 100 0"/>
                     <polygon vector-effect="non-scaling-stroke" fill="black" stroke="black" stroke-width="1" points="95,5 105,5 100,0"/>
-                    <foreignObject class="symbol-text-container" x="${0.4 * 100
-          }" y="25" width="${100 * 0.75
-          }" height="${75}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      0.4 * 100
+                    }" y="25" width="${
+          100 * 0.75
+        }" height="${75}" visibility="hidden">
                     <div style="height: ${75}px" class="flex-container">
                         <div width="${100 * 0.75}" class="symbol-text-element">
                             ${"push up"}
@@ -1898,9 +2100,11 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
                     <rect height="100" width="100" stroke-width="0" fill="transparent"/>
                     <path vector-effect="non-scaling-stroke" fill="transparent" stroke="black" stroke-width="1" d="M 55 100 L 5 100 L 5 0"/>
                     <polygon vector-effect="non-scaling-stroke" fill="black" stroke="black" stroke-width="1" points=" 0,5 10,5 5,0"/>
-                    <foreignObject class="symbol-text-container" x="${0.02 * 100
-          }" y="25" width="${100 * 0.75
-          }" height="${75}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      0.02 * 100
+                    }" y="25" width="${
+          100 * 0.75
+        }" height="${75}" visibility="hidden">
                     <div style="height: ${75}px" class="flex-container">
                         <div width="${100 * 0.75}" class="symbol-text-element">
                             ${"push up"}
@@ -2214,12 +2418,15 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
         type: "Native",
         content: `<g transform="translate(2,2)">
                     <rect vector-effect="non-scaling-stroke" height="${height}" width="${width}" stroke="black" stroke-width="1" fill="transparent" />
-                    <foreignObject class="symbol-text-container" x="${(0.25 * width) / 2
-          }" width="${width * 0.75
-          }" height="${height}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * width) / 2
+                    }" width="${
+          width * 0.75
+        }" height="${height}" visibility="hidden">
                         <div style="height: ${height}px" class="flex-container">
-                            <div width="${width * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              width * 0.75
+                            }" class="symbol-text-element">
                                 ${text}
                             </div>
                         </div>
@@ -2396,12 +2603,15 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
         type: "Native",
         content: `<g transform="translate(2,2)">
                     <rect vector-effect="non-scaling-stroke" height="${height}" width="${width}" stroke="black" stroke-width="1" fill="transparent" />
-                    <foreignObject class="symbol-text-container" x="${(0.25 * width) / 2
-          }" width="${width * 0.75
-          }" height="${height}" visibility="hidden">
+                    <foreignObject class="symbol-text-container" x="${
+                      (0.25 * width) / 2
+                    }" width="${
+          width * 0.75
+        }" height="${height}" visibility="hidden">
                         <div style="height: ${height}px" class="flex-container">
-                            <div width="${width * 0.75
-          }" class="symbol-text-element">
+                            <div width="${
+                              width * 0.75
+                            }" class="symbol-text-element">
                                 ${text}
                             </div>
                         </div>
