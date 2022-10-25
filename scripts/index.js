@@ -280,7 +280,7 @@ let nodeAppendData = {
   // sets the type of the shape as image
   shape: {
     type: "Image",
-    source: "http://www.syncfusion.com/content/images/nuget/sync_logo_icon.png",
+    source: "",
   },
   //Customizes the appearances such as text, font, fill, and stroke.
   style: {
@@ -296,22 +296,21 @@ $("#fileUploadToDiagrams").change(function () {
         type: "Image",
         source: url,
       };
-      $("#fileUploadToDiagrams").val("");
     }
 
     if (file.type.startsWith("video/")) {
+      let video = { ...nodeAppendData }
       if (currentItem.includes("add") || currentItem.startsWith("add")) {
-        nodeAppendData.shape = {
+        video.shape = {
           type: "HTML",
           content: `<video width="400" height="278" controls>
                 <source src="${url}" id="video_here">
                   Your browser does not support HTML5 video.
               </video>`,
         };
-        nodeAppendData.width = 400;
-        nodeAppendData.height = 278;
-        diagram.add(nodeAppendData);
-        $("#fileUploadToDiagrams").val("");
+        video.width = 400;
+        video.height = 278;
+        diagram.add(video);
       } else {
         diagram.selectedItems.properties.nodes[0].shape = {
           type: "HTML",
@@ -322,24 +321,22 @@ $("#fileUploadToDiagrams").change(function () {
         };
         diagram.selectedItems.properties.nodes[0].width = 400;
         diagram.selectedItems.properties.nodes[0].height = 278;
-        $("#fileUploadToDiagrams").val("");
       }
     }
 
     if (file.type.startsWith("audio/")) {
+      let audio = { ...nodeAppendData }
       if (currentItem.includes("add")) {
-        nodeAppendData.shape = {
+        audio.shape = {
           type: "HTML",
           content: `<audio controls autoplay  width="400" height="50">
           <source src="${url}">
-          <source src="horse.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
         </audio>`,
         };
-        nodeAppendData.width = 400;
-        nodeAppendData.height = 100;
-        diagram.add(nodeAppendData);
-        $("#fileUploadToDiagrams").val("");
+        audio.width = 400;
+        audio.height = 100;
+        diagram.add(audio);
       } else {
         diagram.selectedItems.properties.nodes[0].shape = {
           type: "HTML",
@@ -348,19 +345,17 @@ $("#fileUploadToDiagrams").change(function () {
                   Your browser does not support the audio element.
                   </audio>`,
         };
-        diagram.add(nodeAppendData);
         diagram.selectedItems.properties.nodes[0].width = 400;
-        diagram.selectedItems.properties.nodes[0].height = 100;
-        $("#fileUploadToDiagrams").val("");
+        diagram.selectedItems.properties.nodes[0].height = 50;
       }
     }
+    $("#fileUploadToDiagrams").val("");
   }
 });
 let grouped = 0;
 function relatePersonOperatingPrinciple(id) {
   const item1 = diagram.selectedItems.properties.nodes[0];
   const offset = mapOffsetPrinciple(id);
-  console.log(offset);
   let findItem = getItemById("principle");
   findItem.offsetX = item1.offsetX + offset.offsetX;
   findItem.offsetY = item1.offsetY + offset.offsetY;
@@ -1094,7 +1089,7 @@ var diagram = new ej.diagrams.Diagram({
     ],
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => {},
+  setNodeTemplate: (obj, diagram) => { },
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     const listIdNotEvent = [
@@ -1102,7 +1097,6 @@ var diagram = new ej.diagrams.Diagram({
       "applicationreplaceapplicationwithsketch",
     ];
     let idCheck = args.item.id.toLowerCase();
-    console.log(idCheck);
     if (listIdNotEvent.includes(idCheck)) {
       return;
     }
@@ -1124,7 +1118,7 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck.includes("text")) {
       addTextOnClick();
     }
-    if (idCheck.includes("communication")) {
+    if (idCheck.includes("communicationholder")) {
       addCommHolderOnClick();
     }
     if (
@@ -1211,6 +1205,7 @@ const blankDiagram = diagram.saveDiagram();
 
 function addTextOnClick() {
   let findItem = drawShape(otherData.find((a) => a.id === "callOut"));
+  findItem.id += randomId();
   let addItem = diagram.add(findItem);
   let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
   let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
@@ -1238,6 +1233,7 @@ function addCommHolderOnClick() {
   let findItem = drawShape(
     personData.find((a) => a.id === "communicationHolder")
   );
+  findItem.id += randomId();
   let addItem = diagram.add(findItem);
   let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
   let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
@@ -1246,9 +1242,12 @@ function addCommHolderOnClick() {
 }
 
 function sketchContextClick(idCheck) {
+  let data = [...personData, ...commLinkData, ...communicationData]
+  
   let findItem = drawShape(
-    personData.find((a) => idCheck.includes(a.id.toLowerCase()))
+    data.find((a) => idCheck.includes(a.menuId.toLowerCase()))
   );
+  findItem.id += randomId();
   let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
   let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
   diagram.remove(diagram.selectedItems.properties.nodes[0]);
@@ -1688,7 +1687,6 @@ $("#export-png-btn").on("click", () => {
   var node = document.getElementById("diagram_nativeLayer");
   node.classList.add("bg-white");
   htmlToImage.toPng(node).then((data) => {
-    console.log(data);
     Helpers.downloadFile(data, "SPL_Export.png");
     node.classList.remove("bg-white");
   });
