@@ -1328,7 +1328,7 @@ function getCommLink() {
   return commLinkData.map((data) => drawShape(data));
 }
 //#region comm Label
-let commLabelData = [
+var commLabelData = [
   {
     id: "informationlabel",
     title: "Information Label",
