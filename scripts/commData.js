@@ -521,14 +521,14 @@ let applicationRects = [
     type: "Text",
   },
   {
-    id: "f(x)",
+    id: "functionx",
     title: "f(x)",
     annotation: "f(x)",
-    menuId: "f(x)",
+    menuId: "functionx",
     toolTip: "Function of Our Communication",
   },
   {
-    id: "f(x)1",
+    id: "functionx1",
     title: "f(x)",
     annotation: "f(x)",
     toolTip: "Represent Communication Function",
@@ -536,10 +536,10 @@ let applicationRects = [
     type: "Text",
   },
   {
-    id: "f()",
+    id: "function0",
     title: "f()",
     annotation: "f()",
-    menuId: "f(x)",
+    menuId: "functionx",
     toolTip: "Function of Our Communication",
   },
   {

@@ -1390,7 +1390,7 @@ var menuItems = [
       },
       {
         onClick: "",
-        text: "Add Aucio for function",
+        text: "Add Audio for function",
       },
       {
         onClick: "",
@@ -1484,7 +1484,7 @@ var menuItems = [
     ],
   },
   {
-    id: "f(x)",
+    id: "functionx",
     list: [
       {
         onClick: "",
@@ -1496,7 +1496,7 @@ var menuItems = [
       },
       {
         onClick: "",
-        text: "Add Aucio for function",
+        text: "Add Audio for function",
       },
       {
         onClick: "",

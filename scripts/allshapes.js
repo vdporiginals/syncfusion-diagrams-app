@@ -5794,7 +5794,7 @@ var everyShape = [
     },
   },
   {
-    id: "f(x)",
+    id: "functionx",
     addInfo: [
       {
         title: "f(x)",
@@ -6439,7 +6439,7 @@ var everyShape = [
     width: 100,
   },
   {
-    id: "f(x)1",
+    id: "functionx1",
     shape: {
       type: "Native",
       content:
