@@ -770,9 +770,7 @@ function checkDropAlert(group, source, n) {
 
   return false;
 }
-function dropGrouped(args) {
-  var node = args.element;
-  var parentNode = args.target;
+function dropGrouped(node, parentNode, ignoreCond) {
   let source = node.id ? node : node?.properties?.nodes[0];
   setTimeout(() => {
     // Checking the nodes length greater than one or not
@@ -780,10 +778,10 @@ function dropGrouped(args) {
       if (!node.children && node.id !== parentNode.id && !node.parentId) {
         //Getting the group node by getObject method by passing parent ID
         if (
-          args.target.parentId &&
-          communicationDroppedElementChecker(node, parentNode)
+          (parentNode.parentId &&
+            communicationDroppedElementChecker(node, parentNode)) || (parentNode.parentId && ignoreCond)
         ) {
-          var group = diagram.getObject(args.target.parentId);
+          var group = diagram.getObject(parentNode.parentId);
           let firstChild = diagram.getObject(group.children[0]);
           let alerted = checkDropAlert(group, node, firstChild);
           if (alerted) {
@@ -838,7 +836,7 @@ function dropGrouped(args) {
           diagram.dataBind();
           diagram.refresh();
         } else {
-          if (communicationDroppedElementChecker(source, parentNode)) {
+          if (communicationDroppedElementChecker(source, parentNode) || ignoreCond) {
             diagram.select([parentNode, source]);
             diagram.group();
             let group = diagram.getObject(parentNode.parentId);
@@ -1020,7 +1018,8 @@ function camelize(str) {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
       return index === 0 ? word.toLowerCase() : word.toUpperCase();
     })
-    .replace(/\s+/g, "");
+    .replace(/\s+/g, "")
+    .replace(/[^\w\s]/gi, '');
 }
 
 var mappedArrayContext = menuItems.reduce((arr, item) => {
@@ -1080,16 +1079,10 @@ var diagram = new ej.diagrams.Diagram({
   bridgeDirection: "Left",
   contextMenuSettings: {
     show: true,
-    items: [
-      {
-        id: "edit",
-        text: "Edit1",
-      },
-      ...mappedArrayContext,
-    ],
+    items: mappedArrayContext,
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => {},
+  setNodeTemplate: (obj, diagram) => { },
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     const listIdNotEvent = [
@@ -1097,7 +1090,7 @@ var diagram = new ej.diagrams.Diagram({
       "applicationreplaceapplicationwithsketch",
     ];
     let idCheck = args.item.id.toLowerCase();
-    console.log(idCheck);
+    console.log(args.item.id)
     if (listIdNotEvent.includes(idCheck)) {
       return;
     }
@@ -1120,10 +1113,10 @@ var diagram = new ej.diagrams.Diagram({
       addTextOnClick();
     }
     if (idCheck.includes("toentity") && idCheck.includes("point")) {
-      pointNodeToEntity(args.item);
+      pointNodeToEntity("pointTo");
     }
     if (idCheck.includes("byentity") && idCheck.includes("define")) {
-      defineNodeToEntity(args.item);
+      pointNodeToEntity("define");
     }
     if (idCheck.includes("communicationholder")) {
       addCommHolderOnClick();
@@ -1154,10 +1147,21 @@ var diagram = new ej.diagrams.Diagram({
         }
         return arr;
       }, []);
+      args.hiddenItems.forEach(a => {
+        if ($(`#${a}.e-menu-item`).length > 0) {
+          $(`#${a}.e-menu-item`).addClass('e-menu-hide');
+        }
+      })
     } else {
       args.hiddenItems = mappedArrayContext.reduce((arr, item) => {
         return arr.concat(item.id);
       }, []);
+      args.hiddenItems.forEach(a => {
+
+        if ($(`#${a}.e-menu-item`).length > 0) {
+          $(`#${a}.e-menu-item`).addClass('e-menu-hide');
+        }
+      })
     }
   },
   created: function (args) {
@@ -1192,7 +1196,7 @@ var diagram = new ej.diagrams.Diagram({
     if (args.element.id.startsWith("mainArea")) {
       onDrogMainArea();
     }
-    dropGrouped(args);
+    dropGrouped(args.element, args.target);
   },
 });
 
@@ -1255,16 +1259,12 @@ function defineNodeToEntity() {
   diagram.add(connector);
 }
 
-function pointNodeToEntity() {
+function pointNodeToEntity(type) {
   console.log(diagram.selectedItems.properties.nodes[0]);
   let oldEdge = diagram.getObject(
     diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])
       ?.targetWrapper?.nodeId
   );
-  if (oldEdge) {
-    oldEdge.offsetY += 350;
-    diagram.dataBind();
-  }
   let entity = drawShape(communicationData.find((a) => a.id === "entity"));
   entity.id += randomId();
   let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
@@ -1272,8 +1272,22 @@ function pointNodeToEntity() {
   entity.offsetX = offsetXD + 250;
   entity.offsetY = offsetYD;
   let addItem = diagram.add(entity);
-  let connector = drawShape(commLabelData.find((a) => a.id === "pointTo"));
+
+  if (oldEdge) {
+    dropGrouped(addItem, oldEdge, true);
+    // oldEdge.offsetY += 350;
+    // diagram.dataBind();
+    setTimeout(() => {
+      if (oldEdge.parentId && diagram.getObject(diagram.getObject(oldEdge?.parentId).children[0]).inEdges[0]) {
+        diagram.remove(diagram.getObject(diagram.getObject(diagram.getObject(oldEdge?.parentId).children[0]).inEdges[0]));
+      }
+    })
+  }
+  let connector = drawShape(commLabelData.find((a) => a.id === type));
   connector.id += randomId();
+  if (type !== 'pointTo') {
+    connector.annotations[0].content = "Defined by";
+  }
   connector.sourceID = diagram.selectedItems.properties.nodes[0].id;
   connector.targetID = addItem.id;
   let connectorAdd = diagram.add(connector);
