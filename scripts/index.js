@@ -1113,10 +1113,16 @@ var diagram = new ej.diagrams.Diagram({
       addTextOnClick();
     }
     if (idCheck.includes("toentity") && idCheck.includes("point")) {
-      pointNodeToEntity("pointTo");
+      pointNodeToEntity("pointTo", "entity");
     }
     if (idCheck.includes("byentity") && idCheck.includes("define")) {
-      pointNodeToEntity("define");
+      pointNodeToEntity("define", "entity");
+    }
+    if (idCheck.includes("information") && idCheck.includes("point")) {
+      pointNodeToEntity("pointTo", "information");
+    }
+    if (idCheck.includes("groupofentities") && idCheck.includes("point")) {
+      pointNodeToEntity("pointTo", "entities");
     }
     if (idCheck.includes("communicationholder")) {
       addCommHolderOnClick();
@@ -1259,13 +1265,13 @@ function defineNodeToEntity() {
   diagram.add(connector);
 }
 
-function pointNodeToEntity(type) {
+function pointNodeToEntity(type, ent) {
   console.log(diagram.selectedItems.properties.nodes[0]);
   let oldEdge = diagram.getObject(
     diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])
       ?.targetWrapper?.nodeId
   );
-  let entity = drawShape(communicationData.find((a) => a.id === "entity"));
+  let entity = drawShape(communicationData.find((a) => a.id === ent));
   entity.id += randomId();
   let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
   let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
@@ -1273,7 +1279,7 @@ function pointNodeToEntity(type) {
   entity.offsetY = offsetYD;
   let addItem = diagram.add(entity);
 
-  if (oldEdge) {
+  if (oldEdge && ent !== 'entities') {
     dropGrouped(addItem, oldEdge, true);
     // oldEdge.offsetY += 350;
     // diagram.dataBind();
@@ -1282,6 +1288,11 @@ function pointNodeToEntity(type) {
         diagram.remove(diagram.getObject(diagram.getObject(diagram.getObject(oldEdge?.parentId).children[0]).inEdges[0]));
       }
     })
+  }
+
+  if (oldEdge && ent === 'entities') {
+    oldEdge.offsetY += 250;
+    diagram.dataBind();
   }
   let connector = drawShape(commLabelData.find((a) => a.id === type));
   connector.id += randomId();
