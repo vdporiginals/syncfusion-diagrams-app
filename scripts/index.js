@@ -299,7 +299,7 @@ $("#fileUploadToDiagrams").change(function () {
     }
 
     if (file.type.startsWith("video/")) {
-      let video = { ...nodeAppendData }
+      let video = { ...nodeAppendData };
       if (currentItem.includes("add") || currentItem.startsWith("add")) {
         video.shape = {
           type: "HTML",
@@ -325,7 +325,7 @@ $("#fileUploadToDiagrams").change(function () {
     }
 
     if (file.type.startsWith("audio/")) {
-      let audio = { ...nodeAppendData }
+      let audio = { ...nodeAppendData };
       if (currentItem.includes("add")) {
         audio.shape = {
           type: "HTML",
@@ -414,17 +414,9 @@ function relatePersonOperatingPrinciple(id) {
 
 function mapOffsetPrinciple(id) {
   if (
-    id.includes("personshapesrelatepersonwith") ||
-    id === "personshapesrelatepersonwithpersonaspect"
-  ) {
-    return {
-      offsetX: 50,
-      offsetY: 300,
-    };
-  }
-  if (
     id.includes("applicationrelateapplicationwith") ||
-    id.includes("commfunctionrelatefunctionwith")
+    id.includes("commfunctionrelatefunctionwith") ||
+    id.includes("commresultrelateresultwith")
   ) {
     return {
       offsetX: 0,
@@ -484,13 +476,21 @@ function getAnnotationAddPartToApplication(id) {
   if (id === "commfunctionaddpartoffunction") {
     return ["Function 1", "Communication Function"];
   }
+  if (id === "commresultaddparttoresult") {
+    return ["Part1", "Communication Result"];
+  }
+  if (id === "commresultaddsubapplicationresult") {
+    return ["Sub Application 1", "Communication Result"];
+  }
   return ["Part1", "Application"];
 }
 
 function getTypeAddPartToApplication(id) {
+  console.log(id);
   const listIdGroupSub = [
     "applicationaddsubtoapplication",
     "commfunctionaddpartoffunction",
+    "commresultaddsubapplicationresult",
   ];
   if (listIdGroupSub.includes(id)) {
     return "groupApplicationSub";
@@ -1089,7 +1089,7 @@ var diagram = new ej.diagrams.Diagram({
     ],
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => { },
+  setNodeTemplate: (obj, diagram) => {},
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     const listIdNotEvent = [
@@ -1097,6 +1097,7 @@ var diagram = new ej.diagrams.Diagram({
       "applicationreplaceapplicationwithsketch",
     ];
     let idCheck = args.item.id.toLowerCase();
+    console.log(idCheck);
     if (listIdNotEvent.includes(idCheck)) {
       return;
     }
@@ -1143,7 +1144,6 @@ var diagram = new ej.diagrams.Diagram({
   contextMenuOpen: function (args) {
     if (diagram.selectedItems.nodes[0]) {
       let bpmnShape = diagram.selectedItems.nodes[0];
-      //do your custom action here.
       let menuId = bpmnShape?.addInfo[0];
       if (bpmnShape.id.startsWith("addCommunication")) {
         addCommunicationFunction();
@@ -1200,6 +1200,8 @@ const listIdClick = [
   "applicationaddparttoapplication",
   "applicationaddsubtoapplication",
   "commfunctionaddpartoffunction",
+  "commresultaddparttoresult",
+  "commresultaddsubapplicationresult",
 ];
 
 function checkIdHanleClickfunAddPartToApplication(id) {
@@ -1209,11 +1211,14 @@ function checkIdHanleClickfunAddPartToApplication(id) {
 diagram.appendTo("#diagram");
 const blankDiagram = diagram.saveDiagram();
 function defineNodeToEntity() {
-  let oldEdge = diagram.getObject(diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])?.targetWrapper?.nodeId);
+  let oldEdge = diagram.getObject(
+    diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])
+      ?.targetWrapper?.nodeId
+  );
   if (oldEdge) {
     diagram.remove(oldEdge);
   }
-  let entity = drawShape(communicationData.find(a => a.id === 'entity'));
+  let entity = drawShape(communicationData.find((a) => a.id === "entity"));
   let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
   let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
   entity.offsetX = offsetXD + 350;
@@ -1227,19 +1232,23 @@ function defineNodeToEntity() {
     id: randomId(),
     children: [entityGrouped.id, entity.id],
     style: {
-      strokeColor: '#000000',
-      strokeWidth: 1
-    }
-  }
+      strokeColor: "#000000",
+      strokeWidth: 1,
+    },
+  };
   diagram.add(entityGrouped);
   diagram.add(entity);
-  diagram.getObject(entityGrouped.id).properties.annotations[0].offset = { x: 0.5, y: -0.1 };
+  diagram.getObject(entityGrouped.id).properties.annotations[0].offset = {
+    x: 0.5,
+    y: -0.1,
+  };
   diagram.dataBind();
-  diagram.getObject(entity.id).properties.annotations[0].content = entity.annotations[0].content + ' 1';
+  diagram.getObject(entity.id).properties.annotations[0].content =
+    entity.annotations[0].content + " 1";
   diagram.dataBind();
   let addItem = diagram.add(grouped);
-  let connector = drawShape(commLabelData.find(a => a.id === 'pointTo'));
-  connector.annotations[0].content = 'Defined by';
+  let connector = drawShape(commLabelData.find((a) => a.id === "pointTo"));
+  connector.annotations[0].content = "Defined by";
   connector.id += randomId();
   connector.sourceID = diagram.selectedItems.properties.nodes[0].id;
   connector.targetID = addItem.id;
@@ -1247,20 +1256,23 @@ function defineNodeToEntity() {
 }
 
 function pointNodeToEntity() {
-  console.log(diagram.selectedItems.properties.nodes[0],)
-  let oldEdge = diagram.getObject(diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])?.targetWrapper?.nodeId);
+  console.log(diagram.selectedItems.properties.nodes[0]);
+  let oldEdge = diagram.getObject(
+    diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])
+      ?.targetWrapper?.nodeId
+  );
   if (oldEdge) {
     oldEdge.offsetY += 350;
     diagram.dataBind();
   }
-  let entity = drawShape(communicationData.find(a => a.id === 'entity'));
+  let entity = drawShape(communicationData.find((a) => a.id === "entity"));
   entity.id += randomId();
   let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
   let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
   entity.offsetX = offsetXD + 250;
   entity.offsetY = offsetYD;
   let addItem = diagram.add(entity);
-  let connector = drawShape(commLabelData.find(a => a.id === 'pointTo'));
+  let connector = drawShape(commLabelData.find((a) => a.id === "pointTo"));
   connector.id += randomId();
   connector.sourceID = diagram.selectedItems.properties.nodes[0].id;
   connector.targetID = addItem.id;
@@ -1306,7 +1318,7 @@ function addCommHolderOnClick() {
 }
 
 function sketchContextClick(idCheck) {
-  let data = [...personData, ...commLinkData, ...communicationData]
+  let data = [...personData, ...commLinkData, ...communicationData];
 
   let findItem = drawShape(
     data.find((a) => idCheck.includes(a.menuId.toLowerCase()))
