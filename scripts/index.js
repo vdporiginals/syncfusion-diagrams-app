@@ -600,7 +600,7 @@ function onClickApplyGroupOfPeople(e) {
   let hasFrame = $('#dialogGroupofPeoplehasFrame').prop('checked');
 
   let groupNode = diagram.getObject(this?.parentId);
-  console.log(e, this, groupNode, dialogGroupofPeopleOptions.val(), dialogGroupofPeopleFormat.val(), dialogGroupofPeopleStartNum.val(), dialogGroupofPeopleGroupName.val())
+  // console.log(e, this, groupNode, dialogGroupofPeopleOptions.val(), dialogGroupofPeopleFormat.val(), dialogGroupofPeopleStartNum.val(), dialogGroupofPeopleGroupName.val())
   let personN = drawShape(
     personData.find((a) => a.id === "personNoframe")
   );
@@ -642,7 +642,7 @@ function onClickApplyGroupOfPeople(e) {
       diagram.addChildToGroup(groupNode, personNNode);
       groupNode.children.filter(a => !a.startsWith('continuity') && a !== personNNode.id && !a.startsWith('groupOfPeople')).forEach((id, index) => {
         let nodeFind = diagram.getObject(id);
-        console.log(nodeFind, index + +dialogGroupofPeopleStartNum.val())
+        // console.log(nodeFind, index + +dialogGroupofPeopleStartNum.val())
         if (dialogGroupofPeopleFormat.val() === 'P') {
           nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val();
           diagram.dataBind();
@@ -781,11 +781,11 @@ function onClickApplyGroupOfPeople(e) {
         let newObject = ej.diagrams.cloneObject(node);
         newObject.id += randomId();
         newObject.offsetX += oldWidth;
-        if(newObject.id.startsWith('personNoframe') && i < baseCopy.length - 2){
+        if (newObject.id.startsWith('personNoframe') && i < baseCopy.length - 2) {
           newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'N+1';
         }
-        
-        if(newObject.id.startsWith('personNoframe') && i === baseCopy.length - 2){
+
+        if (newObject.id.startsWith('personNoframe') && i === baseCopy.length - 2) {
           newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'M';
         }
         // diagram.paste([newObject]);
@@ -821,7 +821,7 @@ function onClickApplyGroupOfPeople(e) {
       break;
   }
 
-  // hiddenModal();
+  hiddenModal();
 }
 
 function onDrogContinuityPerson(args) {
@@ -1323,7 +1323,7 @@ var diagram = new ej.diagrams.Diagram({
       "applicationreplaceapplicationwithsketch",
     ];
     let idCheck = args.item.id.toLowerCase();
-    console.log(args.item.id)
+    // console.log(args.item.id)
     if (listIdNotEvent.includes(idCheck)) {
       return;
     }
@@ -1374,7 +1374,9 @@ var diagram = new ej.diagrams.Diagram({
     }
   },
   contextMenuOpen: function (args) {
-    let bpmnShape = diagram.selectedItems.nodes[0];
+    let bpmnShape = !diagram.selectedItems.nodes[0].addInfo && diagram.selectedItems.nodes[0].children.length > 0 ?
+      diagram.getObject(diagram.selectedItems.nodes[0].children[0]) : diagram.selectedItems.nodes[0];
+    // console.log(bpmnShape)
     if (diagram?.selectedItems?.nodes[0] && bpmnShape?.addInfo) {
       let menuId = bpmnShape?.addInfo[0];
       if (bpmnShape.id.startsWith("addCommunication")) {
@@ -1498,7 +1500,7 @@ function defineNodeToEntity() {
 }
 
 function pointNodeToEntity(type, ent) {
-  console.log(diagram.selectedItems.properties.nodes[0]);
+  // console.log(diagram.selectedItems.properties.nodes[0]);
   let oldEdge = diagram.getObject(
     diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])
       ?.targetWrapper?.nodeId
