@@ -1312,12 +1312,60 @@ var diagram = new ej.diagrams.Diagram({
   bridgeDirection: "Left",
   contextMenuSettings: {
     show: true,
-    items: mappedArrayContext,
+    items: mappedArrayContext.concat(...[
+      {
+        id: 'baseCopy',
+        onClick: "",
+        text: "Copy",
+        icon: "flaticon-copy",
+      },
+      {
+        id: 'basePaste',
+        onClick: "",
+        text: "Paste",
+        icon: "flaticon-paste",
+      },
+      {
+        id: 'baseCut',
+        onClick: "",
+        text: "Cut",
+        icon: "flaticon-scissors",
+      },
+      {
+        id: 'baseEdit',
+        onClick: "",
+        text: "Edit Text",
+      },
+      {
+        id: 'baseSelect',
+        onClick: "",
+        text: "Select All",
+      }]),
     showCustomMenuOnly: true,
   },
   setNodeTemplate: (obj, diagram) => { },
   contextMenuClick: function (args) {
     currentItem = args.item.id;
+    switch (args.item.properties.text) {
+      case 'Delete':
+        diagram.remove(diagram.selectedItems.nodes[0]);
+        return;
+      case 'Copy':
+        diagram.copy(diagram.selectedItems.nodes[0]);
+        return;
+      case 'Paste':
+        diagram.paste();
+        return;
+      case 'Cut':
+        diagram.cut(diagram.selectedItems.nodes[0]);
+        return;
+      case 'Edit Text':
+        diagram.startTextEdit(diagram.selectedItems.nodes[0], diagram.selectedItems.nodes[0].annotations[0].id);
+        return;
+      case 'Select All':
+        diagram.selectAll();
+        return;
+    }
     const listIdNotEvent = [
       "commfunctionreplacefunctionwithsketch",
       "applicationreplaceapplicationwithsketch",
@@ -1374,7 +1422,7 @@ var diagram = new ej.diagrams.Diagram({
     }
   },
   contextMenuOpen: function (args) {
-    let bpmnShape = !diagram.selectedItems.nodes[0].addInfo && diagram.selectedItems.nodes[0].children.length > 0 ?
+    let bpmnShape = !diagram?.selectedItems?.nodes[0]?.addInfo && diagram?.selectedItems?.nodes[0]?.children?.length > 0 ?
       diagram.getObject(diagram.selectedItems.nodes[0].children[0]) : diagram.selectedItems.nodes[0];
     // console.log(bpmnShape)
     if (diagram?.selectedItems?.nodes[0] && bpmnShape?.addInfo) {
@@ -1387,7 +1435,11 @@ var diagram = new ej.diagrams.Diagram({
           arr.push(item.id);
         }
         return arr;
-      }, []);
+      }, []).concat(...['baseCopy',
+        'basePaste',
+        'baseCut',
+        'baseEdit',
+        'baseSelect']);
       args.hiddenItems.forEach(a => {
         if ($(`#${a}.e-menu-item`).length > 0) {
           $(`#${a}.e-menu-item`).addClass('e-menu-hide');
