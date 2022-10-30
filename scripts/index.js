@@ -738,7 +738,7 @@ function onClickApplyGroupOfPeople(e) {
           },
           margin: {
             top: 26,
-            left: 6,
+            left: 7,
           },
         }]);
       } else {
@@ -780,7 +780,6 @@ function onClickApplyGroupOfPeople(e) {
         let newObject = ej.diagrams.cloneObject(node);
         newObject.id += randomId();
         newObject.offsetX += oldWidth;
-        console.log(newObject.annotations)
         if (newObject.id.startsWith('personNoframe') && i < baseCopy.length - 2 && newObject.annotations[0] && dialogGroupofPeopleFormat.val() !== 'P') {
           newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'N+1';
         } else {
@@ -793,7 +792,7 @@ function onClickApplyGroupOfPeople(e) {
           };
           newObject.annotations[1].margin = {
             top: 26,
-            left: 12,
+            left: 13,
           };
         }
 
@@ -809,7 +808,7 @@ function onClickApplyGroupOfPeople(e) {
           };
           newObject.annotations[1].margin = {
             top: 26,
-            left: 12,
+            left: 13,
           };
         }
         diagram.dataBind();
