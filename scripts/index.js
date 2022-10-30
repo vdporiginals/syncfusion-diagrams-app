@@ -780,36 +780,40 @@ function onClickApplyGroupOfPeople(e) {
         let newObject = ej.diagrams.cloneObject(node);
         newObject.id += randomId();
         newObject.offsetX += oldWidth;
-        if (newObject.id.startsWith('personNoframe') && i < baseCopy.length - 2 && newObject.annotations[0] && dialogGroupofPeopleFormat.val() !== 'P') {
-          newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'N+1';
-        } else {
-          newObject.annotations[0].content = dialogGroupofPeopleFormat.val();
-          newObject.annotations[1].content = 'N+1';
-          newObject.annotations[1].verticalAlignment = "Bottom";
-          newObject.annotations[1].offset = {
-            x: 0.5,
-            y: 1,
-          };
-          newObject.annotations[1].margin = {
-            top: 26,
-            left: 13,
-          };
+        if (newObject.id.startsWith('personNoframe') && i < baseCopy.length - 2 && newObject.annotations[0]) {
+          if (dialogGroupofPeopleFormat.val() !== 'P') {
+            newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'N+1';
+          } else {
+            newObject.annotations[0].content = dialogGroupofPeopleFormat.val();
+            newObject.annotations[1].content = 'N+1';
+            newObject.annotations[1].verticalAlignment = "Bottom";
+            newObject.annotations[1].offset = {
+              x: 0.5,
+              y: 1,
+            };
+            newObject.annotations[1].margin = {
+              top: 26,
+              left: 13,
+            };
+          }
         }
 
         if (newObject.id.startsWith('personNoframe') && i === baseCopy.length - 2 && newObject.annotations[0] && dialogGroupofPeopleFormat.val() !== 'P') {
-          newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'M';
-        } else {
-          newObject.annotations[0].content = dialogGroupofPeopleFormat.val();
-          newObject.annotations[1].content = 'N+1';
-          newObject.annotations[1].verticalAlignment = "Bottom";
-          newObject.annotations[1].offset = {
-            x: 0.5,
-            y: 1,
-          };
-          newObject.annotations[1].margin = {
-            top: 26,
-            left: 13,
-          };
+          if (dialogGroupofPeopleFormat.val() !== 'P') {
+            newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'M';
+          } else {
+            newObject.annotations[0].content = dialogGroupofPeopleFormat.val();
+            newObject.annotations[1].content = 'N+1';
+            newObject.annotations[1].verticalAlignment = "Bottom";
+            newObject.annotations[1].offset = {
+              x: 0.5,
+              y: 1,
+            };
+            newObject.annotations[1].margin = {
+              top: 26,
+              left: 13,
+            };
+          }
         }
         diagram.dataBind();
         // diagram.paste([newObject]);
