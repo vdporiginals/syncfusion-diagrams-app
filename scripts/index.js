@@ -839,7 +839,6 @@ function onClickApplyGroupOfPeople(e) {
             };
           }
         }
-
         if (
           newObject.id.startsWith("personNoframe") &&
           i === baseCopy.length - 2 &&
@@ -859,7 +858,7 @@ function onClickApplyGroupOfPeople(e) {
             };
             newObject.annotations[1].margin = {
               top: 26,
-              left: 13,
+              left: 10,
             };
           }
         }
@@ -1672,7 +1671,7 @@ function defineNodeToEntity() {
   diagram.add(connector);
 }
 
-function pointNodeToEntity(type, ent) {
+function pointNodeToEntity(type, ent,textContent) {
   let oldEdge = diagram.getObject(
     diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])
       ?.targetWrapper?.nodeId
@@ -1683,8 +1682,7 @@ function pointNodeToEntity(type, ent) {
   let offsetXD = itemSelected.offsetX;
   let offsetYD = itemSelected.offsetY;
   let width = itemSelected.width;
-  console.log(width, offsetXD);
-  entity.offsetX = offsetXD + 250;
+  entity.offsetX = offsetXD + width;
   entity.offsetY = offsetYD;
   let addItem = diagram.add(entity);
 
