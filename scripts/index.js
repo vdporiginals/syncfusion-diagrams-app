@@ -1457,7 +1457,7 @@ var diagram = new ej.diagrams.Diagram({
     ),
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => {},
+  setNodeTemplate: (obj, diagram) => { },
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     switch (args.item.properties.text) {
@@ -1593,15 +1593,15 @@ var diagram = new ej.diagrams.Diagram({
   contextMenuOpen: function (args) {
     let bpmnShape =
       !diagram?.selectedItems?.nodes[0]?.addInfo &&
-      diagram?.selectedItems?.nodes[0]?.children?.length > 0
+        diagram?.selectedItems?.nodes[0]?.children?.length > 0
         ? diagram.getObject(diagram.selectedItems.nodes[0].children[0])
         : diagram.selectedItems.nodes[0];
     // console.log(bpmnShape)
     if (diagram?.selectedItems?.nodes[0] && bpmnShape?.addInfo) {
       let menuId = bpmnShape?.addInfo[0];
-      if (bpmnShape.id.startsWith("addCommunication")) {
-        addCommunicationFunction();
-      }
+      // if (bpmnShape.id.startsWith("addCommunication")) {
+      //   addCommunicationFunction();
+      // }
       args.hiddenItems = mappedArrayContext
         .reduce((arr, item) => {
           if (menuId && item.parentId !== menuId.menuId) {
@@ -1609,9 +1609,7 @@ var diagram = new ej.diagrams.Diagram({
           }
           return arr;
         }, [])
-        .concat(
-          ...["baseCopy", "basePaste", "baseCut", "baseEdit", "baseSelect"]
-        );
+        .concat("baseCopy", "basePaste", "baseCut", "baseEdit", "baseSelect");
       args.hiddenItems.forEach((a) => {
         if ($(`#${a}.e-menu-item`).length > 0) {
           $(`#${a}.e-menu-item`).addClass("e-menu-hide");
@@ -1723,7 +1721,7 @@ function defineNodeToEntity() {
   diagram.add(connector);
 }
 
-function pointNodeToEntity(type, ent,textContent) {
+function pointNodeToEntity(type, ent, textContent) {
   let oldEdge = diagram.getObject(
     diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])
       ?.targetWrapper?.nodeId
