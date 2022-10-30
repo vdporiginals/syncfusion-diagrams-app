@@ -73,7 +73,7 @@ var personShapesContext = [
     id: "personSendSignal",
     onClick: "openSubList",
     text: "Send Signal",
-    sub: [
+    items: [
       {
         onClick: "",
         text: "Red",
@@ -423,7 +423,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Delete",
@@ -494,7 +494,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Delete",
@@ -549,7 +549,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Delete",
@@ -612,7 +612,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Set Communication Signal",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Red",
@@ -626,6 +626,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -650,7 +682,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Set Communication Signal",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Red",
@@ -664,6 +696,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -704,7 +768,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Set Communication Signal",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Red",
@@ -719,6 +783,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -759,7 +855,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Set Communication Signal",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Red",
@@ -774,6 +870,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -809,6 +937,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -858,7 +1018,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Set Communication Signal",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Red",
@@ -872,6 +1032,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -936,6 +1128,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -954,7 +1178,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Set Communication Signal",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Red",
@@ -969,6 +1193,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -987,7 +1243,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Set Communication Signal",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Red",
@@ -1002,6 +1258,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1041,6 +1329,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1068,6 +1388,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1086,6 +1438,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1114,6 +1498,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1134,6 +1550,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1158,7 +1606,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Set Communication Signal",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Red",
@@ -1173,6 +1621,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1196,6 +1676,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1228,6 +1740,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1252,6 +1796,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1287,6 +1863,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1311,6 +1919,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1374,6 +2014,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1435,6 +2107,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1480,6 +2184,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1528,6 +2264,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1576,6 +2344,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1621,6 +2421,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1669,6 +2501,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1730,8 +2594,40 @@ var menuItems = [
       },
       "sep",
       {
-        onClick: "openSubModel",
+        onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1790,6 +2686,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1848,6 +2776,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1906,6 +2866,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -1954,6 +2946,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2002,6 +3026,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2050,6 +3106,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2090,6 +3178,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2144,6 +3264,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2176,6 +3328,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2215,6 +3399,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2246,6 +3462,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2270,6 +3518,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2302,6 +3582,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2325,6 +3637,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2339,6 +3683,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2383,6 +3759,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2431,6 +3839,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2454,6 +3894,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2486,6 +3958,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2513,6 +4017,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2553,6 +4089,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2594,6 +4162,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2626,6 +4226,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2688,7 +4320,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Send and receive signals",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Send Green receive green",
@@ -2712,7 +4344,7 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Send Signal",
-        sub: [
+        items: [
           {
             onClick: "",
             text: "Red",
@@ -2727,6 +4359,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2789,6 +4453,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2820,6 +4516,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2838,6 +4566,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2900,6 +4660,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2945,6 +4737,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -2990,6 +4814,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3023,6 +4879,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3045,6 +4933,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3104,6 +5024,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3154,6 +5106,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3185,6 +5169,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3207,6 +5223,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3242,6 +5290,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3261,9 +5341,42 @@ var menuItems = [
         text: "Replace input element with sketch",
       },
       "sep",
+
       {
-        onClick: "",
+        onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3286,6 +5399,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3318,6 +5463,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3340,6 +5517,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3362,6 +5571,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3376,6 +5617,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },
@@ -3416,6 +5689,38 @@ var menuItems = [
       {
         onClick: "openSubList",
         text: "Edit",
+        items: [
+          {
+            onClick: "",
+            text: "Delete",
+            icon: "flaticon-delete",
+          },
+          {
+            onClick: "",
+            text: "Copy",
+            icon: "flaticon-copy",
+          },
+          {
+            onClick: "",
+            text: "Paste",
+            icon: "flaticon-paste",
+          },
+          {
+            onClick: "",
+            text: "Cut",
+            icon: "flaticon-scissors",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Edit Text",
+          },
+          "sep",
+          {
+            onClick: "",
+            text: "Select All",
+          },
+        ],
       },
     ],
   },

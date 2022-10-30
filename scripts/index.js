@@ -1417,6 +1417,58 @@ var diagram = new ej.diagrams.Diagram({
         diagram.selectAll();
         return;
     }
+    switch (args.item.properties.text.toLowerCase()) {
+      case 'add input':
+        // diagram.remove(diagram.selectedItems.nodes[0]);
+        let portss = {
+          id: "LeftMiddle" + randomId(),
+          offset: {
+            x: 0,
+            y: 0.5,
+          },
+          visibility: 1,
+          shape: "Circle",
+          width: 2,
+          height: 2,
+          verticalAlignment: "Center",
+          horizontalAlignment: "Center"
+        }
+        diagram.selectedItems.nodes[0].height += 10;
+        diagram.dataBind();
+        diagram.selectedItems.nodes[0].ports.forEach(a => {
+          if (a.id.toLowerCase().startsWith('left')) {
+            portss.offset = {
+              x: a.offset.x,
+              y: a.offset.y + 0.1
+            }
+            a.offset = {
+              x: a.offset.x,
+              y: a.offset.y - 0.1
+            };
+            diagram.dataBind();
+          }
+        });
+        diagram.addPorts(diagram.selectedItems.nodes[0], [portss]);
+        return;
+      case 'remove input':
+        let findLeft = diagram.selectedItems.nodes[0].ports.filter(a => a.id.toLowerCase().startsWith('left'));
+        if (findLeft.length > 2) {
+          diagram.selectedItems.nodes[0].height += -10;
+          diagram.removePorts(diagram.nodes[0], [{
+            id: findLeft[0].id,
+          }]);
+          diagram.selectedItems.nodes[0].ports.forEach(a => {
+            if (a.id.toLowerCase().startsWith('left')) {
+              a.offset = {
+                x: a.offset.x,
+                y: a.offset.y - 0.1
+              };
+              diagram.dataBind();
+            }
+          });
+        }
+        return;
+    }
     const listIdNotEvent = [
       "commfunctionreplacefunctionwithsketch",
       "applicationreplaceapplicationwithsketch",
