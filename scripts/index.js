@@ -354,29 +354,34 @@ $("#fileUploadToDiagrams").change(function () {
 });
 let grouped = 0;
 function relatePersonOperatingPrinciple(id) {
-  const item1 = diagram.selectedItems.properties.nodes[0];
-  const offset = mapOffsetPrinciple(id);
-  let findItem = getItemById("principle");
-  findItem.offsetX = item1.offsetX + offset.offsetX;
-  findItem.offsetY = item1.offsetY + offset.offsetY;
+  const itemActive = diagram.selectedItems.properties.nodes[0];
+  let findItem = { ...getItemById("principle") };
+  const offerXNode = itemActive.offsetX - itemActive.width / 2 + 75;
+  findItem.offsetX = offerXNode;
+  findItem.offsetY = itemActive.offsetY + 300;
   findItem.width = 150;
   findItem.height = 80;
+  findItem.id = findItem.id + randomId();
   drawPortCircle(findItem);
-  diagram.add(findItem);
-  let findItem2 = getItemById("ellipseBasic");
-  findItem2.offsetX = item1.offsetX + 400;
-  findItem2.offsetY = item1.offsetY + 150;
+  const itemPrinciple = diagram.add(findItem);
+
+  let findItem2 = { ...getItemById("ellipseBasic") };
+  findItem2.offsetX = itemActive.offsetX + 400;
+  findItem2.offsetY = itemActive.offsetY + 150;
+  findItem2.id = findItem2.id + randomId();
   drawPortCircle(findItem2);
-  diagram.add(findItem2);
-  let findItem3 = getItemById("itemHidden");
-  findItem3.offsetX = item1.offsetX + 600;
-  findItem3.offsetY = item1.offsetY + 145;
-  diagram.add(findItem3);
-  diagram.connectors = [
+  const itemellipseBasic = diagram.add(findItem2);
+
+  let findItem3 = { ...getItemById("itemHidden") };
+  findItem3.offsetX = itemActive.offsetX + 600;
+  findItem3.offsetY = itemActive.offsetY + 145;
+  findItem3.id = findItem3.id + randomId();
+  const itemHidden = diagram.add(findItem3);
+  diagram.connectors = diagram.connectors.concat([
     {
-      id: "connector1",
-      sourceID: diagram.nodes[0].id,
-      targetID: diagram.nodes[2].id,
+      id: "connector" + randomId(),
+      sourceID: itemActive.id,
+      targetID: itemellipseBasic.id,
       type: "Orthogonal",
       segments: [
         {
@@ -389,9 +394,9 @@ function relatePersonOperatingPrinciple(id) {
         ej.diagrams.ConnectorConstraints.DragSegmentThumb,
     },
     {
-      id: "connector2",
-      sourceID: diagram.nodes[1].id,
-      targetID: diagram.nodes[2].id,
+      id: "connector" + randomId(),
+      sourceID: itemPrinciple.id,
+      targetID: itemellipseBasic.id,
       type: "Orthogonal",
       segments: [
         {
@@ -404,29 +409,16 @@ function relatePersonOperatingPrinciple(id) {
         ej.diagrams.ConnectorConstraints.DragSegmentThumb,
     },
     {
-      id: "connector3",
-      sourceID: diagram.nodes[2].id,
-      targetID: diagram.nodes[3].id,
+      id: "connector" + randomId(),
+      sourceID: itemellipseBasic.id,
+      targetID: itemHidden.id,
       type: "Orthogonal",
     },
-  ];
+  ]);
 }
 
-function mapOffsetPrinciple(id) {
-  if (
-    id.includes("applicationrelateapplicationwith") ||
-    id.includes("commfunctionrelatefunctionwith") ||
-    id.includes("commresultrelateresultwith")
-  ) {
-    return {
-      offsetX: 0,
-      offsetY: 300,
-    };
-  }
-  return {
-    offsetX: 50,
-    offsetY: 300,
-  };
+function mapOffsetXPrinciple(data) {
+  return data.offsetX - data.width / 2 + 75;
 }
 
 function funAddPartToApplication(id) {
@@ -523,12 +515,11 @@ function onDrogGroupsOfPeopleNode(args) {
 }
 
 function drawGroupOfPeople(args) {
-  console.log(args)
   let target = { offsetX: args.target.offsetX, offsetY: args.target.offsetY };
   let groupParent = drawShape(
     personData.find((a) => a.id === "communicationHolder")
   );
-  groupParent.id = 'groupOfPeople' + randomId();
+  groupParent.id = "groupOfPeople" + randomId();
   groupParent.addInfo[0].menuId = "groupPeople";
   groupParent.addInfo[0].title = "Group of People";
   groupParent.addInfo[0].toolTip = "Represents a Group of People";
@@ -542,26 +533,21 @@ function drawGroupOfPeople(args) {
     margin: {
       top: 20,
     },
-  }
-  let person1 = drawShape(
-    personData.find((a) => a.id === "personNoframe")
-  );
+  };
+  let person1 = drawShape(personData.find((a) => a.id === "personNoframe"));
   person1.id += randomId();
   person1.ports = [];
-  person1.annotations[0].content = 'Person 1';
+  person1.annotations[0].content = "Person 1";
   person1.annotations.splice(1, 1);
-  let person2 = drawShape(
-    personData.find((a) => a.id === "personNoframe")
-  );
+  let person2 = drawShape(personData.find((a) => a.id === "personNoframe"));
   person2.ports = [];
   person2.id += randomId();
-  person2.annotations[0].content = 'Person 2';
+  person2.annotations[0].content = "Person 2";
   person2.annotations.splice(1, 1);
   let continuity = drawShape(
     personData.find((a) => a.id === "continuityPerson")
   );
   continuity.id += randomId();
-  console.log(person1)
   groupParent.width = person1.width + person2.width + continuity.width;
   let groupParentNode = diagram.add(groupParent);
   groupParentNode.height = groupParentNode.height + 70;
@@ -569,7 +555,8 @@ function drawGroupOfPeople(args) {
   groupParentNode.offsetY = target.offsetY;
   diagram.dataBind();
   let person1Node = diagram.add(person1);
-  person1Node.offsetX = groupParentNode.offsetX - groupParentNode.width / 2 + 50;
+  person1Node.offsetX =
+    groupParentNode.offsetX - groupParentNode.width / 2 + 50;
   person1Node.offsetY = groupParentNode.offsetY - 20;
   diagram.dataBind();
   let person2Node = diagram.add(person2);
@@ -597,19 +584,16 @@ function onClickApplyGroupOfPeople(e) {
   let dialogGroupofPeopleFormat = $(`#dialogGroupofPeopleFormat`);
   let dialogGroupofPeopleStartNum = $(`#dialogGroupofPeopleStartNum`);
   let dialogGroupofPeopleGroupName = $(`#dialogGroupofPeopleGroupName`);
-  let hasFrame = $('#dialogGroupofPeoplehasFrame').prop('checked');
+  let hasFrame = $("#dialogGroupofPeoplehasFrame").prop("checked");
 
   let groupNode = diagram.getObject(e?.parentId);
-  // console.log(e, e, groupNode, dialogGroupofPeopleOptions.val(), dialogGroupofPeopleFormat.val(), dialogGroupofPeopleStartNum.val(), dialogGroupofPeopleGroupName.val())
-  let personN = drawShape(
-    personData.find((a) => a.id === "personNoframe")
-  );
+  let personN = drawShape(personData.find((a) => a.id === "personNoframe"));
   personN.ports = [];
   personN.id += randomId();
   personN.annotations[0].content = dialogGroupofPeopleFormat.val();
-  if (dialogGroupofPeopleFormat.val() === 'P') {
+  if (dialogGroupofPeopleFormat.val() === "P") {
     personN.annotations[1] = {
-      id: 'annotationgroupPeopleoN' + randomId(),
+      id: "annotationgroupPeopleoN" + randomId(),
       content: `N`,
       verticalAlignment: "Bottom",
       offset: {
@@ -622,16 +606,18 @@ function onClickApplyGroupOfPeople(e) {
       },
     };
   } else {
-    personN.annotations[0].content += ' N'
+    personN.annotations[0].content += " N";
     personN.annotations.splice(1, 1);
   }
   if (!hasFrame) {
-    e.shape.content = e.shape.content.replaceAll('stroke-width="1"', 'stroke-width="0"');
-
+    e.shape.content = e.shape.content.replaceAll(
+      'stroke-width="1"',
+      'stroke-width="0"'
+    );
   }
   diagram.dataBind();
   switch (dialogGroupofPeopleOptions.val()) {
-    case 'option1':
+    case "option1":
       e.width += personN.width;
       e.offsetX += personN.width - 10;
       diagram.dataBind();
@@ -640,67 +626,61 @@ function onClickApplyGroupOfPeople(e) {
       personNNode.offsetY = groupNode.offsetY - 20;
       diagram.dataBind();
       diagram.addChildToGroup(groupNode, personNNode);
-      groupNode.children.filter(a => !a.startsWith('continuity') && a !== personNNode.id && !a.startsWith('groupOfPeople')).forEach((id, index) => {
-        let nodeFind = diagram.getObject(id);
-        // console.log(nodeFind, index + +dialogGroupofPeopleStartNum.val())
-        if (dialogGroupofPeopleFormat.val() === 'P') {
-          nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val();
-          diagram.dataBind();
-          diagram.addLabels(nodeFind, [{
-            id: 'annotationgroupPeopleo' + randomId(),
-            content: `${index + +dialogGroupofPeopleStartNum.val()}`,
-            verticalAlignment: "Bottom",
-            offset: {
-              x: 0.5,
-              y: 1,
-            },
-            margin: {
-              top: 26,
-              left: 6,
-            },
-          }]);
-          diagram.dataBind();
-        } else {
-          nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + (index + +dialogGroupofPeopleStartNum.val());
-          diagram.dataBind();
-        }
-      });
+      groupNode.children
+        .filter(
+          (a) =>
+            !a.startsWith("continuity") &&
+            a !== personNNode.id &&
+            !a.startsWith("groupOfPeople")
+        )
+        .forEach((id, index) => {
+          let nodeFind = diagram.getObject(id);
+          if (dialogGroupofPeopleFormat.val() === "P") {
+            nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val();
+            diagram.dataBind();
+            diagram.addLabels(nodeFind, [
+              {
+                id: "annotationgroupPeopleo" + randomId(),
+                content: `${index + +dialogGroupofPeopleStartNum.val()}`,
+                verticalAlignment: "Bottom",
+                offset: {
+                  x: 0.5,
+                  y: 1,
+                },
+                margin: {
+                  top: 26,
+                  left: 6,
+                },
+              },
+            ]);
+            diagram.dataBind();
+          } else {
+            nodeFind.annotations[0].content =
+              dialogGroupofPeopleFormat.val() +
+              " " +
+              (index + +dialogGroupofPeopleStartNum.val());
+            diagram.dataBind();
+          }
+        });
       break;
-    case 'option2':
-      let conti = diagram.getObject(groupNode.children.find(a => a.startsWith('continuity')));
-      let person2 = diagram.getObject(groupNode.children.filter(a => a.startsWith('personNoframe'))[1]);
+    case "option2":
+      let conti = diagram.getObject(
+        groupNode.children.find((a) => a.startsWith("continuity"))
+      );
+      let person2 = diagram.getObject(
+        groupNode.children.filter((a) => a.startsWith("personNoframe"))[1]
+      );
       let offsetConti = conti.offsetX;
       let offsetPerson2 = person2.offsetX;
       conti.offsetX = offsetPerson2;
       person2.offsetX = offsetConti;
-      if (dialogGroupofPeopleFormat.val() === 'P') {
+      if (dialogGroupofPeopleFormat.val() === "P") {
         person2.annotations[0].content = dialogGroupofPeopleFormat.val();
         diagram.dataBind();
-        diagram.addLabels(person2, [{
-          id: 'annotationgroupPeopleo' + randomId(),
-          content: `N`,
-          verticalAlignment: "Bottom",
-          offset: {
-            x: 0.5,
-            y: 1,
-          },
-          margin: {
-            top: 26,
-            left: 6,
-          },
-        }]);
-      } else {
-        person2.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'N';
-      }
-      diagram.dataBind();
-      groupNode.children.filter(a => !a.startsWith('continuity') && a !== person2.id && !a.startsWith('groupOfPeople')).forEach((id, index) => {
-        let nodeFind = diagram.getObject(id);
-        if (dialogGroupofPeopleFormat.val() === 'P') {
-          nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val();
-          diagram.dataBind();
-          diagram.addLabels(nodeFind, [{
-            id: 'annotationgroupPeopleo' + randomId(),
-            content: `${index + +dialogGroupofPeopleStartNum.val()}`,
+        diagram.addLabels(person2, [
+          {
+            id: "annotationgroupPeopleo" + randomId(),
+            content: `N`,
             verticalAlignment: "Bottom",
             offset: {
               x: 0.5,
@@ -710,49 +690,68 @@ function onClickApplyGroupOfPeople(e) {
               top: 26,
               left: 6,
             },
-          }]);
-          diagram.dataBind();
-        } else {
-          nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + (index + +dialogGroupofPeopleStartNum.val());
-          diagram.dataBind();
-        }
-      });
+          },
+        ]);
+      } else {
+        person2.annotations[0].content =
+          dialogGroupofPeopleFormat.val() + " " + "N";
+      }
+      diagram.dataBind();
+      groupNode.children
+        .filter(
+          (a) =>
+            !a.startsWith("continuity") &&
+            a !== person2.id &&
+            !a.startsWith("groupOfPeople")
+        )
+        .forEach((id, index) => {
+          let nodeFind = diagram.getObject(id);
+          if (dialogGroupofPeopleFormat.val() === "P") {
+            nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val();
+            diagram.dataBind();
+            diagram.addLabels(nodeFind, [
+              {
+                id: "annotationgroupPeopleo" + randomId(),
+                content: `${index + +dialogGroupofPeopleStartNum.val()}`,
+                verticalAlignment: "Bottom",
+                offset: {
+                  x: 0.5,
+                  y: 1,
+                },
+                margin: {
+                  top: 26,
+                  left: 6,
+                },
+              },
+            ]);
+            diagram.dataBind();
+          } else {
+            nodeFind.annotations[0].content =
+              dialogGroupofPeopleFormat.val() +
+              " " +
+              (index + +dialogGroupofPeopleStartNum.val());
+            diagram.dataBind();
+          }
+        });
       break;
-    case 'option4':
-      let contiOp4 = diagram.getObject(groupNode.children.find(a => a.startsWith('continuity')));
-      let person2Op4 = diagram.getObject(groupNode.children.filter(a => a.startsWith('personNoframe'))[1]);
+    case "option4":
+      let contiOp4 = diagram.getObject(
+        groupNode.children.find((a) => a.startsWith("continuity"))
+      );
+      let person2Op4 = diagram.getObject(
+        groupNode.children.filter((a) => a.startsWith("personNoframe"))[1]
+      );
       let offsetContiOp4 = contiOp4.offsetX;
       let offsetPerson2Op4 = person2Op4.offsetX;
       contiOp4.offsetX = offsetPerson2Op4;
       person2Op4.offsetX = offsetContiOp4;
-      if (dialogGroupofPeopleFormat.val() === 'P') {
+      if (dialogGroupofPeopleFormat.val() === "P") {
         person2Op4.annotations[0].content = dialogGroupofPeopleFormat.val();
         diagram.dataBind();
-        diagram.addLabels(person2Op4, [{
-          id: 'annotationgroupPeopleo' + randomId(),
-          content: `N`,
-          verticalAlignment: "Bottom",
-          offset: {
-            x: 0.5,
-            y: 1,
-          },
-          margin: {
-            top: 26,
-            left: 7,
-          },
-        }]);
-      } else {
-        person2Op4.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'N';
-      }
-      diagram.dataBind();
-      groupNode.children.filter(a => !a.startsWith('continuity') && a !== person2Op4.id && !a.startsWith('groupOfPeople')).forEach((id, index) => {
-        let nodeFind = diagram.getObject(id);
-        if (dialogGroupofPeopleFormat.val() === 'P') {
-          nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val();
-          diagram.dataBind();
-          diagram.addLabels(nodeFind, [{
-            id: 'annotationgroupPeopleo' + randomId(),
-            content: `${index + +dialogGroupofPeopleStartNum.val()}`,
+        diagram.addLabels(person2Op4, [
+          {
+            id: "annotationgroupPeopleo" + randomId(),
+            content: `N`,
             verticalAlignment: "Bottom",
             offset: {
               x: 0.5,
@@ -760,18 +759,56 @@ function onClickApplyGroupOfPeople(e) {
             },
             margin: {
               top: 26,
-              left: 6,
+              left: 7,
             },
-          }]);
-          diagram.dataBind();
-        } else {
-          nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + (index + +dialogGroupofPeopleStartNum.val());
-          diagram.dataBind();
-        }
-      });
+          },
+        ]);
+      } else {
+        person2Op4.annotations[0].content =
+          dialogGroupofPeopleFormat.val() + " " + "N";
+      }
+      diagram.dataBind();
+      groupNode.children
+        .filter(
+          (a) =>
+            !a.startsWith("continuity") &&
+            a !== person2Op4.id &&
+            !a.startsWith("groupOfPeople")
+        )
+        .forEach((id, index) => {
+          let nodeFind = diagram.getObject(id);
+          if (dialogGroupofPeopleFormat.val() === "P") {
+            nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val();
+            diagram.dataBind();
+            diagram.addLabels(nodeFind, [
+              {
+                id: "annotationgroupPeopleo" + randomId(),
+                content: `${index + +dialogGroupofPeopleStartNum.val()}`,
+                verticalAlignment: "Bottom",
+                offset: {
+                  x: 0.5,
+                  y: 1,
+                },
+                margin: {
+                  top: 26,
+                  left: 6,
+                },
+              },
+            ]);
+            diagram.dataBind();
+          } else {
+            nodeFind.annotations[0].content =
+              dialogGroupofPeopleFormat.val() +
+              " " +
+              (index + +dialogGroupofPeopleStartNum.val());
+            diagram.dataBind();
+          }
+        });
       let oldWidth = groupNode.width;
-      let baseCopy = groupNode.children.filter(a => !a.startsWith('groupOfPeople'));
-      let parent = diagram.getObject(groupNode.children[0])
+      let baseCopy = groupNode.children.filter(
+        (a) => !a.startsWith("groupOfPeople")
+      );
+      let parent = diagram.getObject(groupNode.children[0]);
       parent.width = parent.width * 2;
       parent.offsetX = diagram.getObject(baseCopy[1]).offsetX + 50;
       diagram.dataBind();
@@ -780,12 +817,17 @@ function onClickApplyGroupOfPeople(e) {
         let newObject = ej.diagrams.cloneObject(node);
         newObject.id += randomId();
         newObject.offsetX += oldWidth;
-        if (newObject.id.startsWith('personNoframe') && i < baseCopy.length - 2 && newObject.annotations[0]) {
-          if (dialogGroupofPeopleFormat.val() !== 'P') {
-            newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'N+1';
+        if (
+          newObject.id.startsWith("personNoframe") &&
+          i < baseCopy.length - 2 &&
+          newObject.annotations[0]
+        ) {
+          if (dialogGroupofPeopleFormat.val() !== "P") {
+            newObject.annotations[0].content =
+              dialogGroupofPeopleFormat.val() + " " + "N+1";
           } else {
             newObject.annotations[0].content = dialogGroupofPeopleFormat.val();
-            newObject.annotations[1].content = 'N+1';
+            newObject.annotations[1].content = "N+1";
             newObject.annotations[1].verticalAlignment = "Bottom";
             newObject.annotations[1].offset = {
               x: 0.5,
@@ -798,12 +840,18 @@ function onClickApplyGroupOfPeople(e) {
           }
         }
 
-        if (newObject.id.startsWith('personNoframe') && i === baseCopy.length - 2 && newObject.annotations[0] && dialogGroupofPeopleFormat.val() !== 'P') {
-          if (dialogGroupofPeopleFormat.val() !== 'P') {
-            newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'M';
+        if (
+          newObject.id.startsWith("personNoframe") &&
+          i === baseCopy.length - 2 &&
+          newObject.annotations[0] &&
+          dialogGroupofPeopleFormat.val() !== "P"
+        ) {
+          if (dialogGroupofPeopleFormat.val() !== "P") {
+            newObject.annotations[0].content =
+              dialogGroupofPeopleFormat.val() + " " + "M";
           } else {
             newObject.annotations[0].content = dialogGroupofPeopleFormat.val();
-            newObject.annotations[1].content = 'N+1';
+            newObject.annotations[1].content = "N+1";
             newObject.annotations[1].verticalAlignment = "Bottom";
             newObject.annotations[1].offset = {
               x: 0.5,
@@ -819,41 +867,18 @@ function onClickApplyGroupOfPeople(e) {
         // diagram.paste([newObject]);
         diagram.addChildToGroup(groupNode, newObject);
         // node.copy();
-
       });
-      baseCopy = groupNode.children.filter(a => !a.startsWith('groupOfPeople'));
+      baseCopy = groupNode.children.filter(
+        (a) => !a.startsWith("groupOfPeople")
+      );
       let countedP = diagram.getObject(baseCopy[0]);
-      if (dialogGroupofPeopleFormat.val() === 'P') {
+      if (dialogGroupofPeopleFormat.val() === "P") {
         countedP.annotations[0].content = dialogGroupofPeopleFormat.val();
         diagram.dataBind();
-        diagram.addLabels(countedP, [{
-          id: 'annotationgroupPeopleo' + randomId(),
-          content: `${+dialogGroupofPeopleStartNum.val()}`,
-          verticalAlignment: "Bottom",
-          offset: {
-            x: 0.5,
-            y: 1,
-          },
-          margin: {
-            top: 26,
-            left: 6,
-          },
-        }]);
-        diagram.dataBind();
-      } else {
-        countedP.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + dialogGroupofPeopleStartNum.val();
-      }
-      break;
-    case 'option3':
-      groupNode.children.filter(a => a.startsWith('personNoframe')).forEach((id, index) => {
-        let nodeFind = diagram.getObject(id);
-        // console.log(nodeFind, index + +dialogGroupofPeopleStartNum.val())
-        if (dialogGroupofPeopleFormat.val() === 'P') {
-          nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val();
-          diagram.dataBind();
-          diagram.addLabels(nodeFind, [{
-            id: 'annotationgroupPeopleo' + randomId(),
-            content: `${index + +dialogGroupofPeopleStartNum.val()}`,
+        diagram.addLabels(countedP, [
+          {
+            id: "annotationgroupPeopleo" + randomId(),
+            content: `${+dialogGroupofPeopleStartNum.val()}`,
             verticalAlignment: "Bottom",
             offset: {
               x: 0.5,
@@ -863,10 +888,42 @@ function onClickApplyGroupOfPeople(e) {
               top: 26,
               left: 6,
             },
-          }]);
-          diagram.dataBind();
-        }
-      });
+          },
+        ]);
+        diagram.dataBind();
+      } else {
+        countedP.annotations[0].content =
+          dialogGroupofPeopleFormat.val() +
+          " " +
+          dialogGroupofPeopleStartNum.val();
+      }
+      break;
+    case "option3":
+      groupNode.children
+        .filter((a) => a.startsWith("personNoframe"))
+        .forEach((id, index) => {
+          let nodeFind = diagram.getObject(id);
+          if (dialogGroupofPeopleFormat.val() === "P") {
+            nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val();
+            diagram.dataBind();
+            diagram.addLabels(nodeFind, [
+              {
+                id: "annotationgroupPeopleo" + randomId(),
+                content: `${index + +dialogGroupofPeopleStartNum.val()}`,
+                verticalAlignment: "Bottom",
+                offset: {
+                  x: 0.5,
+                  y: 1,
+                },
+                margin: {
+                  top: 26,
+                  left: 6,
+                },
+              },
+            ]);
+            diagram.dataBind();
+          }
+        });
       break;
   }
   e.annotations[0].content = dialogGroupofPeopleGroupName.val();
@@ -907,7 +964,7 @@ function onClickApplyNodeTableComm() {
   const element = document.getElementById("dialogNodeTableComm");
   element.style.display = "none";
   const nodes = getNodesDiagramNodes([...diagram.nodes]);
-  let itemSub = getItembyIdCommOthers("nodeTableComm");
+  let itemSub = { ...getItembyIdCommOthers("nodeTableComm") };
   const value = document.getElementById("input-node-table-comm").value;
   itemSub.annotation.columnNo = Number(value);
   itemSub.annotation.content = [];
@@ -1063,7 +1120,8 @@ function dropGrouped(node, parentNode, ignoreCond) {
         //Getting the group node by getObject method by passing parent ID
         if (
           (parentNode.parentId &&
-            communicationDroppedElementChecker(node, parentNode)) || (parentNode.parentId && ignoreCond)
+            communicationDroppedElementChecker(node, parentNode)) ||
+          (parentNode.parentId && ignoreCond)
         ) {
           var group = diagram.getObject(parentNode.parentId);
           let firstChild = diagram.getObject(group.children[0]);
@@ -1120,7 +1178,10 @@ function dropGrouped(node, parentNode, ignoreCond) {
           diagram.dataBind();
           diagram.refresh();
         } else {
-          if (communicationDroppedElementChecker(source, parentNode) || ignoreCond) {
+          if (
+            communicationDroppedElementChecker(source, parentNode) ||
+            ignoreCond
+          ) {
             diagram.select([parentNode, source]);
             diagram.group();
             let group = diagram.getObject(parentNode.parentId);
@@ -1303,7 +1364,7 @@ function camelize(str) {
       return index === 0 ? word.toLowerCase() : word.toUpperCase();
     })
     .replace(/\s+/g, "")
-    .replace(/[^\w\s]/gi, '');
+    .replace(/[^\w\s]/gi, "");
 }
 
 var mappedArrayContext = menuItems.reduce((arr, item) => {
@@ -1363,57 +1424,63 @@ var diagram = new ej.diagrams.Diagram({
   bridgeDirection: "Left",
   contextMenuSettings: {
     show: true,
-    items: mappedArrayContext.concat(...[
-      {
-        id: 'baseCopy',
-        onClick: "",
-        text: "Copy",
-        icon: "flaticon-copy",
-      },
-      {
-        id: 'basePaste',
-        onClick: "",
-        text: "Paste",
-        icon: "flaticon-paste",
-      },
-      {
-        id: 'baseCut',
-        onClick: "",
-        text: "Cut",
-        icon: "flaticon-scissors",
-      },
-      {
-        id: 'baseEdit',
-        onClick: "",
-        text: "Edit Text",
-      },
-      {
-        id: 'baseSelect',
-        onClick: "",
-        text: "Select All",
-      }]),
+    items: mappedArrayContext.concat(
+      ...[
+        {
+          id: "baseCopy",
+          onClick: "",
+          text: "Copy",
+          icon: "flaticon-copy",
+        },
+        {
+          id: "basePaste",
+          onClick: "",
+          text: "Paste",
+          icon: "flaticon-paste",
+        },
+        {
+          id: "baseCut",
+          onClick: "",
+          text: "Cut",
+          icon: "flaticon-scissors",
+        },
+        {
+          id: "baseEdit",
+          onClick: "",
+          text: "Edit Text",
+        },
+        {
+          id: "baseSelect",
+          onClick: "",
+          text: "Select All",
+        },
+      ]
+    ),
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => { },
+  setNodeTemplate: (obj, diagram) => {},
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     switch (args.item.properties.text) {
-      case 'Delete':
+      case "Delete":
         diagram.remove(diagram.selectedItems.nodes[0]);
         return;
-      case 'Copy':
+      case "Copy":
         diagram.copy(diagram.selectedItems.nodes[0]);
         return;
-      case 'Paste':
+      case "Paste":
         diagram.paste();
         return;
-      case 'Cut':
+      case "Cut":
         diagram.cut(diagram.selectedItems.nodes[0]);
         return;
-      case 'Edit Text':
-        diagram.startTextEdit(diagram.selectedItems.nodes[0], diagram.selectedItems.nodes[0].annotations[0].id);
+      case "Edit Text":
+        diagram.startTextEdit(
+          diagram.selectedItems.nodes[0],
+          diagram.selectedItems.nodes[0].annotations[0].id
+        );
         return;
-      case 'Select All':
+      case "Select All":
         diagram.selectAll();
         return;
     }
@@ -1422,11 +1489,11 @@ var diagram = new ej.diagrams.Diagram({
       "applicationreplaceapplicationwithsketch",
     ];
     let idCheck = args.item.id.toLowerCase();
-    // console.log(args.item.id)
+    console.log(idCheck);
     if (listIdNotEvent.includes(idCheck)) {
       return;
     }
-    if (idCheck.includes("picture")) {
+    if (idCheck.includes("picture") || idCheck.includes("image")) {
       $("#fileUploadToDiagrams").attr("accept", "image/*");
       $("#fileUploadToDiagrams").click();
     }
@@ -1442,7 +1509,7 @@ var diagram = new ej.diagrams.Diagram({
       sketchContextClick(idCheck);
     }
     if (idCheck.includes("text")) {
-      addTextOnClick();
+      addTextOnClick(idCheck);
     }
     if (idCheck.includes("toentity") && idCheck.includes("point")) {
       pointNodeToEntity("pointTo", "entity");
@@ -1456,13 +1523,13 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck.includes("groupofentities") && idCheck.includes("point")) {
       pointNodeToEntity("pointTo", "entities");
     }
-    if (idCheck.includes("communicationholder")) {
+    if (idCheck.includes("entityidentifyentitybyword")) {
+      pointNodeToEntity("pointTo", "word");
+    }
+    if (idCheck.includes("addcommunicationholder")) {
       addCommHolderOnClick();
     }
-    if (
-      idCheck.includes("principle") ||
-      idCheck === "personshapesrelatepersonwithpersonaspect"
-    ) {
+    if (idCheck.includes("relate")) {
       relatePersonOperatingPrinciple(idCheck);
     }
     if (checkIdHanleClickfunAddPartToApplication(idCheck)) {
@@ -1473,38 +1540,41 @@ var diagram = new ej.diagrams.Diagram({
     }
   },
   contextMenuOpen: function (args) {
-    let bpmnShape = !diagram?.selectedItems?.nodes[0]?.addInfo && diagram?.selectedItems?.nodes[0]?.children?.length > 0 ?
-      diagram.getObject(diagram.selectedItems.nodes[0].children[0]) : diagram.selectedItems.nodes[0];
+    let bpmnShape =
+      !diagram?.selectedItems?.nodes[0]?.addInfo &&
+      diagram?.selectedItems?.nodes[0]?.children?.length > 0
+        ? diagram.getObject(diagram.selectedItems.nodes[0].children[0])
+        : diagram.selectedItems.nodes[0];
     // console.log(bpmnShape)
     if (diagram?.selectedItems?.nodes[0] && bpmnShape?.addInfo) {
       let menuId = bpmnShape?.addInfo[0];
       if (bpmnShape.id.startsWith("addCommunication")) {
         addCommunicationFunction();
       }
-      args.hiddenItems = mappedArrayContext.reduce((arr, item) => {
-        if (menuId && item.parentId !== menuId.menuId) {
-          arr.push(item.id);
-        }
-        return arr;
-      }, []).concat(...['baseCopy',
-        'basePaste',
-        'baseCut',
-        'baseEdit',
-        'baseSelect']);
-      args.hiddenItems.forEach(a => {
+      args.hiddenItems = mappedArrayContext
+        .reduce((arr, item) => {
+          if (menuId && item.parentId !== menuId.menuId) {
+            arr.push(item.id);
+          }
+          return arr;
+        }, [])
+        .concat(
+          ...["baseCopy", "basePaste", "baseCut", "baseEdit", "baseSelect"]
+        );
+      args.hiddenItems.forEach((a) => {
         if ($(`#${a}.e-menu-item`).length > 0) {
-          $(`#${a}.e-menu-item`).addClass('e-menu-hide');
+          $(`#${a}.e-menu-item`).addClass("e-menu-hide");
         }
-      })
+      });
     } else {
       args.hiddenItems = mappedArrayContext.reduce((arr, item) => {
         return arr.concat(item.id);
       }, []);
-      args.hiddenItems.forEach(a => {
+      args.hiddenItems.forEach((a) => {
         if ($(`#${a}.e-menu-item`).length > 0) {
-          $(`#${a}.e-menu-item`).addClass('e-menu-hide');
+          $(`#${a}.e-menu-item`).addClass("e-menu-hide");
         }
-      })
+      });
     }
   },
   created: function (args) {
@@ -1603,37 +1673,47 @@ function defineNodeToEntity() {
 }
 
 function pointNodeToEntity(type, ent) {
-  // console.log(diagram.selectedItems.properties.nodes[0]);
   let oldEdge = diagram.getObject(
     diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])
       ?.targetWrapper?.nodeId
   );
   let entity = drawShape(communicationData.find((a) => a.id === ent));
   entity.id += randomId();
-  let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
-  let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
+  const itemSelected = diagram.selectedItems.properties.nodes[0];
+  let offsetXD = itemSelected.offsetX;
+  let offsetYD = itemSelected.offsetY;
+  let width = itemSelected.width;
+  console.log(width, offsetXD);
   entity.offsetX = offsetXD + 250;
   entity.offsetY = offsetYD;
   let addItem = diagram.add(entity);
 
-  if (oldEdge && ent !== 'entities') {
+  if (oldEdge && ent !== "entities") {
     dropGrouped(addItem, oldEdge, true);
-    // oldEdge.offsetY += 350;
     // diagram.dataBind();
     setTimeout(() => {
-      if (oldEdge.parentId && diagram.getObject(diagram.getObject(oldEdge?.parentId).children[0]).inEdges[0]) {
-        diagram.remove(diagram.getObject(diagram.getObject(diagram.getObject(oldEdge?.parentId).children[0]).inEdges[0]));
+      if (
+        oldEdge.parentId &&
+        diagram.getObject(diagram.getObject(oldEdge?.parentId).children[0])
+          .inEdges[0]
+      ) {
+        diagram.remove(
+          diagram.getObject(
+            diagram.getObject(diagram.getObject(oldEdge?.parentId).children[0])
+              .inEdges[0]
+          )
+        );
       }
-    })
+    });
   }
 
-  if (oldEdge && ent === 'entities') {
+  if (oldEdge && ent === "entities") {
     oldEdge.offsetY += 250;
     diagram.dataBind();
   }
   let connector = drawShape(commLabelData.find((a) => a.id === type));
   connector.id += randomId();
-  if (type !== 'pointTo') {
+  if (type !== "pointTo") {
     connector.annotations[0].content = "Defined by";
   }
   connector.sourceID = diagram.selectedItems.properties.nodes[0].id;
@@ -1641,14 +1721,19 @@ function pointNodeToEntity(type, ent) {
   let connectorAdd = diagram.add(connector);
 }
 
-function addTextOnClick() {
+function addTextOnClick(id) {
   let findItem = drawShape(otherData.find((a) => a.id === "callOut"));
   findItem.id += randomId();
   let addItem = diagram.add(findItem);
-  let offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
-  let offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
-  addItem.offsetX = offsetXD + 250;
-  addItem.offsetY = offsetYD + 50;
+  const selectedItems = diagram.selectedItems.properties.nodes[0].properties;
+  if (id === "communicationholderreplacecommunicationholderwithtext") {
+    addItem.offsetX = selectedItems.offsetX - selectedItems.width / 2 + 175;
+    addItem.offsetY = selectedItems.offsetY - selectedItems.height / 2 + 125;
+    diagram.remove(diagram.selectedItems.properties.nodes[0]);
+  } else {
+    addItem.offsetX = selectedItems.offsetX + 250;
+    addItem.offsetY = selectedItems.offsetY + 50;
+  }
 }
 
 let countComm = 0;

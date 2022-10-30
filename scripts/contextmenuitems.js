@@ -331,7 +331,7 @@ var communicationHolder = [
   {
     id: "replaceCommunicationHolderPrinciple",
     onClick: "",
-    text: "Replace Communication Holder with principle",
+    text: "Relate Communication Holder with principle",
   },
   {
     id: "relateCommunicationHolderOperatingPrinciple",
