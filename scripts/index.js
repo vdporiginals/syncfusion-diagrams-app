@@ -1484,7 +1484,7 @@ var diagram = new ej.diagrams.Diagram({
         return;
     }
     switch (args.item.properties.text.toLowerCase()) {
-      case 'add input':
+      case "add input":
         // diagram.remove(diagram.selectedItems.nodes[0]);
         let portss = {
           id: "LeftMiddle" + randomId(),
@@ -1497,37 +1497,41 @@ var diagram = new ej.diagrams.Diagram({
           width: 2,
           height: 2,
           verticalAlignment: "Center",
-          horizontalAlignment: "Center"
-        }
+          horizontalAlignment: "Center",
+        };
         diagram.selectedItems.nodes[0].height += 10;
         diagram.dataBind();
-        diagram.selectedItems.nodes[0].ports.forEach(a => {
-          if (a.id.toLowerCase().startsWith('left')) {
+        diagram.selectedItems.nodes[0].ports.forEach((a) => {
+          if (a.id.toLowerCase().startsWith("left")) {
             portss.offset = {
               x: a.offset.x,
-              y: a.offset.y + 0.1
-            }
+              y: a.offset.y + 0.1,
+            };
             a.offset = {
               x: a.offset.x,
-              y: a.offset.y - 0.1
+              y: a.offset.y - 0.1,
             };
             diagram.dataBind();
           }
         });
         diagram.addPorts(diagram.selectedItems.nodes[0], [portss]);
         return;
-      case 'remove input':
-        let findLeft = diagram.selectedItems.nodes[0].ports.filter(a => a.id.toLowerCase().startsWith('left'));
+      case "remove input":
+        let findLeft = diagram.selectedItems.nodes[0].ports.filter((a) =>
+          a.id.toLowerCase().startsWith("left")
+        );
         if (findLeft.length > 2) {
           diagram.selectedItems.nodes[0].height += -10;
-          diagram.removePorts(diagram.nodes[0], [{
-            id: findLeft[0].id,
-          }]);
-          diagram.selectedItems.nodes[0].ports.forEach(a => {
-            if (a.id.toLowerCase().startsWith('left')) {
+          diagram.removePorts(diagram.nodes[0], [
+            {
+              id: findLeft[0].id,
+            },
+          ]);
+          diagram.selectedItems.nodes[0].ports.forEach((a) => {
+            if (a.id.toLowerCase().startsWith("left")) {
               a.offset = {
                 x: a.offset.x,
-                y: a.offset.y - 0.1
+                y: a.offset.y - 0.1,
               };
               diagram.dataBind();
             }
@@ -1563,19 +1567,22 @@ var diagram = new ej.diagrams.Diagram({
       addTextOnClick(idCheck);
     }
     if (idCheck.includes("toentity") && idCheck.includes("point")) {
-      pointNodeToEntity("pointTo", "entity");
+      pointNodeToEntity("pointTo", "entity", "Point To");
     }
     if (idCheck.includes("byentity") && idCheck.includes("define")) {
-      pointNodeToEntity("define", "entity");
+      pointNodeToEntity("define", "entity", "Defined by");
     }
     if (idCheck.includes("information") && idCheck.includes("point")) {
-      pointNodeToEntity("pointTo", "information");
+      pointNodeToEntity("pointTo", "information", "Point To");
     }
     if (idCheck.includes("groupofentities") && idCheck.includes("point")) {
-      pointNodeToEntity("pointTo", "entities");
+      pointNodeToEntity("pointTo", "entities", "Point To");
     }
     if (idCheck.includes("entityidentifyentitybyword")) {
-      pointNodeToEntity("pointTo", "word");
+      pointNodeToEntity("pointTo", "word", "Identified by");
+    }
+    if (idCheck.includes("entitydefinewordfromentity")) {
+      pointNodeToEntity("define", "word", "Defined by");
     }
     if (idCheck.includes("addcommunicationholder")) {
       addCommHolderOnClick();
@@ -1583,7 +1590,10 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck.includes("relate")) {
       relatePersonOperatingPrinciple(idCheck);
     }
-    if (checkIdHanleClickfunAddPartToApplication(idCheck)) {
+    if (
+      checkIdHanleClickfunAddPartToApplication(idCheck) ||
+      idCheck.includes("addpartto")
+    ) {
       funAddPartToApplication(idCheck);
     }
     if (idCheck === "commfunctionaddsubfunction") {
@@ -1665,10 +1675,7 @@ var diagram = new ej.diagrams.Diagram({
 });
 
 const listIdClick = [
-  "applicationaddparttoapplication",
   "applicationaddsubtoapplication",
-  "commfunctionaddpartoffunction",
-  "commresultaddparttoresult",
   "commresultaddsubapplicationresult",
 ];
 
@@ -1723,7 +1730,7 @@ function defineNodeToEntity() {
   diagram.add(connector);
 }
 
-function pointNodeToEntity(type, ent,textContent) {
+function pointNodeToEntity(type, ent, textContent) {
   let oldEdge = diagram.getObject(
     diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0])
       ?.targetWrapper?.nodeId
@@ -1733,7 +1740,7 @@ function pointNodeToEntity(type, ent,textContent) {
   const itemSelected = diagram.selectedItems.properties.nodes[0];
   let offsetXD = itemSelected.offsetX;
   let offsetYD = itemSelected.offsetY;
-  let width = itemSelected.width;
+  let width = itemSelected.width < 250 ? 250 : itemSelected.width;
   entity.offsetX = offsetXD + width;
   entity.offsetY = offsetYD;
   let addItem = diagram.add(entity);
@@ -1763,9 +1770,7 @@ function pointNodeToEntity(type, ent,textContent) {
   }
   let connector = drawShape(commLabelData.find((a) => a.id === type));
   connector.id += randomId();
-  if (type !== "pointTo") {
-    connector.annotations[0].content = "Defined by";
-  }
+  connector.annotations[0].content = textContent;
   connector.sourceID = diagram.selectedItems.properties.nodes[0].id;
   connector.targetID = addItem.id;
   let connectorAdd = diagram.add(connector);

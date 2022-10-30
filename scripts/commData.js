@@ -330,14 +330,6 @@ let applicationRects = [
     toolTip: "Multi Inputs Comm & App Mixture",
   },
   {
-    id: "whatWeDo",
-    title: "What We Do",
-    annotation: ["Communication", "Application", "What We Do"],
-    menuId: "entity",
-    toolTip: "What We Do as Entity",
-    type: "WhatWeDo",
-  },
-  {
     id: "communicationFunctionGrouped",
     title: "Communication Function",
     annotation: ["Communication Function", "Communication Function", "Communication Function"],
@@ -346,9 +338,17 @@ let applicationRects = [
     type: "CommunicationGrouped",
   },
   {
+    id: "whatWeDo",
+    title: "What We Do",
+    annotation: ["Communication", "Application", "What We Do"],
+    menuId: "entity",
+    toolTip: "What We Do as Entity",
+    type: "WhatWeDo",
+  },
+  {
     id: "whatWeDo1",
     title: "What We Do",
-    annotation: "draw New Shape",
+    annotation: "What We Do",
     toolTip: "Represent Things That We Do",
     menuId: "entity",
     type: "DualBox",

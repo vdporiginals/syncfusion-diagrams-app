@@ -1100,11 +1100,6 @@ var menuItems = [
       "sep",
       {
         onClick: "",
-        text: "Define word from entity",
-      },
-      "sep",
-      {
-        onClick: "",
         text: "Relate entity with Principle",
       },
       {
