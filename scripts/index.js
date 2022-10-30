@@ -818,6 +818,28 @@ function onClickApplyGroupOfPeople(e) {
       }
       break;
     default:
+      groupNode.children.filter(a => a.startsWith('personNoframe')).forEach((id, index) => {
+        let nodeFind = diagram.getObject(id);
+        // console.log(nodeFind, index + +dialogGroupofPeopleStartNum.val())
+        if (dialogGroupofPeopleFormat.val() === 'P') {
+          nodeFind.annotations[0].content = dialogGroupofPeopleFormat.val();
+          diagram.dataBind();
+          diagram.addLabels(nodeFind, [{
+            id: 'annotationgroupPeopleo' + randomId(),
+            content: `${index + +dialogGroupofPeopleStartNum.val()}`,
+            verticalAlignment: "Bottom",
+            offset: {
+              x: 0.5,
+              y: 1,
+            },
+            margin: {
+              top: 26,
+              left: 6,
+            },
+          }]);
+          diagram.dataBind();
+        }
+      });
       break;
   }
 
