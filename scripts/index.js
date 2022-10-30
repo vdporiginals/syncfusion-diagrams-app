@@ -599,8 +599,8 @@ function onClickApplyGroupOfPeople(e) {
   let dialogGroupofPeopleGroupName = $(`#dialogGroupofPeopleGroupName`);
   let hasFrame = $('#dialogGroupofPeoplehasFrame').prop('checked');
 
-  let groupNode = diagram.getObject(this?.parentId);
-  // console.log(e, this, groupNode, dialogGroupofPeopleOptions.val(), dialogGroupofPeopleFormat.val(), dialogGroupofPeopleStartNum.val(), dialogGroupofPeopleGroupName.val())
+  let groupNode = diagram.getObject(e?.parentId);
+  // console.log(e, e, groupNode, dialogGroupofPeopleOptions.val(), dialogGroupofPeopleFormat.val(), dialogGroupofPeopleStartNum.val(), dialogGroupofPeopleGroupName.val())
   let personN = drawShape(
     personData.find((a) => a.id === "personNoframe")
   );
@@ -626,14 +626,14 @@ function onClickApplyGroupOfPeople(e) {
     personN.annotations.splice(1, 1);
   }
   if (!hasFrame) {
-    this.shape.content = this.shape.content.replaceAll('stroke-width="1"', 'stroke-width="0"');
+    e.shape.content = e.shape.content.replaceAll('stroke-width="1"', 'stroke-width="0"');
 
   }
   diagram.dataBind();
   switch (dialogGroupofPeopleOptions.val()) {
     case 'option1':
-      this.width += personN.width;
-      this.offsetX += personN.width - 10;
+      e.width += personN.width;
+      e.offsetX += personN.width - 10;
       diagram.dataBind();
       let personNNode = diagram.add(personN);
       personNNode.offsetX = groupNode.offsetX + groupNode.width / 2 - 50;
@@ -665,7 +665,6 @@ function onClickApplyGroupOfPeople(e) {
           diagram.dataBind();
         }
       });
-      this.annotations[0].content = dialogGroupofPeopleGroupName.val();
       break;
     case 'option2':
       let conti = diagram.getObject(groupNode.children.find(a => a.startsWith('continuity')));
@@ -781,16 +780,41 @@ function onClickApplyGroupOfPeople(e) {
         let newObject = ej.diagrams.cloneObject(node);
         newObject.id += randomId();
         newObject.offsetX += oldWidth;
-        if (newObject.id.startsWith('personNoframe') && i < baseCopy.length - 2) {
+        console.log(newObject.annotations)
+        if (newObject.id.startsWith('personNoframe') && i < baseCopy.length - 2 && newObject.annotations[0] && dialogGroupofPeopleFormat.val() !== 'P') {
           newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'N+1';
+        } else {
+          newObject.annotations[0].content = dialogGroupofPeopleFormat.val();
+          newObject.annotations[1].content = 'N+1';
+          newObject.annotations[1].verticalAlignment = "Bottom";
+          newObject.annotations[1].offset = {
+            x: 0.5,
+            y: 1,
+          };
+          newObject.annotations[1].margin = {
+            top: 26,
+            left: 12,
+          };
         }
 
-        if (newObject.id.startsWith('personNoframe') && i === baseCopy.length - 2) {
+        if (newObject.id.startsWith('personNoframe') && i === baseCopy.length - 2 && newObject.annotations[0] && dialogGroupofPeopleFormat.val() !== 'P') {
           newObject.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + 'M';
+        } else {
+          newObject.annotations[0].content = dialogGroupofPeopleFormat.val();
+          newObject.annotations[1].content = 'N+1';
+          newObject.annotations[1].verticalAlignment = "Bottom";
+          newObject.annotations[1].offset = {
+            x: 0.5,
+            y: 1,
+          };
+          newObject.annotations[1].margin = {
+            top: 26,
+            left: 12,
+          };
         }
+        diagram.dataBind();
         // diagram.paste([newObject]);
         diagram.addChildToGroup(groupNode, newObject);
-        diagram.dataBind();
         // node.copy();
 
       });
@@ -817,7 +841,7 @@ function onClickApplyGroupOfPeople(e) {
         countedP.annotations[0].content = dialogGroupofPeopleFormat.val() + ' ' + dialogGroupofPeopleStartNum.val();
       }
       break;
-    default:
+    case 'option3':
       groupNode.children.filter(a => a.startsWith('personNoframe')).forEach((id, index) => {
         let nodeFind = diagram.getObject(id);
         // console.log(nodeFind, index + +dialogGroupofPeopleStartNum.val())
@@ -842,6 +866,8 @@ function onClickApplyGroupOfPeople(e) {
       });
       break;
   }
+  e.annotations[0].content = dialogGroupofPeopleGroupName.val();
+  // this = null;
 
   hiddenModal();
 }
@@ -1949,7 +1975,7 @@ function openModal(textHeader, id, functionApply, node) {
     },
     buttons: [
       {
-        click: functionApply.bind(node),
+        click: (e) => functionApply(node),
         buttonModel: { content: "Apply" },
       },
       {
