@@ -319,6 +319,11 @@ ul {
 .e-tbtn,
 .e-split-btn {
     font-size: 12px;
+    border: 1px solid #dbdbdb;
+}
+.e-btn,
+.e-css.e-btn {
+    padding: 6px 12px;
 }
 
 .e-menu.e-context {
@@ -459,6 +464,9 @@ ul {
 .w-100 {
     width: 100%;
 }
+.flex-1 {
+    flex: 1;
+}
 .d-flex {
     display: flex;
     align-items: center;
@@ -478,6 +486,12 @@ ul {
 .m-r-8 {
     margin-right: 8px;
 }
+.m-l-8 {
+    margin-left: 8px;
+}
+.m-b-8 {
+    margin-bottom: 8px;
+}
 .m-b-20 {
     margin-bottom: 20px;
 }
@@ -487,12 +501,15 @@ ul {
 .p-l-20 {
     padding-left: 20px;
 }
+.line-height-20 {
+    line-height: 20px;
+}
 .e-dialog .e-dlg-header {
     font-size: 14px;
 }
 .e-dialog .e-dlg-header-content,
 .e-dialog .e-dlg-content {
-    padding: 0 4px 4px 4px;
+    padding: 8px;
 }
 .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn {
     border-radius: 0;
@@ -503,4 +520,11 @@ ul {
 }
 .justify-content-space-between {
     justify-content: space-between;
+}
+#dialogGroupofPeople,
+#dialogNodeTableComm,
+#dialogContinuityPerson,
+#dialogMainArea {
+    padding: 8px;
+    background: #0d6efd59;
 }

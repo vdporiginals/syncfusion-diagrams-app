@@ -955,9 +955,9 @@ function onClickApplyContinuityPerson() {
   }, 100);
 }
 
-function onDrogNodeTableComm(args) {
+function onDrogNodeTableComm() {
   openModal(
-    "Continuity Size",
+    "Insert Node Table",
     "dialogNodeTableComm",
     onClickApplyNodeTableComm
   );
@@ -988,16 +988,6 @@ function onClickApplyNodeTableComm() {
   item.offsetX = nodes[0].offsetX;
   item.offsetY = nodes[0].offsetY;
   diagram.nodes = [item];
-}
-
-function onDrogGroupOrAddEntities(args) {
-  const positionItem = document
-    .getElementById(args.element.id)
-    .getBoundingClientRect();
-  const element = document.getElementById("dialogGroupOrAddEntities");
-  element.style.paddingTop = positionItem.top + "px";
-  element.style.paddingLeft = positionItem.left + 70 + "px";
-  element.style.display = "block";
 }
 
 function onClickApplyGroupOrAddEntities() {
@@ -1667,11 +1657,8 @@ var diagram = new ej.diagrams.Diagram({
       onDrogContinuityPerson(args);
     }
     if (args.element.id.startsWith("nodeTableComm")) {
-      onDrogNodeTableComm(args);
+      onDrogNodeTableComm();
     }
-    // if (args.element.id.startsWith("group")) {
-    //   onDrogGroupOrAddEntities(args);
-    // }
     if (args.element.id.startsWith("mainArea")) {
       onDrogMainArea();
     }
@@ -2140,46 +2127,42 @@ function onGetHtmlDialog(id) {
   if (id === "dialogContinuityPerson") {
     return `<div id="dialogContinuityPerson" class="dialog-group-of-people">
     <div class="dialog-group-of-people-content">
-      <div class="d-flex">
+      <div class="d-flex m-b-8">
+        <img src="image//optionmix.png" alt="" />
+        <div>Continuity Property</div>
+      </div>
+      <div class="d-flex m-t-8">
         <div class="w-112px">Continuity Size</div>
-        <input type="number" class="w-200px" value="0.5" id="input-continuity-size" step=".1" />
+        <input
+          type="number"
+          class="w-200px"
+          value="0.5"
+          id="input-continuity-size"
+        />
       </div>
     </div>
   </div>`;
   }
   if (id === "dialogNodeTableComm") {
     return `<div id="dialogNodeTableComm" class="dialog-group-of-people">
-    <div class="dialog-group-of-people-content">
+    <div class="d-flex m-b-8">
+      <img src="image/table.png" alt="" />
+      <div>Table Information</div>
+    </div>
+    <div class="dialog-group-of-people-content m-t-8">
       <div class="d-flex">
-        <input type="text" class="w-200px" id="input-node-table-comm" />
-      </div>
-      <div class="d-flex group-button-dialog-group-of-people">
-        <button class="m-r-8" onclick="onClickApplyNodeTableComm()">
-          Apply
-        </button>
-        <button onclick="onClickCancelNodeTableComm()">Cancel</button>
+        <div class="line-height-20">Number of Column</div>
+        <div class="flex-1">
+          <input type="text" class="w-100" value="2" id="input-node-table-comm" />
+        </div>
       </div>
     </div>
-  </div>`;
-  }
-  if (id === "dialogGroupOrAddEntities") {
-    return `<div id="dialogGroupOrAddEntities" class="dialog-group-of-people">
-    <div class="dialog-group-of-people-content">
-      <div class="d-flex">
-        <input type="text" class="w-200px" id="input-group-or-add-entities" />
-      </div>
-      <div class="d-flex group-button-dialog-group-of-people">
-        <button class="m-r-8" onclick="onClickApplyGroupOrAddEntities()">
-          Apply
-        </button>
-        <button onclick="onClickCancelGroupOrAddEntities()">Cancel</button>
-      </div>
-    </div>
-  </div>`;
+  </div>
+  `;
   }
   if (id === "dialogMainArea") {
     return `<div id="dialogMainArea" class="dialog-group-of-people">
-    <div class="dialog-main-area p-l-20 p-r-20">
+    <div class="dialog-main-area">
       <div class="m-b-20">Types</div>
       <div class="d-flex justify-content-space-between m-b-20">
         <div class="d-flex">
@@ -2214,8 +2197,8 @@ function onGetHtmlDialog(id) {
   if (id === "dialogGroupofPeople") {
     return `<div id="dialogGroupofPeople" class="dialog-group-of-people">
     <div class="dialog-group-of-people-content">
-      <div>Group Of People</div>
-      <div class="d-flex">
+      <div class="m-b-8 line-height-20">Group Of People</div>
+      <div class="d-flex m-b-8 line-height-20">
         <div class="w-112px">Options</div>
         <select class="w-200px" id="dialogGroupofPeopleOptions">
           <option id="option1" selected value="option1">Option 1</option>
@@ -2224,24 +2207,24 @@ function onGetHtmlDialog(id) {
           <option id="option4" value="option4">Option 4</option>
         </select>
       </div>
-      <div class="d-flex">
+      <div class="d-flex m-b-8 line-height-20">
         <div class="w-112px">Format</div>
         <select class="w-200px" id="dialogGroupofPeopleFormat">
           <option id="formatPerson"  value="Person" selected>Person</option>
           <option id="formatP"  value="P">P</option>
         </select>
       </div>
-      <div class="d-flex">
+      <div class="d-flex m-b-8 line-height-20">
         <div class="w-112px">Start Number</div>
         <input type="number" class="w-200px" value="1"  id="dialogGroupofPeopleStartNum"/>
       </div>
-      <div class="d-flex">
+      <div class="d-flex m-b-8 line-height-20">
         <div class="w-112px">Group Name</div>
         <input type="text" class="w-200px" value="Group Name" id="dialogGroupofPeopleGroupName"/>
       </div>
-      <div class="d-flex">
+      <div class="d-flex m-b-8 line-height-20">
         <input type="checkbox" id="dialogGroupofPeoplehasFrame" name="dialogGroupofPeoplehasFrame">
-        <label for="dialogGroupofPeoplehasFrame"> Has frame</label>
+        <label class="m-l-8" for="dialogGroupofPeoplehasFrame"> Has frame</label>
       </div>
     </div>
   </div>`;
