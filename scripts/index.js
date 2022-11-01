@@ -964,8 +964,6 @@ function onDrogNodeTableComm() {
 }
 
 function onClickApplyNodeTableComm() {
-  const element = document.getElementById("dialogNodeTableComm");
-  element.style.display = "none";
   const nodes = getNodesDiagramNodes([...diagram.nodes]);
   let itemSub = { ...getItembyIdCommOthers("nodeTableComm") };
   const value = document.getElementById("input-node-table-comm").value;
@@ -988,6 +986,7 @@ function onClickApplyNodeTableComm() {
   item.offsetX = nodes[0].offsetX;
   item.offsetY = nodes[0].offsetY;
   diagram.nodes = [item];
+  hiddenModal();
 }
 
 function onClickApplyGroupOrAddEntities() {
@@ -2161,38 +2160,35 @@ function onGetHtmlDialog(id) {
   `;
   }
   if (id === "dialogMainArea") {
-    return `<div id="dialogMainArea" class="dialog-group-of-people">
-    <div class="dialog-main-area">
-      <div class="m-b-20">Types</div>
-      <div class="d-flex justify-content-space-between m-b-20">
-        <div class="d-flex">
-          <input type="radio" name="colors" id="house" class="m-r-4" />
-          <div>House</div>
-        </div>
-        <div class="d-flex">
-          <input type="radio" name="colors" id="map" class="m-r-4" />
-          <div>Map</div>
-        </div>
-        <div class="d-flex">
-          <input type="radio" name="colors" id="regular" class="m-r-4" />
-          <div>Regular</div>
-        </div>
-        <div class="d-flex">
-          <input
-            type="radio"
-            name="colors"
-            id="regularwithmap"
-            class="m-r-4"
-          />
-          <div>Regular With Map</div>
+    return `
+      <div id="dialogMainArea" class="dialog-group-of-people">
+        <div class="dialog-main-area">
+          <div class="m-b-20">Types</div>
+          <div class="d-flex justify-content-space-between m-b-20">
+            <div class="d-flex">
+              <input type="radio" name="colors" id="house" class="m-r-4" />
+              <div>House</div>
+            </div>
+            <div class="d-flex">
+              <input type="radio" name="colors" id="map" class="m-r-4" />
+              <div>Map</div>
+            </div>
+            <div class="d-flex">
+              <input type="radio" name="colors" id="regular" class="m-r-4" />
+              <div>Regular</div>
+            </div>
+            <div class="d-flex">
+              <input type="radio" name="colors" id="regularwithmap" class="m-r-4" />
+              <div>Regular With Map</div>
+            </div>
+          </div>
+          <div class="d-flex">
+            <div>Numbers</div>
+            <input class="w-100" type="number" id="input-group-or-add-entities" value="1"/>
+          </div>
         </div>
       </div>
-      <div class="d-flex">
-        <div>Numbers</div>
-        <input class="w-100" type="text" id="input-group-or-add-entities" />
-      </div>
-    </div>
-  </div>`;
+    `;
   }
   if (id === "dialogGroupofPeople") {
     return `<div id="dialogGroupofPeople" class="dialog-group-of-people">
