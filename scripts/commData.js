@@ -557,7 +557,7 @@ function getCommApplication() {
   return applicationRects.map((shape) => drawShape(shape));
 }
 //#region area and location
-let areaData = [
+var areaData = [
   {
     id: "locationOfOperation",
     title: "Location of Operation",

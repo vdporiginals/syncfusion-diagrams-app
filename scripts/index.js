@@ -23,6 +23,9 @@ let stability = getTheoryStability();
 let thoerylabel = getTheoryLabel();
 let quickTheory = getQuickTheory();
 let operatorTheory = getOperatorTheory();
+fetch('https://restcountries.com/v3.1/all').then(a => a.json()).then((r) => {
+  localStorage.setItem('location_country', JSON.stringify(r.map((a, index) => ({ id: index + 1, name: a.name.common }))))
+})
 let allShapes = []
   .concat(persons)
   .concat(communication)
@@ -1005,42 +1008,124 @@ function onClickAllowCross() {
   diagram.constraints = 500 | (2 | 2048);
 }
 
-function onDrogMainArea() {
-  openModal("Main Area", "dialogMainArea", onClickApplyMainArea);
+function onDrogMainArea(a) {
+  let country = localStorage.getItem('location_country') ? JSON.parse(localStorage.getItem('location_country')) : [];
+  // let stringRen = country.map(a => drawStringOptionsHtml(a.id, a.name)).join(' ')
+  let dropDownListObject = new ej.dropdowns.MultiSelect({
+    id: 'dialogMainAreaValueSelectWrap',
+    //set the data to dataSource property
+    dataSource: country.map(a => a.name),
+    // set placeholder to DropDownList input element
+    placeholder: "Select country",
+  });
+  openModal("Main Area", "dialogMainArea", onClickApplyMainArea, dropDownListObject);
+  setTimeout(() => {
+    let dialogMainAreahouse = $(`#dialogMainAreahouse`);
+    let dialogMainAreamap = $(`#dialogMainAreamap`);
+    let dialogMainArearegular = $(`#dialogMainArearegular`);
+    let dialogMainArearegularwithmap = $(`#dialogMainArearegularwithmap`);
+    let dialogMainAreaValue = $("#dialogMainAreaValueWrap");
+    let dialogMainAreaValueSelect = $("#dialogMainAreaValueSelect")
+    // initialize DropDownList component
+
+    // render initialized DropDownList
+    dropDownListObject.appendTo('#dialogMainAreaValueSelect');
+    $('.e-multiselect').hide();
+    let dialogMainAreaValueSelect2 = $("#dialogMainArea346432");
+    dialogMainAreaValueSelect2.addClass('d-none');
+    dialogMainAreahouse.change(function () {
+      if ($(this).prop('checked')) {
+        dialogMainAreaValue.removeClass('d-none');
+        dialogMainAreaValueSelect.hide();
+        dialogMainAreaValueSelect2.addClass('d-none');
+        $('.e-multiselect').hide();
+      }
+    });
+    dialogMainAreamap.change(function () {
+      if ($(this).prop('checked')) {
+        dialogMainAreaValue.addClass('d-none');
+        dialogMainAreaValueSelect.hide();
+        dialogMainAreaValueSelect2.removeClass('d-none');
+        $('.e-multiselect').show();
+      }
+    });
+    dialogMainArearegular.change(function () {
+      if ($(this).prop('checked')) {
+        dialogMainAreaValue.removeClass('d-none');
+        dialogMainAreaValueSelect.hide();
+        dialogMainAreaValueSelect2.addClass('d-none');
+        $('.e-multiselect').hide();
+      }
+    });
+    dialogMainArearegularwithmap.change(function () {
+      if ($(this).prop('checked')) {
+        dialogMainAreaValue.addClass('d-none');
+        dialogMainAreaValueSelect.hide();
+        dialogMainAreaValueSelect2.removeClass('d-none');
+        $('.e-multiselect').show();
+
+      }
+    });
+  }, 100)
 }
 
 function onClickApplyMainArea() {
-  const offsetXD = diagram.selectedItems.properties.nodes[0].properties.offsetX;
-  const offsetYD = diagram.selectedItems.properties.nodes[0].properties.offsetY;
+  let dialogMainAreahouse = $(`#dialogMainAreahouse`);
+  let dialogMainAreamap = $(`#dialogMainAreamap`);
+  let dialogMainArearegular = $(`#dialogMainArearegular`);
+  let dialogMainArearegularwithmap = $(`#dialogMainArearegularwithmap`);
+  let dialogMainAreaValue = $("#dialogMainAreaValue");
   let mainArea = areaData.find((a) => a.id === "mainArea");
-  diagram.remove(diagram.selectedItems.properties.nodes[0]);
+  let selected = diagram.selectedItems.properties.nodes[0];
+  selected.height = selected.height / 1.5;
+  diagram.dataBind();
   mainArea.annotation.height = undefined;
   mainArea.annotation.width = undefined;
   let findItem = drawShape(mainArea);
-  let addItem = diagram.add(findItem);
-
-  let siteOfOperation = everyShape.find((a) => a.id === "siteOfOperation");
-  siteOfOperation.margin = {
-    top: 20,
-    left: 20,
-    right: 20,
-    bottom: 20,
-  };
-  diagram.addChild(addItem, siteOfOperation, 1);
-  let siteOfOperation2 = everyShape.find((a) => a.id === "siteOfOperation");
-  siteOfOperation2.id = "siteOfOperation2";
-  siteOfOperation2.margin = {
-    top: 20,
-    left: 20,
-    right: 20,
-    bottom: 20,
-  };
-  diagram.addChild(addItem, siteOfOperation2, 2);
+  findItem.height = findItem.height * 2;
+  let value = document.getElementById('dialogMainAreaValueSelect').ej2_instances[0].value;
+  if (dialogMainAreahouse.prop("checked")) {
+    diagram.dataBind();
+    for (let index = 1; index <= dialogMainAreaValue.val(); index++) {
+      let house = drawShape(areaData.find((a) => a.id === "siteOfOperation" && a.type === 'House'));
+      house.id += randomId() + index;
+      house.width = house.width / 2;
+      house.height = house.height / 2;
+      house.annotations[0].content = "House";
+      let houseAdd = diagram.add(house);
+      dropGrouped(houseAdd, selected, true);
+    }
+  } else if (dialogMainAreamap.prop("checked")) {
+    value.forEach(v => {
+      let house = drawShape(areaData.find((a) => a.id === "locationOfOperation"));
+      house.id += randomId();
+      house.annotations[0].content = v
+      let houseAdd = diagram.add(house);
+      // diagram.dataBind();
+      dropGrouped(houseAdd, selected, true);
+    });
+  } else if (dialogMainArearegular.prop("checked")) {
+    for (let index = 1; index <= dialogMainAreaValue.val(); index++) {
+      let house = drawShape(areaData.find((a) => a.id === "locationOfOperation"));
+      house.id += randomId() + index;
+      // house.annotations[0].content = "House"
+      let houseAdd = diagram.add(house);
+      // diagram.dataBind();
+      dropGrouped(houseAdd, selected, true);
+    }
+  } else if (dialogMainArearegularwithmap.prop("checked")) {
+    value.forEach(v => {
+      let house = drawShape(areaData.find((a) => a.id === "locationOfOperation"));
+      house.id += randomId();
+      house.annotations[0].content = v
+      let houseAdd = diagram.add(house);
+      // diagram.dataBind();
+      dropGrouped(houseAdd, selected, true);
+    });
+  }
+  hiddenModal();
   setTimeout(() => {
-    diagram.nodes[0].offsetX = offsetXD;
-    diagram.nodes[0].offsetY = offsetYD;
-    diagram.nodes[2].offsetY = 200;
-    hiddenModal();
+    diagram.refresh();
   }, 1);
 }
 
@@ -1450,7 +1535,7 @@ var diagram = new ej.diagrams.Diagram({
     ),
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => {},
+  setNodeTemplate: (obj, diagram) => { },
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     switch (args.item.properties.text) {
@@ -1599,7 +1684,7 @@ var diagram = new ej.diagrams.Diagram({
   contextMenuOpen: function (args) {
     let bpmnShape =
       !diagram?.selectedItems?.nodes[0]?.addInfo &&
-      diagram?.selectedItems?.nodes[0]?.children?.length > 0
+        diagram?.selectedItems?.nodes[0]?.children?.length > 0
         ? diagram.getObject(diagram.selectedItems.nodes[0].children[0])
         : diagram.selectedItems.nodes[0];
     // console.log(bpmnShape)
@@ -1659,7 +1744,7 @@ var diagram = new ej.diagrams.Diagram({
       onDrogNodeTableComm();
     }
     if (args.element.id.startsWith("mainArea")) {
-      onDrogMainArea();
+      onDrogMainArea(args);
     }
     dropGrouped(args.element, args.target);
   },
@@ -2121,7 +2206,11 @@ function openModal(textHeader, id, functionApply, node) {
   confirmDialogObj.appendTo("#confirmDialog");
   confirmDialogObjSub = confirmDialogObj;
 }
-
+function drawStringOptionsHtml(value, name) {
+  return `
+    <option value="${value}">${name}</option>
+  `
+}
 function onGetHtmlDialog(id) {
   if (id === "dialogContinuityPerson") {
     return `<div id="dialogContinuityPerson" class="dialog-group-of-people">
@@ -2166,25 +2255,29 @@ function onGetHtmlDialog(id) {
           <div class="m-b-20">Types</div>
           <div class="d-flex justify-content-space-between m-b-20">
             <div class="d-flex">
-              <input type="radio" name="colors" id="house" class="m-r-4" />
+              <input type="radio" name="colors" id="dialogMainAreahouse" checked="checked" class="m-r-4" />
               <div>House</div>
             </div>
             <div class="d-flex">
-              <input type="radio" name="colors" id="map" class="m-r-4" />
+              <input type="radio" name="colors" id="dialogMainAreamap" class="m-r-4" />
               <div>Map</div>
             </div>
             <div class="d-flex">
-              <input type="radio" name="colors" id="regular" class="m-r-4" />
-              <div>Regular</div>
+              <input type="radio" name="colors" id="dialogMainArearegular" class="m-r-4" />
+              <div>Rectangle</div>
             </div>
             <div class="d-flex">
-              <input type="radio" name="colors" id="regularwithmap" class="m-r-4" />
-              <div>Regular With Map</div>
+              <input type="radio" name="colors" id="dialogMainArearegularwithmap" class="m-r-4" />
+              <div>Rectangle With Map</div>
             </div>
           </div>
-          <div class="d-flex">
-            <div>Numbers</div>
-            <input class="w-100" type="number" id="input-group-or-add-entities" value="1"/>
+          <div class="d-flex"  id="dialogMainAreaValueWrap">
+            <div style="margin-right: 5px">Numbers</div>
+            <input class="w-100" type="number" id="dialogMainAreaValue" value="1"/>
+          </div>
+          <div class="d-flex" id="dialogMainArea346432">
+            <div style="margin-right: 5px">Locations</div>
+            <div id="dialogMainAreaValueSelect"></div>
           </div>
         </div>
       </div>
