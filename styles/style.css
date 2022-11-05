@@ -524,7 +524,8 @@ ul {
 #dialogGroupofPeople,
 #dialogNodeTableComm,
 #dialogContinuityPerson,
-#dialogMainArea {
+#dialogMainArea,
+#dialogLabel {
     padding: 8px;
     background: #0d6efd59;
 }

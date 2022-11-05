@@ -1123,7 +1123,6 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
       },
 
       style: annotation.style !== undefined ? annotation.style : null,
-
       sourcePoint: {
         x: -5,
         y: -5,

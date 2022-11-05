@@ -23,9 +23,16 @@ let stability = getTheoryStability();
 let thoerylabel = getTheoryLabel();
 let quickTheory = getQuickTheory();
 let operatorTheory = getOperatorTheory();
-fetch('https://restcountries.com/v3.1/all').then(a => a.json()).then((r) => {
-  localStorage.setItem('location_country', JSON.stringify(r.map((a, index) => ({ id: index + 1, name: a.name.common }))))
-})
+fetch("https://restcountries.com/v3.1/all")
+  .then((a) => a.json())
+  .then((r) => {
+    localStorage.setItem(
+      "location_country",
+      JSON.stringify(
+        r.map((a, index) => ({ id: index + 1, name: a.name.common }))
+      )
+    );
+  });
 let allShapes = []
   .concat(persons)
   .concat(communication)
@@ -484,7 +491,6 @@ function getAnnotationAddPartToApplication(id) {
 }
 
 function getTypeAddPartToApplication(id) {
-  console.log(id);
   const listIdGroupSub = [
     "applicationaddsubtoapplication",
     "commfunctionaddpartoffunction",
@@ -518,6 +524,17 @@ function onDrogGroupsOfPeopleNode(args) {
     diagram.remove(args.target);
     diagram.dataBind();
   }, 100);
+}
+
+function labelProperty(args) {
+  openModal("Label Property", "labeltocover", onClicklabelProperty);
+}
+
+function onClicklabelProperty() {
+  const itemSelector = diagram.selectedItems.properties.nodes[0];
+  console.log(itemSelector);
+  diagram.remove(diagram.selectedItems.nodes[0]);
+  hiddenModal();
 }
 
 function drawGroupOfPeople(args) {
@@ -1009,64 +1026,70 @@ function onClickAllowCross() {
 }
 
 function onDrogMainArea(a) {
-  let country = localStorage.getItem('location_country') ? JSON.parse(localStorage.getItem('location_country')) : [];
+  let country = localStorage.getItem("location_country")
+    ? JSON.parse(localStorage.getItem("location_country"))
+    : [];
   // let stringRen = country.map(a => drawStringOptionsHtml(a.id, a.name)).join(' ')
   let dropDownListObject = new ej.dropdowns.MultiSelect({
-    id: 'dialogMainAreaValueSelectWrap',
+    id: "dialogMainAreaValueSelectWrap",
     //set the data to dataSource property
-    dataSource: country.map(a => a.name),
+    dataSource: country.map((a) => a.name),
     // set placeholder to DropDownList input element
     placeholder: "Select country",
   });
-  openModal("Main Area", "dialogMainArea", onClickApplyMainArea, dropDownListObject);
+  openModal(
+    "Main Area",
+    "dialogMainArea",
+    onClickApplyMainArea,
+    dropDownListObject
+  );
   setTimeout(() => {
     let dialogMainAreahouse = $(`#dialogMainAreahouse`);
     let dialogMainAreamap = $(`#dialogMainAreamap`);
     let dialogMainArearegular = $(`#dialogMainArearegular`);
     let dialogMainArearegularwithmap = $(`#dialogMainArearegularwithmap`);
     let dialogMainAreaValue = $("#dialogMainAreaValueWrap");
-    let dialogMainAreaValueSelect = $("#dialogMainAreaValueSelect")
+    let dialogMainAreaValueSelect = $("#dialogMainAreaValueSelect");
     // initialize DropDownList component
 
     // render initialized DropDownList
-    dropDownListObject.appendTo('#dialogMainAreaValueSelect');
-    $('.e-multiselect').hide();
+    dropDownListObject.appendTo("#dialogMainAreaValueSelect");
+    $(".e-multiselect").hide();
     let dialogMainAreaValueSelect2 = $("#dialogMainArea346432");
-    dialogMainAreaValueSelect2.addClass('d-none');
+    dialogMainAreaValueSelect2.addClass("d-none");
     dialogMainAreahouse.change(function () {
-      if ($(this).prop('checked')) {
-        dialogMainAreaValue.removeClass('d-none');
+      if ($(this).prop("checked")) {
+        dialogMainAreaValue.removeClass("d-none");
         dialogMainAreaValueSelect.hide();
-        dialogMainAreaValueSelect2.addClass('d-none');
-        $('.e-multiselect').hide();
+        dialogMainAreaValueSelect2.addClass("d-none");
+        $(".e-multiselect").hide();
       }
     });
     dialogMainAreamap.change(function () {
-      if ($(this).prop('checked')) {
-        dialogMainAreaValue.addClass('d-none');
+      if ($(this).prop("checked")) {
+        dialogMainAreaValue.addClass("d-none");
         dialogMainAreaValueSelect.hide();
-        dialogMainAreaValueSelect2.removeClass('d-none');
-        $('.e-multiselect').show();
+        dialogMainAreaValueSelect2.removeClass("d-none");
+        $(".e-multiselect").show();
       }
     });
     dialogMainArearegular.change(function () {
-      if ($(this).prop('checked')) {
-        dialogMainAreaValue.removeClass('d-none');
+      if ($(this).prop("checked")) {
+        dialogMainAreaValue.removeClass("d-none");
         dialogMainAreaValueSelect.hide();
-        dialogMainAreaValueSelect2.addClass('d-none');
-        $('.e-multiselect').hide();
+        dialogMainAreaValueSelect2.addClass("d-none");
+        $(".e-multiselect").hide();
       }
     });
     dialogMainArearegularwithmap.change(function () {
-      if ($(this).prop('checked')) {
-        dialogMainAreaValue.addClass('d-none');
+      if ($(this).prop("checked")) {
+        dialogMainAreaValue.addClass("d-none");
         dialogMainAreaValueSelect.hide();
-        dialogMainAreaValueSelect2.removeClass('d-none');
-        $('.e-multiselect').show();
-
+        dialogMainAreaValueSelect2.removeClass("d-none");
+        $(".e-multiselect").show();
       }
     });
-  }, 100)
+  }, 100);
 }
 
 function onClickApplyMainArea() {
@@ -1083,11 +1106,14 @@ function onClickApplyMainArea() {
   mainArea.annotation.width = undefined;
   let findItem = drawShape(mainArea);
   findItem.height = findItem.height * 2;
-  let value = document.getElementById('dialogMainAreaValueSelect').ej2_instances[0].value;
+  let value = document.getElementById("dialogMainAreaValueSelect")
+    .ej2_instances[0].value;
   if (dialogMainAreahouse.prop("checked")) {
     diagram.dataBind();
     for (let index = 1; index <= dialogMainAreaValue.val(); index++) {
-      let house = drawShape(areaData.find((a) => a.id === "siteOfOperation" && a.type === 'House'));
+      let house = drawShape(
+        areaData.find((a) => a.id === "siteOfOperation" && a.type === "House")
+      );
       house.id += randomId() + index;
       house.width = house.width / 2;
       house.height = house.height / 2;
@@ -1096,17 +1122,21 @@ function onClickApplyMainArea() {
       dropGrouped(houseAdd, selected, true);
     }
   } else if (dialogMainAreamap.prop("checked")) {
-    value.forEach(v => {
-      let house = drawShape(areaData.find((a) => a.id === "locationOfOperation"));
+    value.forEach((v) => {
+      let house = drawShape(
+        areaData.find((a) => a.id === "locationOfOperation")
+      );
       house.id += randomId();
-      house.annotations[0].content = v
+      house.annotations[0].content = v;
       let houseAdd = diagram.add(house);
       // diagram.dataBind();
       dropGrouped(houseAdd, selected, true);
     });
   } else if (dialogMainArearegular.prop("checked")) {
     for (let index = 1; index <= dialogMainAreaValue.val(); index++) {
-      let house = drawShape(areaData.find((a) => a.id === "locationOfOperation"));
+      let house = drawShape(
+        areaData.find((a) => a.id === "locationOfOperation")
+      );
       house.id += randomId() + index;
       // house.annotations[0].content = "House"
       let houseAdd = diagram.add(house);
@@ -1114,10 +1144,12 @@ function onClickApplyMainArea() {
       dropGrouped(houseAdd, selected, true);
     }
   } else if (dialogMainArearegularwithmap.prop("checked")) {
-    value.forEach(v => {
-      let house = drawShape(areaData.find((a) => a.id === "locationOfOperation"));
+    value.forEach((v) => {
+      let house = drawShape(
+        areaData.find((a) => a.id === "locationOfOperation")
+      );
       house.id += randomId();
-      house.annotations[0].content = v
+      house.annotations[0].content = v;
       let houseAdd = diagram.add(house);
       // diagram.dataBind();
       dropGrouped(houseAdd, selected, true);
@@ -1535,7 +1567,7 @@ var diagram = new ej.diagrams.Diagram({
     ),
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => { },
+  setNodeTemplate: (obj, diagram) => {},
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     switch (args.item.properties.text) {
@@ -1684,7 +1716,7 @@ var diagram = new ej.diagrams.Diagram({
   contextMenuOpen: function (args) {
     let bpmnShape =
       !diagram?.selectedItems?.nodes[0]?.addInfo &&
-        diagram?.selectedItems?.nodes[0]?.children?.length > 0
+      diagram?.selectedItems?.nodes[0]?.children?.length > 0
         ? diagram.getObject(diagram.selectedItems.nodes[0].children[0])
         : diagram.selectedItems.nodes[0];
     // console.log(bpmnShape)
@@ -1734,18 +1766,25 @@ var diagram = new ej.diagrams.Diagram({
   },
   drop: function (args) {
     idElementActive = args.element.id;
-    if (args.element.id.startsWith("groupOfPeople")) {
+    if (idElementActive.startsWith("groupOfPeople")) {
       onDrogGroupsOfPeopleNode(args);
     }
-    if (args.element.id.startsWith("continuityPerson")) {
+    if (idElementActive.startsWith("continuityPerson")) {
       onDrogContinuityPerson(args);
     }
-    if (args.element.id.startsWith("nodeTableComm")) {
+    if (idElementActive.startsWith("nodeTableComm")) {
       onDrogNodeTableComm();
     }
-    if (args.element.id.startsWith("mainArea")) {
+    if (idElementActive.startsWith("mainArea")) {
       onDrogMainArea(args);
     }
+    if (
+      idElementActive.startsWith("pointTo") ||
+      idElementActive.startsWith("giveRiseTo")
+    ) {
+      labelProperty(args);
+    }
+    console.log(idElementActive);
     dropGrouped(args.element, args.target);
   },
 });
@@ -2209,14 +2248,14 @@ function openModal(textHeader, id, functionApply, node) {
 function drawStringOptionsHtml(value, name) {
   return `
     <option value="${value}">${name}</option>
-  `
+  `;
 }
 function onGetHtmlDialog(id) {
   if (id === "dialogContinuityPerson") {
     return `<div id="dialogContinuityPerson" class="dialog-group-of-people">
     <div class="dialog-group-of-people-content">
       <div class="d-flex m-b-8">
-        <img src="image//optionmix.png" alt="" />
+        <img src="image/optionmix.png" alt="" />
         <div>Continuity Property</div>
       </div>
       <div class="d-flex m-t-8">
@@ -2286,7 +2325,6 @@ function onGetHtmlDialog(id) {
   if (id === "dialogGroupofPeople") {
     return `<div id="dialogGroupofPeople" class="dialog-group-of-people">
     <div class="dialog-group-of-people-content">
-      <div class="m-b-8 line-height-20">Group Of People</div>
       <div class="d-flex m-b-8 line-height-20">
         <div class="w-112px">Options</div>
         <select class="w-200px" id="dialogGroupofPeopleOptions">
@@ -2314,6 +2352,55 @@ function onGetHtmlDialog(id) {
       <div class="d-flex m-b-8 line-height-20">
         <input type="checkbox" id="dialogGroupofPeoplehasFrame" name="dialogGroupofPeoplehasFrame">
         <label class="m-l-8" for="dialogGroupofPeoplehasFrame"> Has frame</label>
+      </div>
+    </div>
+  </div>`;
+  }
+
+  if (id === "labeltocover") {
+    return `<div id="dialogLabel" class="dialog-group-of-people">
+    <div class="dialog-group-of-people-content">
+      <div class="d-flex m-t-8 m-b-8">
+        <div class="w-112px">Label Text</div>
+        <select class="w-200px">
+          <option id="option1" selected value="Point To">Point To</option>
+          <option id="option2" value="Define From">Define From</option>
+          <option id="option3" value="Define By">Define By</option>
+          <option id="option4" value="Map to">Map to</option>
+          <option id="option5" value="Mean">Mean</option>
+          <option id="option6" value="Identify">Identify</option>
+        </select>
+      </div>
+      <div class="d-flex m-t-8 m-b-8">
+        <div class="w-112px">Label Text</div>
+        <select class="w-200px">
+          <option id="option1" selected value="Not Point To">
+            Not Point To
+          </option>
+          <option id="option2" value="Not Define From">
+            Not Define From
+          </option>
+          <option id="option3" value="Not Define By">Not Define By</option>
+          <option id="option4" value="Not Map to">Not Map to</option>
+          <option id="option5" value="Not Mean">Not Mean</option>
+          <option id="option6" value="Not Identify">Not Identify</option>
+        </select>
+      </div>
+      <div class="d-flex m-b-8 line-height-20">
+        <input
+          type="checkbox"
+          id="negateText"
+          name="negateText"
+        />
+        <label class="m-l-8">Negate Text</label>
+      </div>
+      <div class="d-flex m-b-8 line-height-20">
+        <input
+          type="checkbox"
+          id="notNegateText"
+          name="notNegateText"
+        />
+        <label class="m-l-8">Not Negate Text</label>
       </div>
     </div>
   </div>`;
