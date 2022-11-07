@@ -528,43 +528,60 @@ function onDrogGroupsOfPeopleNode(args) {
 
 function labelProperty(args) {
   openModal("Label Property", "labeltocover", onClicklabelProperty);
-  onChangeListItemLabelText();
+  for (const i of listItem[
+    idElementActive.slice(0, idElementActive.length - 5)
+  ]) {
+    document.getElementById("selected-label-text1").options.add(new Option(i));
+    document
+      .getElementById("selected-label-text2")
+      .options.add(new Option("Not " + i));
+  }
 }
 
 function onClicklabelProperty() {
   hiddenModal();
 }
 
-function onChangeListItemLabelText() {
-  if (idElementActive.startsWith("pointTo")) {
-    document.getElementById("selected-label-text1").className =
-      "w-200px list-item-pointTo";
-  }
-  if (idElementActive.startsWith("giveRiseTo")) {
-    document.getElementById("selected-label-text1").className =
-      "w-200px list-item-giveRiseTo";
-  }
-  if (idElementActive.startsWith("relatedTo")) {
-    document.getElementById("selected-label-text1").className =
-      "w-200px list-item-relatedTo";
-  }
-  if (idElementActive.startsWith("by")) {
-    document.getElementById("selected-label-text1").className =
-      "w-200px list-item-by";
-  }
-  if (idElementActive.startsWith("depend")) {
-    document.getElementById("selected-label-text1").className =
-      "w-200px list-item-depend";
-  }
-  if (idElementActive.startsWith("agree")) {
-    document.getElementById("selected-label-text1").className =
-      "w-200px list-item-agree";
-  }
-  if (idElementActive.startsWith("match")) {
-    document.getElementById("selected-label-text1").className =
-      "w-200px list-item-match";
-  }
-}
+listItem = {
+  pointTo: [
+    "Point To",
+    "Define From",
+    "Define By",
+    "Map to",
+    "Mean",
+    "Identify",
+  ],
+  giveRiseTo: [
+    "Give Rise",
+    "Derive From",
+    "Develop From",
+    "Derive By",
+    "Because",
+    "Cause",
+    "Cause By",
+  ],
+  relatedTo: [
+    "Relate to",
+    "Link",
+    "Connect",
+    "Part of",
+    "Because",
+    "Have",
+    "Contain",
+  ],
+  by: ["By", "By this", "By that"],
+  depend: ["Depend", "Related"],
+  agree: ["Agree", "Match", "Related"],
+  match: ["Match", "Relate", "Agree", "Go with", "Map"],
+  have: ["Have", "Include", "Contain", "Part of", "Exits with", "Given with"],
+  Interact: ["Interact", "Use"],
+  Use: ["Use"],
+  compare: ["Compare"],
+  attach: ["Attach"],
+  identify: ["Identify"],
+  define: ["Define"],
+  visuallyIdentify: ["Visually Identify"],
+};
 
 function drawGroupOfPeople(args) {
   let target = { offsetX: args.target.offsetX, offsetY: args.target.offsetY };
@@ -1683,7 +1700,6 @@ var diagram = new ej.diagrams.Diagram({
       "applicationreplaceapplicationwithsketch",
     ];
     let idCheck = args.item.id.toLowerCase();
-    console.log(idCheck);
     if (listIdNotEvent.includes(idCheck)) {
       return;
     }
@@ -1808,20 +1824,19 @@ var diagram = new ej.diagrams.Diagram({
       onDrogMainArea(args);
     }
     console.log(idElementActive);
-    if (
-      idElementActive.startsWith("pointTo") ||
-      idElementActive.startsWith("giveRiseTo") ||
-      idElementActive.startsWith("relatedTo") ||
-      idElementActive.startsWith("by") ||
-      idElementActive.startsWith("depend") ||
-      idElementActive.startsWith("agree") ||
-      idElementActive.startsWith("match")
-    ) {
+    if (onCheckOpenModalLabelText()) {
       labelProperty(args);
     }
     dropGrouped(args.element, args.target);
   },
 });
+
+function onCheckOpenModalLabelText() {
+  for (const i of Object.keys(listItem)) {
+    if (idElementActive.startsWith(i)) return true;
+  }
+  return false;
+}
 
 const listIdClick = [
   "applicationaddsubtoapplication",
@@ -2396,56 +2411,11 @@ function onGetHtmlDialog(id) {
       <div class="d-flex m-t-8 m-b-8">
         <div class="w-112px">Label Text</div>
         <select class="w-200px" id="selected-label-text1">
-          <option id="option1" value="Point To">Point To</option>
-          <option id="option2" value="Define From">Define From</option>
-          <option id="option3" value="Define By">Define By</option>
-          <option id="option4" value="Map to">Map to</option>
-          <option id="option5" value="Mean">Mean</option>
-          <option id="option6" value="Identify">Identify</option>
-          <option id="option7" value="Give Rise">Give Rise</option>
-          <option id="option8" value="Derive From">Derive From</option>
-          <option id="option9" value="Develop From">Develop From</option>
-          <option id="option10" value="Because">Because</option>
-          <option id="option11" value="Cause">Cause</option>
-          <option id="option12" value="Cause By">Cause By</option>
-          <option id="option13" value="Relate to">Relate to</option>
-          <option id="option14" value="Link">Link</option>
-          <option id="option15" value="Connect">Connect</option>
-          <option id="option16" value="Part of">Part of</option>
-          <option id="option17" value="Have">Have</option>
-          <option id="option18" value="Contain">Contain</option>
-          <option id="option19" value="By">By</option>
-          <option id="option20" value="By this">By this</option>
-          <option id="option21" value="By that">By that</option>
-          <option id="option22" value="Depend">Depend</option>
-          <option id="option23" value="Related">Related</option>
-          <option id="option24" value="Agree">Agree</option>
-          <option id="option25" value="Match">Match</option>
-          <option id="option26" value="Go with">Go with</option>
-          <option id="option27" value="Include">Include</option>
-          <option id="option28" value="Exits with">Exits with</option>
-          <option id="option29" value="Interact">Interact</option>
-          <option id="option30" value="Use">Use</option>
-          <option id="option31" value="Compare">Compare</option>
-          <option id="option32" value="Attach">Attach</option>
-          <option id="option33" value="Visually Identify">Visually Identify</option>
-          <option id="option34" value="Relate">Relate</option>
-          <option id="option35" value="Map">Map</option>
         </select>
       </div>
       <div class="d-flex m-t-8 m-b-8">
         <div class="w-112px">Label Text</div>
-        <select class="w-200px">
-          <option id="option1" selected value="Not Point To">
-            Not Point To
-          </option>
-          <option id="option2" value="Not Define From">
-            Not Define From
-          </option>
-          <option id="option3" value="Not Define By">Not Define By</option>
-          <option id="option4" value="Not Map to">Not Map to</option>
-          <option id="option5" value="Not Mean">Not Mean</option>
-          <option id="option6" value="Not Identify">Not Identify</option>
+        <select class="w-200px" id="selected-label-text2">
         </select>
       </div>
       <div class="d-flex m-b-8 line-height-20">
