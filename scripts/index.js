@@ -528,13 +528,42 @@ function onDrogGroupsOfPeopleNode(args) {
 
 function labelProperty(args) {
   openModal("Label Property", "labeltocover", onClicklabelProperty);
+  onChangeListItemLabelText();
 }
 
 function onClicklabelProperty() {
-  const itemSelector = diagram.selectedItems.properties.nodes[0];
-  console.log(itemSelector);
-  diagram.remove(diagram.selectedItems.nodes[0]);
   hiddenModal();
+}
+
+function onChangeListItemLabelText() {
+  if (idElementActive.startsWith("pointTo")) {
+    document.getElementById("selected-label-text1").className =
+      "w-200px list-item-pointTo";
+  }
+  if (idElementActive.startsWith("giveRiseTo")) {
+    document.getElementById("selected-label-text1").className =
+      "w-200px list-item-giveRiseTo";
+  }
+  if (idElementActive.startsWith("relatedTo")) {
+    document.getElementById("selected-label-text1").className =
+      "w-200px list-item-relatedTo";
+  }
+  if (idElementActive.startsWith("by")) {
+    document.getElementById("selected-label-text1").className =
+      "w-200px list-item-by";
+  }
+  if (idElementActive.startsWith("depend")) {
+    document.getElementById("selected-label-text1").className =
+      "w-200px list-item-depend";
+  }
+  if (idElementActive.startsWith("agree")) {
+    document.getElementById("selected-label-text1").className =
+      "w-200px list-item-agree";
+  }
+  if (idElementActive.startsWith("match")) {
+    document.getElementById("selected-label-text1").className =
+      "w-200px list-item-match";
+  }
 }
 
 function drawGroupOfPeople(args) {
@@ -1778,13 +1807,18 @@ var diagram = new ej.diagrams.Diagram({
     if (idElementActive.startsWith("mainArea")) {
       onDrogMainArea(args);
     }
+    console.log(idElementActive);
     if (
       idElementActive.startsWith("pointTo") ||
-      idElementActive.startsWith("giveRiseTo")
+      idElementActive.startsWith("giveRiseTo") ||
+      idElementActive.startsWith("relatedTo") ||
+      idElementActive.startsWith("by") ||
+      idElementActive.startsWith("depend") ||
+      idElementActive.startsWith("agree") ||
+      idElementActive.startsWith("match")
     ) {
       labelProperty(args);
     }
-    console.log(idElementActive);
     dropGrouped(args.element, args.target);
   },
 });
@@ -2356,19 +2390,47 @@ function onGetHtmlDialog(id) {
     </div>
   </div>`;
   }
-
   if (id === "labeltocover") {
     return `<div id="dialogLabel" class="dialog-group-of-people">
     <div class="dialog-group-of-people-content">
       <div class="d-flex m-t-8 m-b-8">
         <div class="w-112px">Label Text</div>
-        <select class="w-200px">
-          <option id="option1" selected value="Point To">Point To</option>
+        <select class="w-200px" id="selected-label-text1">
+          <option id="option1" value="Point To">Point To</option>
           <option id="option2" value="Define From">Define From</option>
           <option id="option3" value="Define By">Define By</option>
           <option id="option4" value="Map to">Map to</option>
           <option id="option5" value="Mean">Mean</option>
           <option id="option6" value="Identify">Identify</option>
+          <option id="option7" value="Give Rise">Give Rise</option>
+          <option id="option8" value="Derive From">Derive From</option>
+          <option id="option9" value="Develop From">Develop From</option>
+          <option id="option10" value="Because">Because</option>
+          <option id="option11" value="Cause">Cause</option>
+          <option id="option12" value="Cause By">Cause By</option>
+          <option id="option13" value="Relate to">Relate to</option>
+          <option id="option14" value="Link">Link</option>
+          <option id="option15" value="Connect">Connect</option>
+          <option id="option16" value="Part of">Part of</option>
+          <option id="option17" value="Have">Have</option>
+          <option id="option18" value="Contain">Contain</option>
+          <option id="option19" value="By">By</option>
+          <option id="option20" value="By this">By this</option>
+          <option id="option21" value="By that">By that</option>
+          <option id="option22" value="Depend">Depend</option>
+          <option id="option23" value="Related">Related</option>
+          <option id="option24" value="Agree">Agree</option>
+          <option id="option25" value="Match">Match</option>
+          <option id="option26" value="Go with">Go with</option>
+          <option id="option27" value="Include">Include</option>
+          <option id="option28" value="Exits with">Exits with</option>
+          <option id="option29" value="Interact">Interact</option>
+          <option id="option30" value="Use">Use</option>
+          <option id="option31" value="Compare">Compare</option>
+          <option id="option32" value="Attach">Attach</option>
+          <option id="option33" value="Visually Identify">Visually Identify</option>
+          <option id="option34" value="Relate">Relate</option>
+          <option id="option35" value="Map">Map</option>
         </select>
       </div>
       <div class="d-flex m-t-8 m-b-8">
