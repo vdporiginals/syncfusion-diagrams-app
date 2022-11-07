@@ -1097,6 +1097,24 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
       width: 550,
     };
   } else if (type === "Arrow") {
+    let sourcePoint = {
+      x: -4,
+      y: -5,
+    };
+    let targetPoint = {
+      x: -5,
+      y: -5,
+    };
+    if (id === "giveRiseTo" || id === "errorToProblem") {
+      sourcePoint = {
+        x: -5,
+        y: -5,
+      };
+      targetPoint = {
+        x: -5,
+        y: -4,
+      };
+    }
     node = {
       id,
       addInfo: [
@@ -1114,24 +1132,15 @@ function drawShape({ id, title, annotation, toolTip, type, menuId }) {
             : "None",
         style: annotation.style !== undefined ? annotation.style : null,
       },
-
       sourceDecorator: {
         shape:
           annotation.shape.source !== undefined
             ? annotation.shape.source
             : "None",
       },
-
       style: annotation.style !== undefined ? annotation.style : null,
-      sourcePoint: {
-        x: -4,
-        y: -5,
-      },
-
-      targetPoint: {
-        x: -5,
-        y: -5,
-      },
+      sourcePoint,
+      targetPoint,
     };
   } else if (type === "House") {
     node = {
