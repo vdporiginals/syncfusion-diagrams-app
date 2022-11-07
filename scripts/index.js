@@ -526,7 +526,7 @@ function onDrogGroupsOfPeopleNode(args) {
   }, 100);
 }
 
-function labelProperty(args) {
+function labelProperty() {
   openModal("Label Property", "labeltocover", onClicklabelProperty);
   for (const i of listItem[
     idElementActive.slice(0, idElementActive.length - 5)
@@ -539,6 +539,11 @@ function labelProperty(args) {
 }
 
 function onClicklabelProperty() {
+  let item = diagram.selectedItems.properties.connectors[0];
+  item.title = `Not ${item.title}`;
+  const valueText = document.getElementById("selected-label-text2").value;
+  item.annotations[0].content = valueText;
+  diagram.dataBind();
   hiddenModal();
 }
 
@@ -1825,7 +1830,7 @@ var diagram = new ej.diagrams.Diagram({
     }
     console.log(idElementActive);
     if (onCheckOpenModalLabelText()) {
-      labelProperty(args);
+      labelProperty();
     }
     dropGrouped(args.element, args.target);
   },
