@@ -408,33 +408,30 @@ var tabs = [
                 id: "container",
                 text: "Container",
                 toolTip: "Container",
-                width: "75px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-click",
+                  prefixIcon: "icon-40 container-menu-insert",
                 },
               },
               {
                 id: "list",
                 text: "List",
                 toolTip: "List",
-                width: "75px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-click",
+                  prefixIcon: "icon-40 list-menu-insert",
                 },
               },
               {
                 id: "picture",
                 text: "Picture",
                 toolTip: "Picture",
-                width: "75px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-click",
+                  prefixIcon: "icon-40 picture-menu-insert",
                 },
               },
             ],
@@ -450,11 +447,10 @@ var tabs = [
                 id: "fromclipboard",
                 text: "From Clipboard",
                 toolTip: "From Clipboard",
-                width: "56px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-website-1",
+                  prefixIcon: "copy-clipboard icon-40",
                 },
               },
             ],
@@ -470,66 +466,60 @@ var tabs = [
                 id: "function",
                 text: "Function",
                 toolTip: "Function",
-                width: "100px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-website-1",
+                  prefixIcon: "copy-clipboard icon-40",
                 },
               },
               {
                 id: "application",
                 text: "Application",
                 toolTip: "Application",
-                width: "100px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-website-1",
+                  prefixIcon: "icon-40 icon-paste",
                 },
               },
               {
                 id: "Result",
                 text: "Result",
                 toolTip: "Result",
-                width: "100px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-website-1",
+                  prefixIcon: "icon-40 icon-paste",
                 },
               },
               {
                 id: "Collection",
                 text: "Collection",
                 toolTip: "Collection",
-                width: "100px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-website-1",
+                  prefixIcon: "copy-clipboard icon-40",
                 },
               },
               {
                 id: "Dictionary",
                 text: "Dictionary",
                 toolTip: "Dictionary",
-                width: "100px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-website-1",
+                  prefixIcon: "icon-40 icon-paste",
                 },
               },
               {
                 id: "mainarea",
                 text: "Main Area",
                 toolTip: "Main Area",
-                width: "100px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-website-1",
+                  prefixIcon: "icon-40 icon-paste",
                 },
               },
             ],
@@ -687,11 +677,10 @@ var tabs = [
                 id: "selectedEntity",
                 text: "Selected Entity",
                 toolTip: "Selected Entity",
-                width: "75px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-click",
+                  prefixIcon: "icon-40 selectedentityedit",
                 },
               },
             ],
@@ -707,11 +696,55 @@ var tabs = [
                 id: "undoLastAction1",
                 text: "Undo Last Action",
                 toolTip: "Undo Last Action",
-                width: "100px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-back-arrow-large",
+                  prefixIcon: "icon-40 undolastactionedit",
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "project",
+    text: "Project",
+    groups: [
+      {
+        text: "Start",
+        content: [
+          {
+            groups: [
+              {
+                id: "startAProject",
+                text: "Start a Project",
+                toolTip: "Start a Project",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 startproject",
+                },
+              },
+              {
+                id: "configureWarningMessage",
+                text: "Configure Warning Message",
+                toolTip: "Configure Warning Message",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 error",
+                },
+              },
+              {
+                id: "applicationsetting",
+                text: "Application Setting",
+                toolTip: "Application Setting",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 optionmix",
                 },
               },
             ],
@@ -719,19 +752,166 @@ var tabs = [
         ],
       },
       {
-        text: "Project Element",
+        text: "Video & Image",
         content: [
           {
             groups: [
               {
-                id: "projectInformation",
-                text: "Project Information",
-                toolTip: "Project Information",
-                width: "100px",
+                id: "captureimage",
+                text: "Capture Image",
+                toolTip: "Capture Image",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-website-1",
+                  prefixIcon: "icon-40 captureimageproject",
+                },
+              },
+              {
+                id: "reOpenProject",
+                text: "Reopen Project",
+                toolTip: "Reopen Project",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 editimageproject",
+                },
+              },
+              {
+                id: "reconrdvideoproject",
+                text: "Record Video",
+                toolTip: "Record Video",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 reconrdvideoproject",
+                },
+              },
+              {
+                id: "editvideoproject",
+                text: "Edit Video",
+                toolTip: "Edit Video",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 editvideoproject",
+                },
+              },
+              {
+                id: "recordaudioproject",
+                text: "Record Audio",
+                toolTip: "Record Audio",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 recordaudioproject",
+                },
+              },
+              {
+                id: "settingproject",
+                text: "Settings",
+                toolTip: "Settings",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 settingproject",
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: "Simalation",
+        content: [
+          {
+            groups: [
+              {
+                id: "simulate",
+                text: "Simulate",
+                toolTip: "Simulate",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 simulationproject",
+                },
+              },
+              {
+                id: "debug",
+                text: "Debug",
+                toolTip: "Debug",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 simulationproject",
+                },
+              },
+              {
+                id: "Step Into",
+                text: "Step Into",
+                toolTip: "Step Into",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 simulationproject",
+                },
+              },
+              {
+                id: "Abort",
+                text: "Abort",
+                toolTip: "Abort",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 simulationproject",
+                },
+              },
+              {
+                id: "Stop",
+                text: "Stop",
+                toolTip: "Stop",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 simulationproject",
+                },
+              },
+              {
+                id: "Simulation Setting",
+                text: "Simulation Setting",
+                toolTip: "Simulation Setting",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 settingproject",
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: "Finish",
+        content: [
+          {
+            groups: [
+              {
+                id: "Close Project",
+                text: "Close Project",
+                toolTip: "Close Project",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 closeproject",
+                },
+              },
+              {
+                id: "reOpenProject",
+                text: "Reopen Project",
+                toolTip: "Reopen Project",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 editimageproject",
                 },
               },
             ],
@@ -753,11 +933,10 @@ var tabs = [
                 id: "projectInformation",
                 text: "Project Information",
                 toolTip: "Project Information",
-                width: "100px",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-website-1",
+                  prefixIcon: "icon-40 icon-paste",
                 },
               },
             ],
@@ -868,74 +1047,6 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "flaticon-loupe",
-                },
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "project",
-    text: "Project",
-    groups: [
-      {
-        text: "Start",
-        content: [
-          {
-            groups: [
-              {
-                id: "startAProject",
-                text: "Start a Project",
-                toolTip: "Start a Project",
-                width: "80px",
-                buttonSettings: {
-                  contentType: ej.ContentType.TextAndImage,
-                  imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-tools",
-                },
-              },
-              {
-                id: "configureWarningMessage",
-                text: "Configure Warning Message",
-                toolTip: "Configure Warning Message",
-                width: "150px",
-                buttonSettings: {
-                  contentType: ej.ContentType.TextAndImage,
-                  imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-exclamation",
-                },
-              },
-            ],
-          },
-        ],
-      },
-      {
-        text: "Finish",
-        content: [
-          {
-            groups: [
-              {
-                id: "closeProject",
-                text: "Close Project",
-                toolTip: "Close Project",
-                width: "80px",
-                buttonSettings: {
-                  contentType: ej.ContentType.TextAndImage,
-                  imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-tools",
-                },
-              },
-              {
-                id: "reOpenProject",
-                text: "Reopen Project",
-                toolTip: "Reopen Project",
-                width: "80px",
-                buttonSettings: {
-                  contentType: ej.ContentType.TextAndImage,
-                  imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-open",
                 },
               },
             ],

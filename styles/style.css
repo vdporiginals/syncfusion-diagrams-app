@@ -609,7 +609,66 @@ ul {
     background-image: url("/image/container-menu-insert.png");
     background-size: cover;
 }
-
+.list-menu-insert {
+    background-image: url("/image/list-menu-insert.png");
+    background-size: cover;
+}
+.picture-menu-insert {
+    background-image: url("/image/picture-menu-insert.png");
+    background-size: cover;
+}
+.selectedentityedit {
+    background-image: url("/image/selectedentityedit.png");
+    background-size: cover;
+}
+.undolastactionedit {
+    background-image: url("/image/undolastactionedit.png");
+    background-size: cover;
+}
+.startproject {
+    background-image: url("/image/startproject.png");
+    background-size: cover;
+}
+.error {
+    background-image: url("/image/error.png");
+    background-size: cover;
+}
+.optionmix {
+    background-image: url("/image/optionmix.png");
+    background-size: cover;
+}
+.captureimageproject {
+    background-image: url("/image/captureimageproject.png");
+    background-size: cover;
+}
+.editimageproject {
+    background-image: url("/image/editimageproject.png");
+    background-size: cover;
+}
+.reconrdvideoproject {
+    background-image: url("/image/reconrdvideoproject.png");
+    background-size: cover;
+}
+.editvideoproject {
+    background-image: url("/image/editvideoproject.png");
+    background-size: cover;
+}
+.recordaudioproject {
+    background-image: url("/image/recordaudioproject.png");
+    background-size: cover;
+}
+.settingproject {
+    background-image: url("/image/settingproject.png");
+    background-size: cover;
+}
+.simulationproject {
+    background-image: url("/image/simulationproject.png");
+    background-size: cover;
+}
+.closeproject {
+    background-image: url("/image/closeproject.png");
+    background-size: cover;
+}
 .icon-40 {
     width: 40px;
     height: 40px;
