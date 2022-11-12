@@ -25,7 +25,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "e-icon flaticon-copy",
+                  prefixIcon: "copy-clipboard icon-40",
                 },
               },
               {
@@ -35,7 +35,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "e-icon flaticon-paste",
+                  prefixIcon: "icon-40 icon-paste",
                 },
               },
               {
@@ -45,7 +45,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "e-icon flaticon-scissors",
+                  prefixIcon: "icon-40 cut-clipboard",
                 },
               },
               {
@@ -55,23 +55,22 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "e-icon flaticon-delete",
+                  prefixIcon: "icon-40 delete-clipboard",
                 },
               },
               {
-                id: "export",
-                text: "Export",
-                toolTip: "Export",
+                id: "copytoclipboard",
+                text: "Copy to Clipboard",
+                toolTip: "Copy to Clipboard",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "e-icon flaticon-share",
+                  prefixIcon: "icon-40 copy-to-clipboard",
                 },
               },
             ],
           },
         ],
-        enableGroupExpander: true,
       },
       {
         text: "Undo Action",
@@ -87,7 +86,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "e-icon flaticon-back-arrow",
+                  prefixIcon: "icon-40 icon-undo",
                 },
               },
             ],
@@ -98,6 +97,42 @@ var tabs = [
         text: "Format",
         alignType: ej.Ribbon.AlignType.Rows,
         content: [
+          {
+            groups: [
+              {
+                id: "leftalign",
+                toolTip: "Left align",
+                buttonSettings: {
+                  contentType: ej.ContentType.ImageOnly,
+                  prefixIcon: "e-icon flaticon-left-align",
+                },
+              },
+              {
+                id: "centeralign",
+                toolTip: "Center align",
+                buttonSettings: {
+                  contentType: ej.ContentType.ImageOnly,
+                  prefixIcon: "e-icon flaticon-center-align",
+                },
+              },
+              {
+                id: "rightalign",
+                toolTip: "Right align",
+                buttonSettings: {
+                  contentType: ej.ContentType.ImageOnly,
+                  prefixIcon: "e-icon flaticon-right-align",
+                },
+              },
+              {
+                id: "menu-burger",
+                toolTip: "Right align",
+                buttonSettings: {
+                  contentType: ej.ContentType.ImageOnly,
+                  prefixIcon: "e-icon menu-burger",
+                },
+              },
+            ],
+          },
           {
             groups: [
               {
@@ -163,42 +198,6 @@ var tabs = [
                   activePrefixIcon: "e-icon flaticon-underlined-text",
                 },
               },
-              {
-                id: "strikeThrough",
-                toolTip: "Strike Through",
-                type: ej.Ribbon.type.toggleButton,
-                toggleButtonSettings: {
-                  contentType: ej.ContentType.ImageOnly,
-                  defaultText: "Strike Thorugh",
-                  activeText: "Strike Through",
-                  defaultPrefixIcon: "e-icon flaticon-strikethrough",
-                  activePrefixIcon: "e-icon flaticon-strikethrough",
-                },
-              },
-              {
-                id: "leftalign",
-                toolTip: "Left align",
-                buttonSettings: {
-                  contentType: ej.ContentType.ImageOnly,
-                  prefixIcon: "e-icon flaticon-left-align",
-                },
-              },
-              {
-                id: "centeralign",
-                toolTip: "Center align",
-                buttonSettings: {
-                  contentType: ej.ContentType.ImageOnly,
-                  prefixIcon: "e-icon flaticon-center-align",
-                },
-              },
-              {
-                id: "rightalign",
-                toolTip: "Right align",
-                buttonSettings: {
-                  contentType: ej.ContentType.ImageOnly,
-                  prefixIcon: "e-icon flaticon-right-align",
-                },
-              },
             ],
           },
         ],
@@ -213,55 +212,50 @@ var tabs = [
                 id: "fill",
                 text: "Fill",
                 toolTip: "Fill",
-                width: 40,
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-bucket-large",
+                  prefixIcon: "icon-40 fill-menu",
                 },
               },
               {
                 id: "line",
                 text: "Line",
                 toolTip: "Line",
-                width: 40,
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-pencil-drawing-a-line-large",
+                  prefixIcon: "line-menu icon-40",
                 },
               },
               {
                 id: "text",
                 text: "Text",
                 toolTip: "Text",
-                width: 40,
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-text-box-large",
+                  prefixIcon: "icon-40 text-menu",
                 },
               },
               {
                 id: "start",
                 text: "Start",
                 toolTip: "Start",
-                width: 40,
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-double-arrow-large",
+                  prefixIcon: "icon-40 start-menu",
                 },
               },
               {
                 id: "end",
                 text: "End",
                 toolTip: "End",
-                width: 40,
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-double-arrow-large",
+                  prefixIcon: "icon-40 end-menu",
                 },
               },
             ],
@@ -281,7 +275,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-cursor",
+                  prefixIcon: "icon-40 point-menu",
                 },
               },
             ],
@@ -295,7 +289,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-capital-a",
+                  prefixIcon: "icon-40 text-menu2",
                 },
               },
             ],
@@ -309,7 +303,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-diagonal-line",
+                  prefixIcon: "icon-40 line-menu2",
                 },
               },
             ],
@@ -367,73 +361,13 @@ var tabs = [
           {
             groups: [
               {
-                id: "straight",
-                text: "Straight",
-                toolTip: "Straight",
+                id: "AutoConnector",
+                text: "Auto Connector",
+                toolTip: "AutoConnector",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-line",
-                },
-              },
-            ],
-          },
-          {
-            groups: [
-              {
-                id: "sidetoside",
-                toolTip: "Side to Side Communication Link",
-                buttonSettings: {
-                  contentType: ej.ContentType.ImageOnly,
-                  prefixIcon: "flaticon-line",
-                },
-              },
-              {
-                id: "toptobottomside",
-                toolTip: "Top to Bottom Side to Side",
-                buttonSettings: {
-                  contentType: ej.ContentType.ImageOnly,
-                  prefixIcon: "flaticon-line",
-                },
-              },
-            ],
-          },
-          {
-            groups: [
-              {
-                id: "lefttoptobottom",
-                toolTip: "Left Top to Bottom Communication Link",
-                buttonSettings: {
-                  contentType: ej.ContentType.ImageOnly,
-                  prefixIcon: "flaticon-line",
-                },
-              },
-              {
-                id: "singledirection",
-                toolTip: "Single Direction Communication Link",
-                buttonSettings: {
-                  contentType: ej.ContentType.ImageOnly,
-                  prefixIcon: "flaticon-right-arrow",
-                },
-              },
-            ],
-          },
-          {
-            groups: [
-              {
-                id: "toptobottomright",
-                toolTip: "Top to Bottom right Communication Link",
-                buttonSettings: {
-                  contentType: ej.ContentType.ImageOnly,
-                  prefixIcon: "flaticon-line",
-                },
-              },
-              {
-                id: "doubledirection",
-                toolTip: "Double Direction Communication Link",
-                buttonSettings: {
-                  contentType: ej.ContentType.ImageOnly,
-                  prefixIcon: "flaticon-double-arrows",
+                  prefixIcon: "icon-40 autoconnector",
                 },
               },
             ],
@@ -452,26 +386,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-website-1",
-                },
-              },
-            ],
-          },
-        ],
-      },
-      {
-        text: "View Site",
-        content: [
-          {
-            groups: [
-              {
-                id: "viewSite",
-                text: "View Site",
-                toolTip: "View Site",
-                buttonSettings: {
-                  contentType: ej.ContentType.TextAndImage,
-                  imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-home-icon-silhouette",
+                  prefixIcon: "icon-40 node-menu",
                 },
               },
             ],
@@ -1646,7 +1561,6 @@ $(function () {
     expandPinSettings: {
       toolTip: "Collapse the Ribbon",
     },
-    // application tab
     allowResizing: true,
     applicationTab: {
       type: ej.Ribbon.applicationTabType.menu,
@@ -1655,7 +1569,6 @@ $(function () {
         openOnClick: true,
       },
     },
-
     tabs: tabs,
     groupExpand: function (args) {
       alert("Expanded");

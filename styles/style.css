@@ -529,3 +529,114 @@ ul {
     padding: 8px;
     background: #0d6efd59;
 }
+.copy-clipboard {
+    background-image: url("/image/clipboardcopy.png");
+    background-size: cover;
+}
+.cut-clipboard {
+    background-image: url("/image/ClipboardCut.png");
+    background-size: cover;
+}
+.delete-clipboard {
+    background-image: url("/image/clipboardelete.png");
+    background-size: cover;
+}
+.icon-paste {
+    background-image: url("/image/icon-paste.jpg");
+    background-size: cover;
+}
+.copy-to-clipboard {
+    background-image: url("/image/copy-to-clipboard.svg");
+    background-size: cover;
+}
+.icon-undo {
+    background-image: url("/image/undo.png");
+    background-size: cover;
+}
+.menu-burger {
+    background-image: url("/image/menu-burger.png");
+    background-size: cover;
+}
+.strikethrough {
+    background-image: url("/image/strikethrough.svg");
+    background-size: cover;
+}
+.fill-menu {
+    background-image: url("/image/fill-menu.png");
+    background-size: cover;
+}
+.line-menu {
+    background-image: url("/image/linemenu.svg");
+    background-size: cover;
+}
+.text-menu {
+    background-image: url("/image/text-menu.svg");
+    background-size: cover;
+}
+.start-menu {
+    background-image: url("/image/start-menu.svg");
+    background-size: cover;
+}
+.end-menu {
+    background-image: url("/image/end-menu.svg");
+    background-size: cover;
+}
+.point-menu {
+    background-image: url("/image/point-menu.svg");
+    background-size: cover;
+}
+.text-menu2 {
+    background-image: url("/image/text-menu2.svg");
+    background-size: cover;
+}
+.line-menu2 {
+    background-image: url("/image/line-menu.svg");
+    background-size: cover;
+}
+.line-menu2 {
+    background-image: url("/image/line-menu.svg");
+    background-size: cover;
+}
+.autoconnector {
+    background-image: url("/image/autoconnector.svg");
+    background-size: cover;
+}
+.node-menu {
+    background-image: url("/image/node-menu.svg");
+    background-size: cover;
+}
+.container-menu-insert {
+    background-image: url("/image/container-menu-insert.png");
+    background-size: cover;
+}
+
+.icon-40 {
+    width: 40px;
+    height: 40px;
+}
+.e-btn .e-icon {
+    padding: 0;
+}
+#Ribbon_home_Format_content {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.e-innerdivchild {
+    display: flex;
+    align-items: center;
+}
+
+#Ribbon_home_Format_2 {
+    display: flex;
+    align-items: center;
+}
+.e-ribGroupContent {
+    height: 70px !important;
+}
+#Ribbon_home_UndoAction {
+    width: auto !important;
+}
+#Ribbon_home_Annotation_4 .e-button,
+#Ribbon_home_Annotation_5 .e-button {
+    padding: 0;
+}
