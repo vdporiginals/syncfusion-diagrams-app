@@ -669,6 +669,10 @@ ul {
     background-image: url("/image/closeproject.png");
     background-size: cover;
 }
+.openproject {
+    background-image: url("/image/openproject.png");
+    background-size: cover;
+}
 .icon-40 {
     width: 40px;
     height: 40px;
