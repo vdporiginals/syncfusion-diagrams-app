@@ -946,7 +946,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "icon-40 icon-paste",
+                  prefixIcon: "icon-40 subfunction",
                 },
               },
               {
@@ -956,7 +956,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "icon-40 icon-paste",
+                  prefixIcon: "icon-40 subapplication",
                 },
               },
               {
@@ -966,7 +966,7 @@ var tabs = [
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "icon-40 icon-paste",
+                  prefixIcon: "icon-40 subresult",
                 },
               },
             ],
@@ -1003,42 +1003,117 @@ var tabs = [
         ],
       },
       {
-        text: "Show Hide Zoom",
+        text: "Show",
         content: [
           {
             groups: [
               {
-                id: "showHide&Model",
-                text: "Show Hide & Models",
-                toolTip: "Show Hide & Models",
-                width: "100px",
+                id: "Show Tooltip",
+                text: "Show Tooltip",
+                toolTip: "Show Tooltip",
                 buttonSettings: {
-                  contentType: ej.ContentType.TextAndImage,
+                  contentType: ej.ContentType.Text,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "flaticon-view",
-                  click: "showHideDialog",
                 },
               },
               {
-                id: "indow",
-                text: "Window",
-                toolTip: "Window",
-                width: "100px",
+                id: "Ruler",
+                text: "Ruler",
+                toolTip: "Ruler",
                 buttonSettings: {
-                  contentType: ej.ContentType.TextAndImage,
+                  contentType: ej.ContentType.Text,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "flaticon-windows-couple",
                 },
               },
               {
-                id: "zoom",
-                text: "Zoom",
-                toolTip: "Zoom",
-                width: "100px",
+                id: "Allow Cross",
+                text: "Allow Cross",
+                toolTip: "Allow Cross",
+                buttonSettings: {
+                  contentType: ej.ContentType.Text,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-windows-couple",
+                },
+              },
+              {
+                id: "Grid",
+                text: "Grid",
+                toolTip: "Grid",
+                buttonSettings: {
+                  contentType: ej.ContentType.Text,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-windows-couple",
+                },
+              },
+              {
+                id: "Image Width Frama",
+                text: "Image Width Frama",
+                toolTip: "Image Width Frama",
+                buttonSettings: {
+                  contentType: ej.ContentType.Text,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-windows-couple",
+                },
+              },
+              {
+                id: "Page Breaks",
+                text: "Page Breaks",
+                toolTip: "Page Breaks",
+                buttonSettings: {
+                  contentType: ej.ContentType.Text,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "flaticon-windows-couple",
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: "Show Entities",
+        content: [
+          {
+            groups: [
+              {
+                id: "Entity Library",
+                text: "Entity Library",
+                toolTip: "Entity Library",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-loupe",
+                  prefixIcon: "icon-40 entityview",
+                },
+              },
+              {
+                id: "Pan & zoom",
+                text: "Pan & zoom",
+                toolTip: "Pan & zoom",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 panzoomview",
+                },
+              },
+              {
+                id: "Model View",
+                text: "Model View",
+                toolTip: "Model View",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 modelview",
+                },
+              },
+              {
+                id: "View List",
+                text: "View List",
+                toolTip: "View List",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 tasklistview",
                 },
               },
             ],

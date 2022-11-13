@@ -682,6 +682,34 @@ ul {
     background-image: url("/image/pagewidthview.png");
     background-size: cover;
 }
+.subapplication {
+    background-image: url("/image/subapplication.png");
+    background-size: cover;
+}
+.subfunction {
+    background-image: url("/image/subfunction.png");
+    background-size: cover;
+}
+.subresult {
+    background-image: url("/image/subresult.png");
+    background-size: cover;
+}
+.entityview {
+    background-image: url("/image/entityview.png");
+    background-size: cover;
+}
+.panzoomview {
+    background-image: url("/image/panzoomview.png");
+    background-size: cover;
+}
+.modelview {
+    background-image: url("/image/modelview.png");
+    background-size: cover;
+}
+.tasklistview {
+    background-image: url("/image/tasklistview.png");
+    background-size: cover;
+}
 .icon-40 {
     width: 40px;
     height: 40px;

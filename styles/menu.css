@@ -86,3 +86,7 @@
 #Ribbon_view_Zoom_PageWidth #Ribbon_PageWidth .e-btn-span {
     display: flex;
 }
+#Ribbon_view_Show_1 {
+    display: grid;
+    grid-template-columns: auto auto;
+}
