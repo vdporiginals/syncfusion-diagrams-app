@@ -1120,6 +1120,44 @@ var tabs = [
           },
         ],
       },
+      {
+        text: "",
+        content: [
+          {
+            groups: [
+              {
+                id: "Show & Hide Models",
+                text: "Show & Hide Models",
+                toolTip: "Show & Hide Models",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 showhidemodelsview",
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: "",
+        content: [
+          {
+            groups: [
+              {
+                id: "Show & Hide Connection Points",
+                text: "Show & Hide Connection Points",
+                toolTip: "Show & Hide Connection Points",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 simulationproject",
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
   // {
@@ -1704,24 +1742,22 @@ var tabs = [
           {
             groups: [
               {
-                id: "toCommunicationDomain",
-                text: "Switch to Communication Domain",
-                width: "135px",
+                id: "communication",
+                text: "Communication",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-user",
+                  prefixIcon: "icon-40 communicationdomain",
                   click: "switchToComm",
                 },
               },
               {
                 id: "toTheoryDomain",
-                text: "Switch to Theory Domain",
-                width: "135px",
+                text: "Theory ",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-user",
+                  prefixIcon: "icon-40 theorydomain",
                   click: "switchToTheory",
                 },
               },

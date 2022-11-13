@@ -710,6 +710,18 @@ ul {
     background-image: url("/image/tasklistview.png");
     background-size: cover;
 }
+.showhidemodelsview {
+    background-image: url("/image/showhidemodelsview.png");
+    background-size: cover;
+}
+.communicationdomain {
+    background-image: url("/image/communicationdomain.png");
+    background-size: cover;
+}
+.theorydomain {
+    background-image: url("/image/theorydomain.png");
+    background-size: cover;
+}
 .icon-40 {
     width: 40px;
     height: 40px;
