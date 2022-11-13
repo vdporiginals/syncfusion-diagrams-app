@@ -1,13 +1,14 @@
 @font-face {
     font-family: "flaticon";
     src: url("./flaticon.ttf?1f6ce8ad16db9cedeb6d2af9cad595b9") format("truetype"),
-url("./flaticon.woff?1f6ce8ad16db9cedeb6d2af9cad595b9") format("woff"),
-url("./flaticon.woff2?1f6ce8ad16db9cedeb6d2af9cad595b9") format("woff2"),
-url("./flaticon.eot?1f6ce8ad16db9cedeb6d2af9cad595b9#iefix") format("embedded-opentype"),
-url("./flaticon.svg?1f6ce8ad16db9cedeb6d2af9cad595b9#flaticon") format("svg");
+        url("./flaticon.woff?1f6ce8ad16db9cedeb6d2af9cad595b9") format("woff"),
+        url("./flaticon.woff2?1f6ce8ad16db9cedeb6d2af9cad595b9") format("woff2"),
+        url("./flaticon.eot?1f6ce8ad16db9cedeb6d2af9cad595b9#iefix") format("embedded-opentype"),
+        url("./flaticon.svg?1f6ce8ad16db9cedeb6d2af9cad595b9#flaticon") format("svg");
 }
 
-i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+i[class^="flaticon-"]:before,
+i[class*=" flaticon-"]:before {
     font-family: flaticon !important;
     font-style: normal;
     font-weight: normal !important;
@@ -21,13 +22,14 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
 @font-face {
     font-family: "flaticon";
     src: url("./flaticon.ttf?0d0767924272157f9aa886216b954f48") format("truetype"),
-url("./flaticon.woff?0d0767924272157f9aa886216b954f48") format("woff"),
-url("./flaticon.woff2?0d0767924272157f9aa886216b954f48") format("woff2"),
-url("./flaticon.eot?0d0767924272157f9aa886216b954f48#iefix") format("embedded-opentype"),
-url("./flaticon.svg?0d0767924272157f9aa886216b954f48#flaticon") format("svg");
+        url("./flaticon.woff?0d0767924272157f9aa886216b954f48") format("woff"),
+        url("./flaticon.woff2?0d0767924272157f9aa886216b954f48") format("woff2"),
+        url("./flaticon.eot?0d0767924272157f9aa886216b954f48#iefix") format("embedded-opentype"),
+        url("./flaticon.svg?0d0767924272157f9aa886216b954f48#flaticon") format("svg");
 }
 
-i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+i[class^="flaticon-"]:before,
+i[class*=" flaticon-"]:before {
     font-family: flaticon !important;
     font-style: normal;
     font-weight: normal !important;
@@ -73,7 +75,7 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
 }
 .flaticon-italic:before {
     content: "\f108";
-    font-family: flaticon;   
+    font-family: flaticon;
 }
 .flaticon-underlined-text:before {
     content: "\f109";
@@ -387,8 +389,7 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
     font-size: 25px;
     font-family: flaticon;
 }
-
-.flaticon-grid:before{
-    content: '\f144';
+.flaticon-grid:before {
+    content: "\f144";
     font-family: flaticon;
 }

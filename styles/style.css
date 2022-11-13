@@ -605,6 +605,7 @@ ul {
     background-image: url("/image/node-menu.svg");
     background-size: cover;
 }
+
 .container-menu-insert {
     background-image: url("/image/container-menu-insert.png");
     background-size: cover;
@@ -702,4 +703,10 @@ ul {
 #Ribbon_home_Annotation_4 .e-button,
 #Ribbon_home_Annotation_5 .e-button {
     padding: 0;
+}
+.flaticon-node-menu-home-list {
+    background-image: url("/image/node-menu.svg");
+    background-size: cover;
+    width: 40px;
+    height: 40px;
 }

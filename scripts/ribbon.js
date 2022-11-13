@@ -383,10 +383,14 @@ var tabs = [
                 id: "node",
                 text: "Node",
                 toolTip: "Node",
-                buttonSettings: {
+                width: "70px",
+                height: "50px",
+                type: ej.Ribbon.type.splitButton,
+                splitButtonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "icon-40 node-menu",
+                  prefixIcon: "flaticon-node-menu-home-list",
+                  targetID: "node-menu-home-list",
                 },
               },
             ],
@@ -1708,5 +1712,8 @@ $(function () {
   });
   $("#Ribbon_toCommunicationDomain span:first-child").addClass(
     "disabled-button"
+  );
+  $("#Ribbon_node span:first-child").addClass(
+    "flaticon-node-menu-home-list"
   );
 });
