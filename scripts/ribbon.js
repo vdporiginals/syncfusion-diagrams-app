@@ -412,20 +412,26 @@ var tabs = [
                 id: "container",
                 text: "Container",
                 toolTip: "Container",
-                buttonSettings: {
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "icon-40 container-menu-insert",
+                  targetID: "listSubMenucontainerInsert",
                 },
               },
               {
                 id: "list",
                 text: "List",
                 toolTip: "List",
-                buttonSettings: {
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "icon-40 list-menu-insert",
+                  targetID: "listSubMenuListInsert",
                 },
               },
               {
@@ -929,14 +935,34 @@ var tabs = [
     text: "View",
     groups: [
       {
-        text: "Project Element",
+        text: "Open",
         content: [
           {
             groups: [
               {
-                id: "projectInformation",
-                text: "Project Information",
-                toolTip: "Project Information",
+                id: "Sub Funciton",
+                text: "Sub Funciton",
+                toolTip: "Sub Funciton",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 icon-paste",
+                },
+              },
+              {
+                id: "Sub Application",
+                text: "Sub Application",
+                toolTip: "Sub Application",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "icon-40 icon-paste",
+                },
+              },
+              {
+                id: "sub Result",
+                text: "sub Result",
+                toolTip: "sub Result",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
@@ -948,68 +974,30 @@ var tabs = [
         ],
       },
       {
-        text: "Open",
+        text: "Zoom",
         content: [
           {
             groups: [
               {
-                id: "subFunction",
-                text: "Sub Function",
-                toolTip: "Sub Function",
-                width: "100px",
+                id: "Fit to Window",
+                text: "Fit to Window",
+                toolTip: "Fit to Window",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-letter-f",
+                  prefixIcon: "icon-20 fittowindownview",
                 },
               },
               {
-                id: "subApplication",
-                text: "Sub Application",
-                toolTip: "Sub Application",
-                width: "100px",
+                id: "PageWidth",
+                text: "Page Width",
+                toolTip: "Page Width",
                 buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-letter-a",
+                  prefixIcon: "icon-20 pagewidthview",
                 },
               },
-              {
-                id: "subResult",
-                text: "Sub Result",
-                toolTip: "Sub Result",
-                width: "100px",
-                buttonSettings: {
-                  contentType: ej.ContentType.TextAndImage,
-                  imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-letter-r",
-                },
-              },
-              {
-                id: "showtooltip",
-                text: "Show Tooltip",
-                toolTip: "Show Tooltip",
-                width: "100px",
-                buttonSettings: {
-                  contentType: ej.ContentType.TextAndImage,
-                  imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-letter-r",
-                  click: "showTooltipNodes",
-                },
-              },
-              {
-                id: "idallowcross",
-                text: "Allow Cross",
-                toolTip: "Allow Cross",
-                width: "100px",
-                buttonSettings: {
-                  contentType: ej.ContentType.TextAndImage,
-                  imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "flaticon-letter-r",
-                  click: "onClickAllowCross",
-                },
-              },
-              ,
             ],
           },
         ],
@@ -1713,7 +1701,5 @@ $(function () {
   $("#Ribbon_toCommunicationDomain span:first-child").addClass(
     "disabled-button"
   );
-  $("#Ribbon_node span:first-child").addClass(
-    "flaticon-node-menu-home-list"
-  );
+  $("#Ribbon_node span:first-child").addClass("flaticon-node-menu-home-list");
 });

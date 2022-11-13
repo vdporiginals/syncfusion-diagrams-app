@@ -674,39 +674,26 @@ ul {
     background-image: url("/image/openproject.png");
     background-size: cover;
 }
+.fittowindownview {
+    background-image: url("/image/fittowindownview.png");
+    background-size: cover;
+}
+.pagewidthview {
+    background-image: url("/image/pagewidthview.png");
+    background-size: cover;
+}
 .icon-40 {
     width: 40px;
     height: 40px;
 }
+.icon-20 {
+    width: 20px;
+    height: 20px;
+}
 .e-btn .e-icon {
     padding: 0;
 }
-#Ribbon_home_Format_content {
-    display: grid;
-    grid-template-columns: auto auto;
-}
-.e-innerdivchild {
-    display: flex;
-    align-items: center;
-}
 
-#Ribbon_home_Format_2 {
-    display: flex;
-    align-items: center;
-}
-.e-ribGroupContent {
-    height: 70px !important;
-}
-#Ribbon_home_UndoAction {
-    width: auto !important;
-}
-#Ribbon_home_Annotation_4 .e-button,
-#Ribbon_home_Annotation_5 .e-button {
-    padding: 0;
-}
-.flaticon-node-menu-home-list {
-    background-image: url("/image/node-menu.svg");
-    background-size: cover;
-    width: 40px;
-    height: 40px;
+.m-l-12 {
+    margin-left: 12px;
 }

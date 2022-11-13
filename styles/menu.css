@@ -1,0 +1,88 @@
+#Ribbon_home_Format_content {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.e-innerdivchild {
+    display: flex;
+    align-items: center;
+}
+
+#Ribbon_home_Format_2 {
+    display: flex;
+    align-items: center;
+}
+.e-ribGroupContent {
+    height: 70px !important;
+}
+#Ribbon_home_UndoAction {
+    width: auto !important;
+}
+#Ribbon_home_Annotation_4 .e-button,
+#Ribbon_home_Annotation_5 .e-button {
+    padding: 0;
+}
+.flaticon-node-menu-home-list {
+    background-image: url("/image/node-menu.svg");
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+}
+#Ribbon_insert_DiagramParts_container .e-splitarrowright {
+    padding: 0 !important;
+}
+#Ribbon_insert_DiagramParts_container #Ribbon_containerdrpbtn {
+    padding: 0 !important;
+    height: unset;
+    top: 64px;
+    left: 28px;
+    background: transparent;
+}
+#listSubMenucontainerInsert {
+    width: auto;
+    padding: 20px;
+}
+
+#listSubMenucontainerInsert .listSubMenucontainerInsert {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+#Ribbon_insert_DiagramParts_list .e-splitarrowright {
+    padding: 0 !important;
+}
+#Ribbon_insert_DiagramParts_list #Ribbon_listdrpbtn {
+    padding: 0 !important;
+    height: unset;
+    top: 64px;
+    left: 22px;
+    background: transparent;
+}
+#listSubMenuListInsert {
+    width: auto;
+}
+
+#listSubMenuListInsert .listSubMenuListInsert {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+#listSubMenuListInsert .title_list_sub_menu_insert {
+    padding: 8px;
+    background: #f0f8ff;
+    margin: 12px 0;
+}
+#Ribbon_view_Zoom_1 {
+    display: block;
+}
+#Ribbon_view_Zoom_Fit {
+    float: unset;
+}
+#Ribbon_view_Zoom_Fit #Ribbon_Fit .e-btn-span {
+    display: flex;
+}
+#Ribbon_view_Zoom_PageWidth #Ribbon_PageWidth .e-btn-span {
+    display: flex;
+}
