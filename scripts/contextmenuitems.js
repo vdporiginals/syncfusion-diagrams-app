@@ -77,10 +77,12 @@ var personShapesContext = [
       {
         onClick: "",
         text: "Red",
+        id: "personSendSignalRed",
       },
       {
         onClick: "",
         text: "Green",
+        id: "personSendSignalGreen",
       },
     ],
   },
@@ -244,10 +246,13 @@ var groupPeopleContext = [
       {
         onClick: "",
         text: "Red",
+        id: "groupPeopleSendSignalRed",
       },
       {
         onClick: "",
         text: "Green",
+
+        id: "groupPeopleSendSignalGreen",
       },
     ],
   },
@@ -4343,10 +4348,12 @@ var menuItems = [
           {
             onClick: "",
             text: "Red",
+            id: "openSubListRed",
           },
           {
             onClick: "",
             text: "Green",
+            id: "openSubListGreen",
           },
         ],
       },

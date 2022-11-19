@@ -364,8 +364,33 @@ $("#fileUploadToDiagrams").change(function () {
 });
 let grouped = 0;
 function relatePersonOperatingPrinciple(id) {
+  console.log(id)
+  let idFind = '';
+  let ellipseBasic = 'ellipseBasic';
+  if (id.includes('withoperatingprinciple')) {
+    idFind = 'operatingPrinciple';
+  } else if (id.includes('withprinciplesaspect')) {
+    idFind = 'principleAspect';
+  }
+  else if (id.includes('withpersonaspect')) {
+    idFind = 'personAspect';
+  }
+  else if (id.includes('withmainsetofprinciple')) {
+    idFind = 'principle1';
+  }
+  else if (id.includes('withsubsetofprinciple')) {
+    idFind = 'principle2';
+  } else if (id.includes('withtheory')) {
+    idFind = 'theory';
+  } else if (id.includes('withutilizationtheory')) {
+    idFind = 'utilizationTheory';
+  } else {
+    idFind = 'principle';
+  }
+
+  console.log(id, getItemById(ellipseBasic))
   const itemActive = diagram.selectedItems.properties.nodes[0];
-  let findItem = { ...getItemById("principle") };
+  let findItem = { ...getItemById(idFind) };
   const offerXNode = itemActive.offsetX - itemActive.width / 2 + 75;
   findItem.offsetX = offerXNode;
   findItem.offsetY = itemActive.offsetY + 300;
@@ -375,13 +400,16 @@ function relatePersonOperatingPrinciple(id) {
   drawPortCircle(findItem);
   const itemPrinciple = diagram.add(findItem);
 
-  let findItem2 = { ...getItemById("ellipseBasic") };
+  let findItem2 = { ...getItemById(ellipseBasic) };
   findItem2.offsetX = itemActive.offsetX + 400;
   findItem2.offsetY = itemActive.offsetY + 150;
   findItem2.id = findItem2.id + randomId();
   drawPortCircle(findItem2);
   const itemellipseBasic = diagram.add(findItem2);
-
+  if (id.includes('associate')) {
+    itemellipseBasic.annotations[0].content = 'Associate';
+    diagram.dataBind();
+  }
   let findItem3 = { ...getItemById("itemHidden") };
   findItem3.offsetX = itemActive.offsetX + 600;
   findItem3.offsetY = itemActive.offsetY + 145;
@@ -469,6 +497,54 @@ function funCommunicationFunctionSub() {
   item.offsetY = node.offsetY;
   diagram.add(item);
   diagram.remove(diagram.selectedItems.properties.nodes[0]);
+}
+
+function sendSignal(node, type) {
+  if (diagram.selectedItems.properties.nodes[0].outEdges[0]) {
+    let connector = diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0]);
+    let target = diagram.getObject(connector.properties.targetID);
+    let source = diagram.getObject(connector.properties.sourceID);
+    console.log(connector, target, source, diagram.selectedItems.properties.nodes[0]);
+
+  }
+
+
+}
+function hideShowCover(idCheck) {
+  idCheck.includes('showcover')
+  if (idCheck.includes('hidecover')) {
+    diagram.selectedItems.properties.nodes[0].style.opacity = 0.4;
+  } else {
+
+    diagram.selectedItems.properties.nodes[0].style.opacity = 1;
+  }
+  diagram.dataBind();
+
+}
+function coverPerson(node) {
+  let findCover = {
+    style: {
+      fill: 'green',
+      strokeColor: 'black'
+    }, addInfo: [
+      {
+        menuId: "cover",
+        toolTip: "Cover person",
+        title: 'cover'
+      },
+    ],
+    shape: { type: "Basic", shape: "Rectangle" }
+    // Text(label) added to the node
+  };
+  findCover.id = 'cover' + randomId();
+  findCover.offsetX = diagram.selectedItems.properties.nodes[0].offsetX;
+  findCover.offsetY = diagram.selectedItems.properties.nodes[0].offsetY;
+  findCover.width = diagram.selectedItems.properties.nodes[0].width;
+  findCover.height = diagram.selectedItems.properties.nodes[0].height;
+  let addCover = diagram.add(findCover);
+  addCover.zIndex += 10;
+  diagram.dataBind();
+  console.log(addCover, diagram.selectedItems.properties.nodes[0])
 }
 
 function getAnnotationAddPartToApplication(id) {
@@ -1618,7 +1694,7 @@ var diagram = new ej.diagrams.Diagram({
     ),
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => {},
+  setNodeTemplate: (obj, diagram) => { },
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     switch (args.item.properties.text) {
@@ -1747,7 +1823,7 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck.includes("addcommunicationholder")) {
       addCommHolderOnClick();
     }
-    if (idCheck.includes("relate")) {
+    if (idCheck.includes("relate") || idCheck.includes('associate')) {
       relatePersonOperatingPrinciple(idCheck);
     }
     if (
@@ -1762,11 +1838,24 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck === "commfunctionaddsubfunction") {
       funCommunicationFunctionSub();
     }
+    console.log(idCheck)
+    if (idCheck.includes('sendsignalred')) {
+      sendSignal(args.item, 'red');
+    }
+    if (idCheck.includes('sendsignalgreen')) {
+      sendSignal(args.item, 'green');
+    }
+    if (idCheck.includes('coverperson')) {
+      coverPerson(args.item)
+    }
+    if (idCheck.includes('hidecover') || idCheck.includes('showcover') || idCheck.includes('showperson')) {
+      hideShowCover(idCheck);
+    }
   },
   contextMenuOpen: function (args) {
     let bpmnShape =
       !diagram?.selectedItems?.nodes[0]?.addInfo &&
-      diagram?.selectedItems?.nodes[0]?.children?.length > 0
+        diagram?.selectedItems?.nodes[0]?.children?.length > 0
         ? diagram.getObject(diagram.selectedItems.nodes[0].children[0])
         : diagram.selectedItems.nodes[0];
     // console.log(bpmnShape)

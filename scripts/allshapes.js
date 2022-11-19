@@ -7980,7 +7980,7 @@ var everyShape = [
     },
     annotations: [
       {
-        content: "Principle",
+        content: "Operating Principle",
       },
     ],
     width: 210,
@@ -8335,7 +8335,7 @@ var everyShape = [
     },
     annotations: [
       {
-        content: "Principle",
+        content: "Main Set of Principle",
       },
     ],
     width: 210,
@@ -8406,7 +8406,7 @@ var everyShape = [
     },
     annotations: [
       {
-        content: "Principle",
+        content: "Subset of Principle",
       },
     ],
     width: 210,
