@@ -652,6 +652,18 @@ ul {
     width: 100px;
     height: 40px;
 }
+.equation-menu-matrix {
+    background-image: url("/image/matrix.png");
+    background-size: cover;
+    width: 108px;
+    height: 40px;
+}
+.equation-menu-boxes {
+    background-image: url("/image/boxes.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
 
 .equation-menu-script {
     background-image: url("/image/script.png");
@@ -665,7 +677,30 @@ ul {
     width: 100px;
     height: 40px;
 }
-
+.equation-menu-symbols {
+    background-image: url("/image/symbols.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
+.equation-menu-greekcapital {
+    background-image: url("/image/greekcapital.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
+.equation-menu-greeksmall {
+    background-image: url("/image/greeksmall.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
+.equation-menu-arrows {
+    background-image: url("/image/arrows.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
 .list-menu-insert {
     background-image: url("/image/list-menu-insert.png");
     background-size: cover;

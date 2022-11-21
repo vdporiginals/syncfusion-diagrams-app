@@ -543,7 +543,7 @@ var tabs = [
     text: "Equations",
     groups: [
       {
-        text: "Diagram Parts",
+        text: "",
         content: [
           {
             groups: [
@@ -557,7 +557,7 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "equation-menu-brackets",
-                  targetID: "listSubMenuBracketInsert",
+                  targetID: "listSubMenuListInsert",
                 },
               },
               {
@@ -673,7 +673,7 @@ var tabs = [
                 splitButtonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "equation-menu-integrals",
+                  prefixIcon: "equation-menu-matrix",
                   targetID: "listSubMenuListInsert",
                 },
               },
@@ -686,27 +686,60 @@ var tabs = [
                 splitButtonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "equation-menu-integrals",
+                  prefixIcon: "equation-menu-boxes",
                   targetID: "listSubMenuListInsert",
                 },
               },
-            ],
-          },
-        ],
-      },
-      {
-        text: "",
-        content: [
-          {
-            groups: [
               {
-                id: "function",
-                text: "Function",
-                toolTip: "Function",
-                buttonSettings: {
+                id: "Operator",
+                text: "Operator",
+                toolTip: "Operator",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
-                  prefixIcon: "copy-clipboard icon-40",
+                  prefixIcon: "equation-menu-symbols",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Greek Captital",
+                text: "Greek Captital",
+                toolTip: "Greek Captital",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-greekcapital",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Greek Small",
+                text: "Greek Small",
+                toolTip: "Greek Small",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-greeksmall",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Arrow",
+                text: "Arrow",
+                toolTip: "Arrow",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-arrows",
+                  targetID: "listSubMenuListInsert",
                 },
               },
             ],
@@ -715,142 +748,6 @@ var tabs = [
       },
     ],
   },
-  // {
-  //   id: "equations",
-  //   text: "Equations",
-  //   groups: [
-  //     {
-  //       text: "",
-  //       content: [
-  //         {
-  //           groups: [
-  //             {
-  //               id: "Bracket",
-  //               text: "Bracket",
-  //               toolTip: "Bracket",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //             {
-  //               id: "Decorator",
-  //               text: "Decorator",
-  //               toolTip: "Decorator",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //             {
-  //               id: "Sum_products",
-  //               text: "Sum & products",
-  //               toolTip: "Sum & products",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //             {
-  //               id: "Integral",
-  //               text: "Integral",
-  //               toolTip: "Integral",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //             {
-  //               id: "Script",
-  //               text: "Script",
-  //               toolTip: "Script",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //             {
-  //               id: "Fraction_radical",
-  //               text: "Fraction & radical",
-  //               toolTip: "Fraction & radical",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //             {
-  //               id: "Labeled_Arrow",
-  //               text: "Labeled Arrow",
-  //               toolTip: "Labeled Arrow",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //             {
-  //               id: "Underbar_Overbar",
-  //               text: "Underbar & Overbar",
-  //               toolTip: "Underbar & Overbar",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //             {
-  //               id: "Bracket",
-  //               text: "Bracket",
-  //               toolTip: "Bracket",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //             {
-  //               id: "Bracket",
-  //               text: "Bracket",
-  //               toolTip: "Bracket",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //             {
-  //               id: "Bracket",
-  //               text: "Bracket",
-  //               toolTip: "Bracket",
-  //               width: "75px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-click",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
   {
     id: "edit",
     text: "Edit",
@@ -1337,285 +1234,6 @@ var tabs = [
       },
     ],
   },
-  // {
-  //   id: "action",
-  //   text: "Action",
-  //   groups: [
-  //     {
-  //       text: "Entity",
-  //       alignType: ej.Ribbon.AlignType.Rows,
-  //       content: [
-  //         {
-  //           groups: [
-  //             {
-  //               id: "showRelationship",
-  //               text: "Show Relationship of Entities",
-  //               toolTip: "Show Relationship of Entities",
-  //               width: "100px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-relation",
-  //               },
-  //             },
-  //             {
-  //               id: "identifySimilarities",
-  //               text: "Identify Similarity of Entities",
-  //               width: "100px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-relation",
-  //               },
-  //             },
-  //             {
-  //               id: "identifyRelationship",
-  //               text: "Identify Relationship as Entity",
-  //               width: "100px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-relation",
-  //               },
-  //             },
-  //             {
-  //               id: "attachselected",
-  //               text: "Attach Selected Entities",
-  //               width: "100px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-relation",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       text: "Entity",
-  //       content: [
-  //         {
-  //           groups: [
-  //             {
-  //               id: "compareSlected",
-  //               text: "Compare Selected Entities",
-  //               toolTip: "Compare Selected Entities",
-  //               width: "100px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-compare",
-  //               },
-  //             },
-  //             {
-  //               id: "identiftDifference",
-  //               text: "Identify Difference of Entities",
-  //               toolTip: "Identify Difference of Entities",
-  //               width: "100px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-is-not-equal-to-mathematical-symbol",
-  //               },
-  //             },
-  //             {
-  //               id: "identifyPart",
-  //               text: "Identify Part of Entity",
-  //               toolTip: "Identify Part of Entity",
-  //               width: "100px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-puzzle",
-  //               },
-  //             },
-  //             {
-  //               id: "identifyEntities",
-  //               text: "Identify Entities as One",
-  //               toolTip: "Identify Entities as One",
-  //               width: "100px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-group",
-  //               },
-  //             },
-  //             {
-  //               id: "Other Action",
-  //               text: "Other Action",
-  //               toolTip: "Other Action",
-  //               type: ej.Ribbon.type.splitButton,
-  //               splitButtonSettings: {
-  //                 targetID: "other-action",
-  //                 buttonMode: "dropdown",
-  //                 arrowPosition: "right",
-  //               },
-  //             },
-  //             {
-  //               id: "additionalAction",
-  //               text: "Additional Actions",
-  //               toolTip: "Additional Action",
-  //               type: ej.Ribbon.type.splitButton,
-  //               splitButtonSettings: {
-  //                 targetID: "additional-action",
-  //                 buttonMode: "dropdown",
-  //                 arrowPosition: "right",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       text: "Group",
-  //       alignType: ej.Ribbon.AlignType.Columns,
-  //       content: [
-  //         {
-  //           groups: [
-  //             {
-  //               id: "groupSelected",
-  //               text: "Group Selected Entity",
-  //               toolTip: "Group Selected Entity",
-  //               width: "100px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-group",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //         {
-  //           groups: [
-  //             {
-  //               id: "ungroupSelected",
-  //               text: "Ungroup Selected Entity",
-  //               toolTip: "Ungroup Selected Entity",
-  //               width: "100px",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.TextAndImage,
-  //                 imagePosition: ej.ImagePosition.ImageTop,
-  //                 prefixIcon: "flaticon-tile",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //         {
-  //           groups: [
-  //             {
-  //               id: "groupPeople",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.ImageOnly,
-  //                 prefixIcon: "flaticon-group-1",
-  //               },
-  //             },
-  //             {
-  //               id: "ungroupApplication",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.ImageOnly,
-  //                 prefixIcon: "flaticon-user",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //         {
-  //           groups: [
-  //             {
-  //               id: "ungroupPeople",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.ImageOnly,
-  //                 prefixIcon: "e-icon flaticon-left-align",
-  //               },
-  //             },
-  //             {
-  //               id: "ungroupApplication",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.ImageOnly,
-  //                 prefixIcon: "e-icon flaticon-left-align",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //         {
-  //           groups: [
-  //             {
-  //               id: "groupFunction",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.ImageOnly,
-  //                 prefixIcon: "e-icon flaticon-left-align",
-  //               },
-  //             },
-  //             {
-  //               id: "groupResult",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.ImageOnly,
-  //                 prefixIcon: "e-icon flaticon-left-align",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //         {
-  //           groups: [
-  //             {
-  //               id: "ungroupFunction",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.ImageOnly,
-  //                 prefixIcon: "e-icon flaticon-left-align",
-  //               },
-  //             },
-  //             {
-  //               id: "ungroupResult",
-  //               buttonSettings: {
-  //                 contentType: ej.ContentType.ImageOnly,
-  //                 prefixIcon: "e-icon flaticon-left-align",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       text: "Compose and Rotate",
-  //       content: [
-  //         {
-  //           groups: [
-  //             {
-  //               id: "compose",
-  //               text: "Compose",
-  //               toolTip: "Compose",
-  //               width: "70px",
-  //               height: "50px",
-  //               type: ej.Ribbon.type.splitButton,
-  //               splitButtonSettings: {
-  //                 contentType: ej.ContentType.ImageOnly,
-  //                 targetID: "compose-list",
-  //                 buttonMode: "dropdown",
-  //                 arrowPosition: "bottom",
-  //                 prefixIcon: "flaticon-tile",
-  //               },
-  //             },
-  //             {
-  //               id: "rotate",
-  //               text: "Rotate",
-  //               toolTip: "Rotate",
-  //               width: "70px",
-  //               height: "50px",
-  //               type: ej.Ribbon.type.splitButton,
-  //               splitButtonSettings: {
-  //                 contentType: ej.ContentType.ImageOnly,
-  //                 targetID: "rotate-list",
-  //                 buttonMode: "dropdown",
-  //                 arrowPosition: "bottom",
-  //                 prefixIcon: "flaticon-redo-arrow-large",
-  //               },
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
   {
     id: "layout",
     text: "Layout",

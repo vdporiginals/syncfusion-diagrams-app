@@ -91,138 +91,20 @@
     grid-template-columns: auto auto;
 }
 
-#Ribbon_Bracketdrpbtn {
+#Ribbon_equations_ .e-splitarrowright {
+    padding: 0 !important;
+}
+#Ribbon_equations_ .e-split-btn {
     padding: 0 !important;
     height: unset;
     top: 64px;
     left: 54px;
     background: transparent;
 }
-.Ribbon_equations_DiagramParts_Bracket #Ribbon_Bracketdrpbtn {
-    left: 51px;
+#Ribbon_equations_ .e-splitbutton {
+    padding: 4px !important;
 }
-#Ribbon_equations_DiagramParts_Bracket .e-splitarrowright {
-    padding: 0 !important;
-}
-#Ribbon_equations_DiagramParts_Bracket .e-btntxt {
-    padding-left: 30px !important;
-}
-
-#Ribbon_Decoratordrpbtn {
-    padding: 0 !important;
-    height: unset;
-    top: 64px;
-    left: 54px;
-    background: transparent;
-}
-.Ribbon_equations_DiagramParts_Decorator #Ribbon_Bracketdrpbtn {
-    left: 51px;
-}
-#Ribbon_equations_DiagramParts_Decorator .e-splitarrowright {
-    padding: 0 !important;
-}
-#Ribbon_equations_DiagramParts_Decorator .e-btntxt {
-    padding-left: 30px !important;
-}
-
-#Ribbon_Sumdrpbtn {
-    padding: 0 !important;
-    height: unset;
-    top: 64px;
-    left: 54px;
-    background: transparent;
-}
-.Ribbon_equations_DiagramParts_Sum #Ribbon_Bracketdrpbtn {
-    left: 51px;
-}
-#Ribbon_equations_DiagramParts_Sum .e-splitarrowright {
-    padding: 0 !important;
-}
-#Ribbon_equations_DiagramParts_Sum .e-btntxt {
-    padding-left: 8px !important;
-}
-
-#Ribbon_Intergraldrpbtn {
-    padding: 0 !important;
-    height: unset;
-    top: 64px;
-    left: 54px;
-    background: transparent;
-}
-#Ribbon_equations_DiagramParts_Intergral #Ribbon_Bracketdrpbtn {
-    left: 51px;
-}
-#Ribbon_equations_DiagramParts_Intergral .e-splitarrowright {
-    padding: 0 !important;
-}
-#Ribbon_equations_DiagramParts_Intergral .e-btntxt {
-    padding-left: 28px !important;
-}
-
-#Ribbon_Scriptdrpbtn {
-    padding: 0 !important;
-    height: unset;
-    top: 64px;
-    left: 54px;
-    background: transparent;
-}
-#Ribbon_equations_DiagramParts_Script #Ribbon_Bracketdrpbtn {
-    left: 51px;
-}
-#Ribbon_equations_DiagramParts_Script .e-splitarrowright {
-    padding: 0 !important;
-}
-#Ribbon_equations_DiagramParts_Script .e-btntxt {
-    padding-left: 38px !important;
-}
-
-#Ribbon_Fractiondrpbtn {
-    padding: 0 !important;
-    height: unset;
-    top: 64px;
-    left: 54px;
-    background: transparent;
-}
-#Ribbon_equations_DiagramParts_Fraction #Ribbon_Bracketdrpbtn {
-    left: 51px;
-}
-#Ribbon_equations_DiagramParts_Fraction .e-splitarrowright {
-    padding: 0 !important;
-}
-#Ribbon_equations_DiagramParts_Fraction .e-btntxt {
-    padding-left: 0px !important;
-}
-
-#Ribbon_Labeleddrpbtn {
-    padding: 0 !important;
-    height: unset;
-    top: 64px;
-    left: 54px;
-    background: transparent;
-}
-#Ribbon_equations_DiagramParts_Labeled #Ribbon_Bracketdrpbtn {
-    left: 51px;
-}
-#Ribbon_equations_DiagramParts_Labeled .e-splitarrowright {
-    padding: 0 !important;
-}
-#Ribbon_equations_DiagramParts_Labeled .e-btntxt {
-    padding-left: 14px !important;
-}
-
-#Ribbon_Underbardrpbtn {
-    padding: 0 !important;
-    height: unset;
-    top: 64px;
-    left: 54px;
-    background: transparent;
-}
-#Ribbon_equations_DiagramParts_Underbar #Ribbon_Bracketdrpbtn {
-    left: 51px;
-}
-#Ribbon_equations_DiagramParts_Underbar .e-splitarrowright {
-    padding: 0 !important;
-}
-#Ribbon_equations_DiagramParts_Underbar .e-btntxt {
-    padding-left: 0px !important;
+#Ribbon_equations_ .e-btntxt {
+    position: absolute;
+    width: calc(100% - 20px);
 }
