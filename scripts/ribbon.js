@@ -538,6 +538,183 @@ var tabs = [
       },
     ],
   },
+  {
+    id: "equations",
+    text: "Equations",
+    groups: [
+      {
+        text: "Diagram Parts",
+        content: [
+          {
+            groups: [
+              {
+                id: "Bracket",
+                text: "Bracket",
+                toolTip: "Bracket",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-brackets",
+                  targetID: "listSubMenuBracketInsert",
+                },
+              },
+              {
+                id: "Decorator",
+                text: "Decorator",
+                toolTip: "Decorator",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-decoratedEquation",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Sum & Products",
+                text: "Sum & Products",
+                toolTip: "Sum & Products",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-sumproduct",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Intergral",
+                text: "Intergral",
+                toolTip: "Intergral",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-integrals",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Script",
+                text: "Script",
+                toolTip: "Script",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-script",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Fraction & Radical",
+                text: "Fraction & Radical",
+                toolTip: "Fraction & Radical",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-divroot",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Labeled Arrow",
+                text: "Labeled Arrow",
+                toolTip: "Labeled Arrow",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-arrowEquation",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Underbar & Overbar",
+                text: "Underbar & Overbar",
+                toolTip: "Underbar & Overbar",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-underbar",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Accent & Prime",
+                text: "Accent & Prime",
+                toolTip: "Accent & Prime",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-decoratedCharacter",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Matrix",
+                text: "Matrix",
+                toolTip: "Matrix",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-integrals",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+              {
+                id: "Boxes",
+                text: "Boxes",
+                toolTip: "Boxes",
+                type: ej.Ribbon.type.splitButton,
+                height: "80px",
+                splitButtonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "equation-menu-integrals",
+                  targetID: "listSubMenuListInsert",
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: "",
+        content: [
+          {
+            groups: [
+              {
+                id: "function",
+                text: "Function",
+                toolTip: "Function",
+                buttonSettings: {
+                  contentType: ej.ContentType.TextAndImage,
+                  imagePosition: ej.ImagePosition.ImageTop,
+                  prefixIcon: "copy-clipboard icon-40",
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
   // {
   //   id: "equations",
   //   text: "Equations",

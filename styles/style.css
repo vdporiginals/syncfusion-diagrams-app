@@ -610,6 +610,62 @@ ul {
     background-image: url("/image/container-menu-insert.png");
     background-size: cover;
 }
+.equation-menu-brackets {
+    background-image: url("/image/brackets.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
+.equation-menu-decoratedEquation {
+    background-image: url("/image/decoratedEquation.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
+.equation-menu-sumproduct {
+    background-image: url("/image/sumproduct.png");
+    background-size: cover;
+    width: 96px;
+    height: 40px;
+}
+.equation-menu-integrals {
+    background-image: url("/image/integrals.png");
+    background-size: cover;
+    width: 97px;
+    height: 45px;
+}
+.equation-menu-arrowEquation {
+    background-image: url("/image/arrowEquation.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
+.equation-menu-underbar {
+    background-image: url("/image/underbar.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
+.equation-menu-decoratedCharacter {
+    background-image: url("/image/decoratedCharacter.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
+
+.equation-menu-script {
+    background-image: url("/image/script.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
+.equation-menu-divroot {
+    background-image: url("/image/divroot.png");
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+}
+
 .list-menu-insert {
     background-image: url("/image/list-menu-insert.png");
     background-size: cover;
