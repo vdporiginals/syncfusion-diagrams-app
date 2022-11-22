@@ -111,7 +111,7 @@
 .list-sub-menu-equations {
     padding: 12px;
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
     column-gap: 20px;
     row-gap: 20px;
 }

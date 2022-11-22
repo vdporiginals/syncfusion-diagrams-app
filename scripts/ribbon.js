@@ -570,7 +570,7 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "equation-menu-decoratedEquation",
-                  targetID: "listSubMenuListInsert",
+                  targetID: "listSubMenuEuqationsDecorator",
                 },
               },
               {
