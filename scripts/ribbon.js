@@ -794,7 +794,7 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "speak-logic-menu-Function2_Icon icon-40",
-                  targetID: "listSubMenuSpeakLogicFunction2",
+                  targetID: "listSubMenuSpeakLogicFunction",
                 },
               },
               {
@@ -820,7 +820,7 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "speak-logic-menu-Fundamental2_Icon icon-40",
-                  targetID: "listSubMenuSpeakLogicFundamental2",
+                  targetID: "listSubMenuSpeakLogicFundamental1",
                 },
               },
               {
@@ -1793,4 +1793,12 @@ $(function () {
     "disabled-button"
   );
   $("#Ribbon_node span:first-child").addClass("flaticon-node-menu-home-list");
+  let a = ``;
+  for (let i = 0; i < 13; i++) {
+    a += `<div class="d-flex align-items-start">
+<img src="image/menu/speaklogic/Words/word_${i+1}.png" />
+<div class="m-l-12">word_${i+1}</div>
+</div>`;
+  }
+  console.log(a);
 });
