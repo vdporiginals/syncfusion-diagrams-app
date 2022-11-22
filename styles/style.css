@@ -534,11 +534,11 @@ ul {
     background-size: cover;
 }
 .cut-clipboard {
-    background-image: url("/image/ClipboardCut.png");
+    background-image: url("/image/menu/home/ClipboardCut.png");
     background-size: cover;
 }
 .delete-clipboard {
-    background-image: url("/image/clipboardelete.png");
+    background-image: url("/image/menu/home/clipboardelete.png");
     background-size: cover;
 }
 .icon-paste {
@@ -550,7 +550,7 @@ ul {
     background-size: cover;
 }
 .icon-undo {
-    background-image: url("/image/undo.png");
+    background-image: url("/image/menu/home/undo.png");
     background-size: cover;
 }
 .menu-burger {
@@ -562,7 +562,7 @@ ul {
     background-size: cover;
 }
 .fill-menu {
-    background-image: url("/image/fill-menu.png");
+    background-image: url("/image/menu/home/fill-menu.png");
     background-size: cover;
 }
 .line-menu {
