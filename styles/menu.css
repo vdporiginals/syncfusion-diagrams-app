@@ -125,6 +125,25 @@
 #listSubMenuEuqationsDecorator .list-sub-menu-equations {
     grid-template-columns: auto auto auto auto auto auto;
 }
-#Ribbon_Labeled {
+#Ribbon_Labeled,
+#Ribbon_Accent,
+#Ribbon_Operator,
+#Ribbon_Greek,
+#Ribbon_Arrow {
     position: relative;
+}
+
+#Ribbon_SpeakLogic_ .e-split-btn {
+    padding: 0 !important;
+    height: unset;
+    top: 64px;
+    left: 12px;
+    background: transparent;
+}
+#Ribbon_SpeakLogic_ .e-splitbutton {
+    padding: 4px !important;
+}
+
+#Ribbon_SpeakLogic_ .e-split.e-rtl .e-padding.e-splitarrowleft, .e-split .e-padding.e-splitarrowright {
+    padding: 0;
 }

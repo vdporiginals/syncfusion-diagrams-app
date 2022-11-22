@@ -813,6 +813,63 @@ ul {
     background-image: url("/image/theorydomain.png");
     background-size: cover;
 }
+.speak-logic-menu-Application_Icon {
+    background-image: url("/image/menu/speaklogic/Application_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Derivative_Icon {
+    background-image: url("/image/menu/speaklogic/Derivative_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Function_Icon {
+    background-image: url("/image/menu/speaklogic/Function_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Function2_Icon {
+    background-image: url("/image/menu/speaklogic/Function2_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Fundamental1_Icon {
+    background-image: url("/image/menu/speaklogic/Fundamental1_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Fundamental2_Icon {
+    background-image: url("/image/menu/speaklogic/Fundamental2_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Instrusment_Icon {
+    background-image: url("/image/menu/speaklogic/Instrusment_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Relationship_Icon {
+    background-image: url("/image/menu/speaklogic/Relationship_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Stability_Icon {
+    background-image: url("/image/menu/speaklogic/Stability_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Theorem_Icon {
+    background-image: url("/image/menu/speaklogic/Theorem_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Theory1_Icon {
+    background-image: url("/image/menu/speaklogic/Theory1_Icon.png");
+    background-size: cover;
+}
+
+.speak-logic-menu-Theory2_Icon {
+    background-image: url("/image/menu/speaklogic/Theory2_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Time_Icon {
+    background-image: url("/image/menu/speaklogic/Time_Icon.png");
+    background-size: cover;
+}
+.speak-logic-menu-Word_Icon {
+    background-image: url("/image/menu/speaklogic/Word_Icon.png");
+    background-size: cover;
+}
 .icon-40 {
     width: 40px;
     height: 40px;
