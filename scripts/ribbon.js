@@ -583,7 +583,7 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "equation-menu-sumproduct",
-                  targetID: "listSubMenuListInsert",
+                  targetID: "listSubMenuEuqationsSumProducts",
                 },
               },
               {
@@ -596,7 +596,7 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "equation-menu-integrals",
-                  targetID: "listSubMenuListInsert",
+                  targetID: "listSubMenuEuqationsIntergral",
                 },
               },
               {
@@ -609,7 +609,7 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "equation-menu-script",
-                  targetID: "listSubMenuListInsert",
+                  targetID: "listSubMenuEuqationsScript",
                 },
               },
               {
@@ -622,20 +622,18 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "equation-menu-divroot",
-                  targetID: "listSubMenuListInsert",
+                  targetID: "listSubMenuEuqationsFractionRadical",
                 },
               },
               {
                 id: "Labeled Arrow",
                 text: "Labeled Arrow",
                 toolTip: "Labeled Arrow",
-                type: ej.Ribbon.type.splitButton,
                 height: "80px",
-                splitButtonSettings: {
+                buttonSettings: {
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "equation-menu-arrowEquation",
-                  targetID: "listSubMenuListInsert",
                 },
               },
               {
@@ -648,7 +646,7 @@ var tabs = [
                   contentType: ej.ContentType.TextAndImage,
                   imagePosition: ej.ImagePosition.ImageTop,
                   prefixIcon: "equation-menu-underbar",
-                  targetID: "listSubMenuListInsert",
+                  targetID: "listSubMenuEuqationsUnderbarOverbar",
                 },
               },
               {

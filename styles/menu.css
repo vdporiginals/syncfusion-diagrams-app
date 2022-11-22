@@ -108,10 +108,23 @@
     position: absolute;
     width: calc(100% - 20px);
 }
+
 .list-sub-menu-equations {
     padding: 12px;
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     column-gap: 20px;
     row-gap: 20px;
+    border-bottom: 1px solid;
+    margin-bottom: 12px;
+}
+.list-sub-menu-equations:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+#listSubMenuEuqationsDecorator .list-sub-menu-equations {
+    grid-template-columns: auto auto auto auto auto auto;
+}
+#Ribbon_Labeled {
+    position: relative;
 }

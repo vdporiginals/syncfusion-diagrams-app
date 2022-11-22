@@ -828,6 +828,9 @@ ul {
 .m-l-12 {
     margin-left: 12px;
 }
+.fs-20 {
+    font-size: 20px;
+}
 .width-max-content {
     width: max-content !important;
 }
