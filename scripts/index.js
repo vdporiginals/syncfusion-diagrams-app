@@ -736,6 +736,7 @@ function drawGroupOfPeople(args) {
   }
   return groupParentNode;
 }
+
 function onClickApplyGroupOfPeople(e) {
   let dialogGroupofPeopleOptions = $(`#dialogGroupofPeopleOptions`);
   let dialogGroupofPeopleFormat = $(`#dialogGroupofPeopleFormat`);
@@ -1090,21 +1091,22 @@ function onClickApplyGroupOfPeople(e) {
   hiddenModal();
 }
 
-function onDropCommunicationMixtureCommunication() {
-  openModal(
-    "Group Property",
-    "CommunicationMixtureCommunication",
-    onClickCommunicationMixtureCommunication
-  );
-}
-
 function onClickCommunicationMixtureCommunication() {
-  let nodes = getNodesDiagramNodes([...diagram.nodes]);
-  const value = document.getElementById("input-continuity-size").value;
-  const node = nodes.find((x) => x.id === idElementActive);
-  node.width = node.width * value;
-  node.height = node.height * value;
-  diagram.nodes = nodes;
+  const value = document.getElementById("input-numer-of-group").value;
+  let selected = diagram.selectedItems.properties.nodes[0];
+  let itemAdd = drawShape(
+    communicationData.find((x) => x.id === "communicationMixtureCommunication2")
+  );
+  itemAdd.id += randomId();
+  const item = diagram.add(itemAdd);
+  const heightNew =
+    selected.height + (selected.height / 3) * (Number(value) - 2);
+  item.offsetX = selected.offsetX;
+  item.offsetY = selected.offsetY - selected.height / 2 + heightNew / 2;
+  item.height = heightNew;
+  item.width = selected.width;
+  diagram.remove(selected);
+  diagram.dataBind();
   setTimeout(() => {
     hiddenModal();
   }, 100);
@@ -1647,7 +1649,7 @@ var mappedArrayContext = menuItems.reduce((arr, item) => {
   }
   return arr;
 }, []);
-// Initializing and appending diagram
+
 var diagram = new ej.diagrams.Diagram({
   width: "2000px",
   height: "2000px",
@@ -1772,7 +1774,6 @@ var diagram = new ej.diagrams.Diagram({
     }
     switch (args.item.properties.text.toLowerCase()) {
       case "add input":
-        // diagram.remove(diagram.selectedItems.nodes[0]);
         let portss = {
           id: "LeftMiddle" + randomId(),
           offset: {
@@ -1786,7 +1787,11 @@ var diagram = new ej.diagrams.Diagram({
           verticalAlignment: "Center",
           horizontalAlignment: "Center",
         };
-        diagram.selectedItems.nodes[0].height += 10;
+        const selected = diagram.selectedItems.nodes[0];
+        const heightNew = selected.height + 10;
+        selected.offsetY =
+          selected.offsetY - selected.height / 2 + heightNew / 2;
+        selected.height = heightNew;
         diagram.dataBind();
         diagram.selectedItems.nodes[0].ports.forEach((a) => {
           if (a.id.toLowerCase().startsWith("left")) {
@@ -1804,26 +1809,39 @@ var diagram = new ej.diagrams.Diagram({
         diagram.addPorts(diagram.selectedItems.nodes[0], [portss]);
         return;
       case "remove input":
-        let findLeft = diagram.selectedItems.nodes[0].ports.filter((a) =>
-          a.id.toLowerCase().startsWith("left")
-        );
-        if (findLeft.length > 2) {
-          diagram.selectedItems.nodes[0].height += -10;
-          diagram.removePorts(diagram.nodes[0], [
-            {
-              id: findLeft[0].id,
-            },
-          ]);
-          diagram.selectedItems.nodes[0].ports.forEach((a) => {
-            if (a.id.toLowerCase().startsWith("left")) {
-              a.offset = {
-                x: a.offset.x,
-                y: a.offset.y - 0.1,
-              };
-              diagram.dataBind();
-            }
-          });
-        }
+        let portssRemove = {
+          id: "LeftMiddle" + randomId(),
+          offset: {
+            x: 0,
+            y: 0.5,
+          },
+          visibility: 1,
+          shape: "Circle",
+          width: 2,
+          height: 2,
+          verticalAlignment: "Center",
+          horizontalAlignment: "Center",
+        };
+        const selectedRemove = diagram.selectedItems.nodes[0];
+        const heightNewRemove = selectedRemove.height - 10;
+        selectedRemove.offsetY =
+          selectedRemove.offsetY - selectedRemove.height / 2 + heightNewRemove / 2;
+        selectedRemove.height = heightNewRemove;
+        diagram.dataBind();
+        diagram.selectedItems.nodes[0].ports.forEach((a) => {
+          if (a.id.toLowerCase().startsWith("left")) {
+            portssRemove.offset = {
+              x: a.offset.x,
+              y: a.offset.y + 0.1,
+            };
+            a.offset = {
+              x: a.offset.x,
+              y: a.offset.y - 0.1,
+            };
+            diagram.dataBind();
+          }
+        });
+        diagram.addPorts(diagram.selectedItems.nodes[0], [portssRemove]);
         return;
     }
     const listIdNotEvent = [
@@ -1975,7 +1993,11 @@ var diagram = new ej.diagrams.Diagram({
       labelProperty();
     }
     if (idElementActive.startsWith("communicationMixtureCommunication")) {
-      onDropCommunicationMixtureCommunication(args);
+      openModal(
+        "Group Property",
+        "CommunicationMixtureCommunication",
+        onClickCommunicationMixtureCommunication
+      );
     }
     dropGrouped(args.element, args.target);
   },
@@ -2147,7 +2169,6 @@ function sketchContextClick(idCheck) {
   addItem.offsetX = offsetXD;
   addItem.offsetY = offsetYD;
 }
-//#region code for canvas to svg tranformation
 let canvasSymbols = document.querySelectorAll(".e-symbol-draggable > canvas");
 for (let i = 0; i < canvasSymbols.length; i++) {
   // Get Canvas
@@ -2268,9 +2289,6 @@ function randomId() {
   return (Math.random() + 1).toString(36).substring(7);
 }
 
-//#endregion
-
-//#region code for symbol arrangement
 var symbolPalleteSymbols = document.querySelectorAll(
   ".e-symbol-draggable > svg"
 );
@@ -2597,7 +2615,7 @@ function onGetHtmlDialog(id) {
       <div class="d-flex">
         <div class="line-height-20">Number of input</div>
         <div class="flex-1">
-          <input type="text" class="w-100" value="2" id="input-numer-of-group" />
+          <input type="number" class="w-100" value="2" id="input-numer-of-group" />
         </div>
       </div>
     </div>
