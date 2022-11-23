@@ -310,7 +310,10 @@ $("#fileUploadToDiagrams").change(function () {
 
     if (file.type.startsWith("video/")) {
       let video = { ...nodeAppendData };
-      if (currentItem.toLowerCase().includes("add") || currentItem.toLowerCase().startsWith("add")) {
+      if (
+        currentItem.toLowerCase().includes("add") ||
+        currentItem.toLowerCase().startsWith("add")
+      ) {
         video.shape = {
           type: "HTML",
           content: `<video width="400" height="278" controls>
@@ -321,7 +324,7 @@ $("#fileUploadToDiagrams").change(function () {
         video.width = 400;
         video.height = 278;
         let addEd = diagram.add(video);
-        diagram.select([addEd])
+        diagram.select([addEd]);
       } else {
         diagram.selectedItems.properties.nodes[0].shape = {
           type: "HTML",
@@ -337,7 +340,10 @@ $("#fileUploadToDiagrams").change(function () {
 
     if (file.type.startsWith("audio/")) {
       let audio = { ...nodeAppendData };
-      if (currentItem.toLowerCase().includes("add") || currentItem.toLowerCase().startsWith("add")) {
+      if (
+        currentItem.toLowerCase().includes("add") ||
+        currentItem.toLowerCase().startsWith("add")
+      ) {
         audio.shape = {
           type: "HTML",
           content: `<audio controls width="400" height="50">
@@ -348,7 +354,7 @@ $("#fileUploadToDiagrams").change(function () {
         audio.width = 400;
         audio.height = 100;
         let addEd = diagram.add(audio);
-        diagram.select([addEd])
+        diagram.select([addEd]);
       } else {
         diagram.selectedItems.properties.nodes[0].shape = {
           type: "HTML",
@@ -366,31 +372,28 @@ $("#fileUploadToDiagrams").change(function () {
 });
 let grouped = 0;
 function relatePersonOperatingPrinciple(id) {
-  console.log(id)
-  let idFind = '';
-  let ellipseBasic = 'ellipseBasic';
-  if (id.includes('withoperatingprinciple')) {
-    idFind = 'operatingPrinciple';
-  } else if (id.includes('withprinciplesaspect')) {
-    idFind = 'principleAspect';
-  }
-  else if (id.includes('withpersonaspect')) {
-    idFind = 'personAspect';
-  }
-  else if (id.includes('withmainsetofprinciple')) {
-    idFind = 'principle1';
-  }
-  else if (id.includes('withsubsetofprinciple')) {
-    idFind = 'principle2';
-  } else if (id.includes('withtheory')) {
-    idFind = 'theory';
-  } else if (id.includes('withutilizationtheory')) {
-    idFind = 'utilizationTheory';
+  console.log(id);
+  let idFind = "";
+  let ellipseBasic = "ellipseBasic";
+  if (id.includes("withoperatingprinciple")) {
+    idFind = "operatingPrinciple";
+  } else if (id.includes("withprinciplesaspect")) {
+    idFind = "principleAspect";
+  } else if (id.includes("withpersonaspect")) {
+    idFind = "personAspect";
+  } else if (id.includes("withmainsetofprinciple")) {
+    idFind = "principle1";
+  } else if (id.includes("withsubsetofprinciple")) {
+    idFind = "principle2";
+  } else if (id.includes("withtheory")) {
+    idFind = "theory";
+  } else if (id.includes("withutilizationtheory")) {
+    idFind = "utilizationTheory";
   } else {
-    idFind = 'principle';
+    idFind = "principle";
   }
 
-  console.log(id, getItemById(ellipseBasic))
+  console.log(id, getItemById(ellipseBasic));
   const itemActive = diagram.selectedItems.properties.nodes[0];
   let findItem = { ...getItemById(idFind) };
   const offerXNode = itemActive.offsetX - itemActive.width / 2 + 75;
@@ -408,8 +411,8 @@ function relatePersonOperatingPrinciple(id) {
   findItem2.id = findItem2.id + randomId();
   drawPortCircle(findItem2);
   const itemellipseBasic = diagram.add(findItem2);
-  if (id.includes('associate')) {
-    itemellipseBasic.annotations[0].content = 'Associate';
+  if (id.includes("associate")) {
+    itemellipseBasic.annotations[0].content = "Associate";
     diagram.dataBind();
   }
   let findItem3 = { ...getItemById("itemHidden") };
@@ -503,42 +506,45 @@ function funCommunicationFunctionSub() {
 
 function sendSignal(node, type) {
   if (diagram.selectedItems.properties.nodes[0].outEdges[0]) {
-    let connector = diagram.getObject(diagram.selectedItems.properties.nodes[0].outEdges[0]);
+    let connector = diagram.getObject(
+      diagram.selectedItems.properties.nodes[0].outEdges[0]
+    );
     let target = diagram.getObject(connector.properties.targetID);
     let source = diagram.getObject(connector.properties.sourceID);
-    console.log(connector, target, source, diagram.selectedItems.properties.nodes[0]);
-
+    console.log(
+      connector,
+      target,
+      source,
+      diagram.selectedItems.properties.nodes[0]
+    );
   }
-
-
 }
 function hideShowCover(idCheck) {
-  idCheck.includes('showcover')
-  if (idCheck.includes('hidecover')) {
+  idCheck.includes("showcover");
+  if (idCheck.includes("hidecover")) {
     diagram.selectedItems.properties.nodes[0].style.opacity = 0.4;
   } else {
-
     diagram.selectedItems.properties.nodes[0].style.opacity = 1;
   }
   diagram.dataBind();
-
 }
 function coverPerson(node) {
   let findCover = {
     style: {
-      fill: 'green',
-      strokeColor: 'black'
-    }, addInfo: [
+      fill: "green",
+      strokeColor: "black",
+    },
+    addInfo: [
       {
         menuId: "cover",
         toolTip: "Cover person",
-        title: 'cover'
+        title: "cover",
       },
     ],
-    shape: { type: "Basic", shape: "Rectangle" }
+    shape: { type: "Basic", shape: "Rectangle" },
     // Text(label) added to the node
   };
-  findCover.id = 'cover' + randomId();
+  findCover.id = "cover" + randomId();
   findCover.offsetX = diagram.selectedItems.properties.nodes[0].offsetX;
   findCover.offsetY = diagram.selectedItems.properties.nodes[0].offsetY;
   findCover.width = diagram.selectedItems.properties.nodes[0].width;
@@ -546,7 +552,7 @@ function coverPerson(node) {
   let addCover = diagram.add(findCover);
   addCover.zIndex += 10;
   diagram.dataBind();
-  console.log(addCover, diagram.selectedItems.properties.nodes[0])
+  console.log(addCover, diagram.selectedItems.properties.nodes[0]);
 }
 
 function getAnnotationAddPartToApplication(id) {
@@ -1082,6 +1088,26 @@ function onClickApplyGroupOfPeople(e) {
   // this = null;
 
   hiddenModal();
+}
+
+function onDropCommunicationMixtureCommunication() {
+  openModal(
+    "Group Property",
+    "CommunicationMixtureCommunication",
+    onClickCommunicationMixtureCommunication
+  );
+}
+
+function onClickCommunicationMixtureCommunication() {
+  let nodes = getNodesDiagramNodes([...diagram.nodes]);
+  const value = document.getElementById("input-continuity-size").value;
+  const node = nodes.find((x) => x.id === idElementActive);
+  node.width = node.width * value;
+  node.height = node.height * value;
+  diagram.nodes = nodes;
+  setTimeout(() => {
+    hiddenModal();
+  }, 100);
 }
 
 function onDrogContinuityPerson(args) {
@@ -1650,19 +1676,35 @@ var diagram = new ej.diagrams.Diagram({
     }
   },
   historyChange: function (e) {
-    if (e.type === "CollectionChanged" && e['Remove']?.length > 0) {
-      document.querySelector(`#${e.id}_html_element`).querySelector('audio')?.pause();
-      document.querySelector(`#${e.id}_html_element`).querySelector('video')?.pause();
+    if (e.type === "CollectionChanged" && e["Remove"]?.length > 0) {
+      document
+        .querySelector(`#${e.id}_html_element`)
+        .querySelector("audio")
+        ?.pause();
+      document
+        .querySelector(`#${e.id}_html_element`)
+        .querySelector("video")
+        ?.pause();
     }
   },
   collectionChange: function (e) {
     if (
       e.type === "Removal" &&
-      e?.element?.properties?.shape?.properties && (
-        e?.element?.properties?.shape?.properties?.source?.startsWith("blob:http") ||
-        e?.element?.properties?.shape?.properties?.content?.includes("blob:http"))
+      e?.element?.properties?.shape?.properties &&
+      (e?.element?.properties?.shape?.properties?.source?.startsWith(
+        "blob:http"
+      ) ||
+        e?.element?.properties?.shape?.properties?.content?.includes(
+          "blob:http"
+        ))
     ) {
-      URL.revokeObjectURL(e.element?.properties?.shape?.properties?.source || e.element?.properties?.shape?.properties?.content.split('src=')[1]?.trim()?.split('"')[1]);
+      URL.revokeObjectURL(
+        e.element?.properties?.shape?.properties?.source ||
+          e.element?.properties?.shape?.properties?.content
+            .split("src=")[1]
+            ?.trim()
+            ?.split('"')[1]
+      );
     }
   },
   bridgeDirection: "Left",
@@ -1702,7 +1744,7 @@ var diagram = new ej.diagrams.Diagram({
     ),
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => { },
+  setNodeTemplate: (obj, diagram) => {},
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     switch (args.item.properties.text) {
@@ -1831,7 +1873,7 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck.includes("addcommunicationholder")) {
       addCommHolderOnClick();
     }
-    if (idCheck.includes("relate") || idCheck.includes('associate')) {
+    if (idCheck.includes("relate") || idCheck.includes("associate")) {
       relatePersonOperatingPrinciple(idCheck);
     }
     if (
@@ -1846,24 +1888,28 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck === "commfunctionaddsubfunction") {
       funCommunicationFunctionSub();
     }
-    console.log(idCheck)
-    if (idCheck.includes('sendsignalred')) {
-      sendSignal(args.item, 'red');
+    console.log(idCheck);
+    if (idCheck.includes("sendsignalred")) {
+      sendSignal(args.item, "red");
     }
-    if (idCheck.includes('sendsignalgreen')) {
-      sendSignal(args.item, 'green');
+    if (idCheck.includes("sendsignalgreen")) {
+      sendSignal(args.item, "green");
     }
-    if (idCheck.includes('coverperson')) {
-      coverPerson(args.item)
+    if (idCheck.includes("coverperson")) {
+      coverPerson(args.item);
     }
-    if (idCheck.includes('hidecover') || idCheck.includes('showcover') || idCheck.includes('showperson')) {
+    if (
+      idCheck.includes("hidecover") ||
+      idCheck.includes("showcover") ||
+      idCheck.includes("showperson")
+    ) {
       hideShowCover(idCheck);
     }
   },
   contextMenuOpen: function (args) {
     let bpmnShape =
       !diagram?.selectedItems?.nodes[0]?.addInfo &&
-        diagram?.selectedItems?.nodes[0]?.children?.length > 0
+      diagram?.selectedItems?.nodes[0]?.children?.length > 0
         ? diagram.getObject(diagram.selectedItems.nodes[0].children[0])
         : diagram.selectedItems.nodes[0];
     // console.log(bpmnShape)
@@ -1925,9 +1971,11 @@ var diagram = new ej.diagrams.Diagram({
     if (idElementActive.startsWith("mainArea")) {
       onDrogMainArea(args);
     }
-    console.log(idElementActive);
     if (onCheckOpenModalLabelText()) {
       labelProperty();
+    }
+    if (idElementActive.startsWith("communicationMixtureCommunication")) {
+      onDropCommunicationMixtureCommunication(args);
     }
     dropGrouped(args.element, args.target);
   },
@@ -2538,6 +2586,23 @@ function onGetHtmlDialog(id) {
       </div>
     </div>
   </div>`;
+  }
+  if (id === "CommunicationMixtureCommunication") {
+    return `<div id="dialogNodeTableComm" class="dialog-group-of-people">
+    <div class="d-flex m-b-8">
+      <img src="image/optionmix.png" alt="" />
+      <div>Input Property</div>
+    </div>
+    <div class="dialog-group-of-people-content m-t-8">
+      <div class="d-flex">
+        <div class="line-height-20">Number of input</div>
+        <div class="flex-1">
+          <input type="text" class="w-100" value="2" id="input-numer-of-group" />
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
   }
 }
 

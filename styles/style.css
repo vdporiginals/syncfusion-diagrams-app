@@ -566,35 +566,35 @@ ul {
     background-size: cover;
 }
 .line-menu {
-    background-image: url("/image/linemenu.svg");
+    background-image: url("/image/menu/home/linemenu.svg");
     background-size: cover;
 }
 .text-menu {
-    background-image: url("/image/text-menu.svg");
+    background-image: url("/image/menu/home/text-menu.svg");
     background-size: cover;
 }
 .start-menu {
-    background-image: url("/image/start-menu.svg");
+    background-image: url("/image/menu/home/start-menu.svg");
     background-size: cover;
 }
 .end-menu {
-    background-image: url("/image/end-menu.svg");
+    background-image: url("/image/menu/home/end-menu.svg");
     background-size: cover;
 }
 .point-menu {
-    background-image: url("/image/point-menu.svg");
+    background-image: url("/image/menu/home/point-menu.svg");
     background-size: cover;
 }
 .text-menu2 {
-    background-image: url("/image/text-menu2.svg");
+    background-image: url("/image/menu/home/text-menu2.svg");
     background-size: cover;
 }
 .line-menu2 {
-    background-image: url("/image/line-menu.svg");
+    background-image: url("/image/menu/home/line-menu.svg");
     background-size: cover;
 }
 .line-menu2 {
-    background-image: url("/image/line-menu.svg");
+    background-image: url("/image/menu/home/line-menu.svg");
     background-size: cover;
 }
 .autoconnector {
