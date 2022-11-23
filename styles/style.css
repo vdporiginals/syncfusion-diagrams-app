@@ -710,15 +710,15 @@ ul {
     background-size: cover;
 }
 .selectedentityedit {
-    background-image: url("/image/selectedentityedit.png");
+    background-image: url("/image/menu/edit/selectedentityedit.png");
     background-size: cover;
 }
 .undolastactionedit {
-    background-image: url("/image/undolastactionedit.png");
+    background-image: url("/image/menu/edit/undolastactionedit.png");
     background-size: cover;
 }
 .startproject {
-    background-image: url("/image/startproject.png");
+    background-image: url("/image/menu/project/startproject.png");
     background-size: cover;
 }
 .error {
