@@ -123,7 +123,7 @@
     margin-bottom: 0;
 }
 #listSubMenuEuqationsDecorator .list-sub-menu-equations {
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
 }
 #Ribbon_Labeled,
 #Ribbon_Accent,
@@ -144,6 +144,18 @@
     padding: 4px !important;
 }
 
-#Ribbon_SpeakLogic_ .e-split.e-rtl .e-padding.e-splitarrowleft, .e-split .e-padding.e-splitarrowright {
+#Ribbon_SpeakLogic_ .e-split.e-rtl .e-padding.e-splitarrowleft,
+.e-split .e-padding.e-splitarrowright {
     padding: 0;
+}
+.tab-menu-sub-menu-decorator {
+    padding: 20px;
+    display: flex;
+}
+
+.tab-menu-sub-menu-decorator .item-tab-menu {
+    margin-right: 20px;
+}
+.tab-menu-sub-menu-decorator .item-active-tab-menu {
+    border-bottom: 1px solid;
 }

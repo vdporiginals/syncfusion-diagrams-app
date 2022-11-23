@@ -1793,12 +1793,44 @@ $(function () {
     "disabled-button"
   );
   $("#Ribbon_node span:first-child").addClass("flaticon-node-menu-home-list");
-  let a = ``;
-  for (let i = 0; i < 13; i++) {
-    a += `<div class="d-flex align-items-start">
-<img src="image/menu/speaklogic/Words/word_${i+1}.png" />
-<div class="m-l-12">word_${i+1}</div>
-</div>`;
-  }
-  console.log(a);
+  $("#listSubMenuEuqationsDecoratorArrow").on("click", () => {
+    $("#listSubMenuEuqationsDecoratorArrow").addClass("item-active-tab-menu");
+    $("#listSubMenuEuqationsDecoratorEquation").removeClass(
+      "item-active-tab-menu"
+    );
+    $("#listSubMenuEuqationsDecoratorCharacter").removeClass(
+      "item-active-tab-menu"
+    );
+    $("#list-sub-menu-equations-Arrow").removeClass("d-none");
+    $("#list-sub-menu-equations-Character").addClass("d-none");
+    $("#list-sub-menu-equations-Equation").addClass("d-none");
+  });
+  $("#listSubMenuEuqationsDecoratorCharacter").on("click", () => {
+    $("#listSubMenuEuqationsDecoratorArrow").removeClass(
+      "item-active-tab-menu"
+    );
+    $("#listSubMenuEuqationsDecoratorEquation").removeClass(
+      "item-active-tab-menu"
+    );
+    $("#listSubMenuEuqationsDecoratorCharacter").addClass(
+      "item-active-tab-menu"
+    );
+    $("#list-sub-menu-equations-Arrow").addClass("d-none");
+    $("#list-sub-menu-equations-Character").removeClass("d-none");
+    $("#list-sub-menu-equations-Equation").addClass("d-none");
+  });
+  $("#listSubMenuEuqationsDecoratorEquation").on("click", () => {
+    $("#listSubMenuEuqationsDecoratorArrow").removeClass(
+      "item-active-tab-menu"
+    );
+    $("#listSubMenuEuqationsDecoratorCharacter").removeClass(
+      "item-active-tab-menu"
+    );
+    $("#listSubMenuEuqationsDecoratorEquation").addClass(
+      "item-active-tab-menu"
+    );
+    $("#list-sub-menu-equations-Arrow").addClass("d-none");
+    $("#list-sub-menu-equations-Character").addClass("d-none");
+    $("#list-sub-menu-equations-Equation").removeClass("d-none");
+  });
 });
