@@ -310,7 +310,7 @@ $("#fileUploadToDiagrams").change(function () {
 
     if (file.type.startsWith("video/")) {
       let video = { ...nodeAppendData };
-      if (currentItem.includes("add") || currentItem.startsWith("add")) {
+      if (currentItem.toLowerCase().includes("add") || currentItem.toLowerCase().startsWith("add")) {
         video.shape = {
           type: "HTML",
           content: `<video width="400" height="278" controls>
@@ -320,7 +320,8 @@ $("#fileUploadToDiagrams").change(function () {
         };
         video.width = 400;
         video.height = 278;
-        diagram.add(video);
+        let addEd = diagram.add(video);
+        diagram.select([addEd])
       } else {
         diagram.selectedItems.properties.nodes[0].shape = {
           type: "HTML",
@@ -336,21 +337,22 @@ $("#fileUploadToDiagrams").change(function () {
 
     if (file.type.startsWith("audio/")) {
       let audio = { ...nodeAppendData };
-      if (currentItem.includes("add")) {
+      if (currentItem.toLowerCase().includes("add") || currentItem.toLowerCase().startsWith("add")) {
         audio.shape = {
           type: "HTML",
-          content: `<audio controls autoplay  width="400" height="50">
+          content: `<audio controls width="400" height="50">
           <source src="${url}">
         Your browser does not support the audio element.
         </audio>`,
         };
         audio.width = 400;
         audio.height = 100;
-        diagram.add(audio);
+        let addEd = diagram.add(audio);
+        diagram.select([addEd])
       } else {
         diagram.selectedItems.properties.nodes[0].shape = {
           type: "HTML",
-          content: `<audio controls autoplay width="400" height="50">
+          content: `<audio controls width="400" height="50">
                     <source src="${url}">
                   Your browser does not support the audio element.
                   </audio>`,
@@ -1619,7 +1621,6 @@ var mappedArrayContext = menuItems.reduce((arr, item) => {
   }
   return arr;
 }, []);
-
 // Initializing and appending diagram
 var diagram = new ej.diagrams.Diagram({
   width: "2000px",
@@ -1648,13 +1649,20 @@ var diagram = new ej.diagrams.Diagram({
       URL.revokeObjectURL(e?.oldValue?.shape?.source);
     }
   },
+  historyChange: function (e) {
+    if (e.type === "CollectionChanged" && e['Remove']?.length > 0) {
+      document.querySelector(`#${e.id}_html_element`).querySelector('audio')?.pause();
+      document.querySelector(`#${e.id}_html_element`).querySelector('video')?.pause();
+    }
+  },
   collectionChange: function (e) {
     if (
       e.type === "Removal" &&
-      e?.element?.properties?.shape?.properties &&
-      e?.element?.properties?.shape?.properties?.source?.startsWith("blob:http")
+      e?.element?.properties?.shape?.properties && (
+        e?.element?.properties?.shape?.properties?.source?.startsWith("blob:http") ||
+        e?.element?.properties?.shape?.properties?.content?.includes("blob:http"))
     ) {
-      URL.revokeObjectURL(e.element?.properties?.shape?.properties?.source);
+      URL.revokeObjectURL(e.element?.properties?.shape?.properties?.source || e.element?.properties?.shape?.properties?.content.split('src=')[1]?.trim()?.split('"')[1]);
     }
   },
   bridgeDirection: "Left",
