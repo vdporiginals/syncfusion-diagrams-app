@@ -239,6 +239,29 @@ var groupPeopleContext = [
   },
   // 'sep',
   {
+    id: "groupPeopleSendAndReceiveSignals",
+    onClick: "groupPeopleSendAndReceiveSignals",
+    text: "Send and receive signals",
+    items: [
+      {
+        onClick: "",
+        text: "Send green receive green",
+      },
+      {
+        onClick: "",
+        text: "Send green receive red",
+      },
+      {
+        onClick: "",
+        text: "Send red receive green",
+      },
+      {
+        onClick: "",
+        text: "Send red receive red",
+      },
+    ],
+  },
+  {
     id: "groupPeopleSendSignal",
     onClick: "openSubList",
     text: "Send Signal",
