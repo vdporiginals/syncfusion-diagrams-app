@@ -1879,6 +1879,34 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck.includes("identifyentity") && idCheck.includes("from")) {
       pointNodeToEntity("define", "entity", "Identifies");
     }
+
+    if (idCheck.includes("identifywordinsentence")) {
+      let item = drawShape(communicationData.find((a) => a.id === "word"));
+      item.id += randomId();
+      let entity = diagram.add(item);
+      let selected = diagram.selectedItems.properties.nodes[0];
+      if (selected.id.startsWith('group') && !selected.parentId) {
+        selected = diagram.getObject(diagram.selectedItems.properties.nodes[0].children[0]);
+      }
+      setTimeout(() => {
+        dropGrouped(entity, selected, true);
+      });
+    }
+
+    if (idCheck.includes("identifypartofsentence")) {
+      let item = drawShape(communicationData.find((a) => a.id === "word"));
+      item.id += randomId();
+      item.annotations[0].content = 'Part';
+      let entity = diagram.add(item);
+      let selected = diagram.selectedItems.properties.nodes[0];
+      if (selected.id.startsWith('group') && !selected.parentId) {
+        selected = diagram.getObject(diagram.selectedItems.properties.nodes[0].children[0]);
+      }
+      setTimeout(() => {
+        dropGrouped(entity, selected, true);
+      });
+    }
+
     if (idCheck.includes("information") && idCheck.includes("point")) {
       pointNodeToEntity("pointTo", "information", "Point To");
     }
