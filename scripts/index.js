@@ -1702,10 +1702,10 @@ var diagram = new ej.diagrams.Diagram({
     ) {
       URL.revokeObjectURL(
         e.element?.properties?.shape?.properties?.source ||
-          e.element?.properties?.shape?.properties?.content
-            .split("src=")[1]
-            ?.trim()
-            ?.split('"')[1]
+        e.element?.properties?.shape?.properties?.content
+          .split("src=")[1]
+          ?.trim()
+          ?.split('"')[1]
       );
     }
   },
@@ -1746,7 +1746,7 @@ var diagram = new ej.diagrams.Diagram({
     ),
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => {},
+  setNodeTemplate: (obj, diagram) => { },
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     switch (args.item.properties.text) {
@@ -1876,6 +1876,9 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck.includes("byentity") && idCheck.includes("define")) {
       pointNodeToEntity("define", "entity", "Defined by");
     }
+    if (idCheck.includes("identifyentity") && idCheck.includes("from")) {
+      pointNodeToEntity("define", "entity", "Identifies");
+    }
     if (idCheck.includes("information") && idCheck.includes("point")) {
       pointNodeToEntity("pointTo", "information", "Point To");
     }
@@ -1927,7 +1930,7 @@ var diagram = new ej.diagrams.Diagram({
   contextMenuOpen: function (args) {
     let bpmnShape =
       !diagram?.selectedItems?.nodes[0]?.addInfo &&
-      diagram?.selectedItems?.nodes[0]?.children?.length > 0
+        diagram?.selectedItems?.nodes[0]?.children?.length > 0
         ? diagram.getObject(diagram.selectedItems.nodes[0].children[0])
         : diagram.selectedItems.nodes[0];
     // console.log(bpmnShape)
