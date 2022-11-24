@@ -57,7 +57,6 @@ allShapes = everyShape;
 
 var text = JSON.stringify(allShapes);
 
-// Initializing symbol palette
 var commPalette = new ej.diagrams.SymbolPalette({
   expandMode: "Single",
   palettes: [
@@ -225,7 +224,6 @@ var theoryPalette = new ej.diagrams.SymbolPalette({
 commPalette.appendTo("#symbol-palette-comm");
 theoryPalette.appendTo("#symbol-palette-theory");
 
-// Function to switch palettes
 function switchToTheory() {
   if (currentDomain === 1) {
     return;
@@ -239,14 +237,10 @@ function switchToTheory() {
   commModel.style.display = "none";
   theoryPalette.style.display = "block";
   theoryModel.style.display = "block";
-  let commButton = document.getElementById("Ribbon_toCommunicationDomain");
-  commButton.disabled = false;
-  commButton.firstElementChild.classList.remove("disabled-button");
-
-  let theoryButton = document.getElementById("Ribbon_toTheoryDomain");
-  theoryButton.disabled = true;
-  theoryButton.firstElementChild.classList.add("disabled-button");
-
+  document.getElementById("Ribbon_toTheoryDomain").classList.add("disabled-custom");
+  document.getElementById("Ribbon_communication").classList.remove("disabled-custom");
+  document.getElementById("Ribbon_insert_SpeakLogic_1").classList.add("domain-theory");
+  document.getElementById("Ribbon_insert_SpeakLogic_1").classList.remove("domain-communication");
   openTheoryTab();
 }
 
@@ -263,13 +257,10 @@ function switchToComm() {
   commModel.style.display = "block";
   theoryPalette.style.display = "none";
   theoryModel.style.display = "none";
-  let commButton = document.getElementById("Ribbon_toCommunicationDomain");
-  commButton.disabled = true;
-  commButton.firstElementChild.classList.add("disabled-button");
-
-  let theoryButton = document.getElementById("Ribbon_toTheoryDomain");
-  theoryButton.disabled = false;
-  theoryButton.firstElementChild.classList.remove("disabled-button");
+  document.getElementById("Ribbon_toTheoryDomain").classList.remove("disabled-custom");
+  document.getElementById("Ribbon_communication").classList.add("disabled-custom");
+  document.getElementById("Ribbon_insert_SpeakLogic_1").classList.remove("domain-theory");
+  document.getElementById("Ribbon_insert_SpeakLogic_1").classList.add("domain-communication");
   openCommTab();
 }
 let main = allShapes.find((a) => a.id === "mainArea");
@@ -519,6 +510,7 @@ function sendSignal(node, type) {
     );
   }
 }
+
 function hideShowCover(idCheck) {
   idCheck.includes("showcover");
   if (idCheck.includes("hidecover")) {
@@ -528,6 +520,7 @@ function hideShowCover(idCheck) {
   }
   diagram.dataBind();
 }
+
 function coverPerson(node) {
   let findCover = {
     style: {
@@ -1320,7 +1313,6 @@ function onClickApplyMainArea() {
 
 idElementActive = "";
 
-//creation of the TextElement.
 function getTextElement(text, color) {
   let findItem = drawShape(areaData.find((a) => a.id === "mainArea"));
   let textElement = new ej.diagrams.DiagramElement(findItem);
@@ -1330,6 +1322,7 @@ function getTextElement(text, color) {
   textElement.offsetX = color;
   return textElement;
 }
+
 function checkDropAlert(group, source, n) {
   let checkedSource = source.addInfo[0].menuId;
   let checkedNode = n.addInfo[0].menuId;
@@ -1377,6 +1370,7 @@ function checkDropAlert(group, source, n) {
 
   return false;
 }
+
 function dropGrouped(node, parentNode, ignoreCond) {
   let source = node.id ? node : node?.properties?.nodes[0];
   setTimeout(() => {
@@ -2401,12 +2395,10 @@ for (let i = 0; i < symbolPalleteSymbols.length; i++) {
   titleText.remove();
 }
 
-// Symbol text display
 let allText = document.querySelectorAll("#left-section .symbol-text-container");
 for (let i = 0; i < allText.length; i++) {
   allText[i].setAttribute("visibility", "visible");
 }
-//#endregion
 
 function setCursor(cursor) {
   document.getElementById("left-section").style.cursor = cursor;

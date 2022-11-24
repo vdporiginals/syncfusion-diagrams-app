@@ -613,93 +613,93 @@ ul {
 .equation-menu-brackets {
     background-image: url("/image/menu/equations/brackets.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-decoratedEquation {
     background-image: url("/image/menu/equations/decoratedEquation.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 25px;
 }
 .equation-menu-sumproduct {
     background-image: url("/image/menu/equations/sumproduct.png");
     background-size: cover;
-    width: 96px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-integrals {
     background-image: url("/image/menu/equations/integrals.png");
     background-size: cover;
-    width: 97px;
-    height: 45px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-arrowEquation {
     background-image: url("/image/menu/equations/arrowEquation.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-underbar {
     background-image: url("/image/menu/equations/underbar.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-decoratedCharacter {
     background-image: url("/image/menu/equations/decoratedCharacter.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-matrix {
     background-image: url("/image/menu/equations/matrix.png");
     background-size: cover;
-    width: 108px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-boxes {
     background-image: url("/image/menu/equations/boxes.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 
 .equation-menu-script {
     background-image: url("/image/menu/equations/script.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-divroot {
     background-image: url("/image/menu/equations/divroot.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-symbols {
     background-image: url("/image/menu/equations/symbols.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-greekcapital {
     background-image: url("/image/menu/equations/greekcapital.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-greeksmall {
     background-image: url("/image/menu/equations/greeksmall.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .equation-menu-arrows {
     background-image: url("/image/menu/equations/arrows.png");
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 65px;
+    height: 24px;
 }
 .list-menu-insert {
     background-image: url("/image/list-menu-insert.png");
@@ -890,4 +890,8 @@ ul {
 }
 .width-max-content {
     width: max-content !important;
+}
+.disabled-custom {
+    opacity: 0.3;
+    pointer-events: none;
 }

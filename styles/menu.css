@@ -33,8 +33,8 @@
 #Ribbon_insert_DiagramParts_container #Ribbon_containerdrpbtn {
     padding: 0 !important;
     height: unset;
-    top: 64px;
-    left: 28px;
+    top: 60px;
+    left: 20px;
     background: transparent;
 }
 #listSubMenucontainerInsert {
@@ -54,9 +54,12 @@
 #Ribbon_insert_DiagramParts_list #Ribbon_listdrpbtn {
     padding: 0 !important;
     height: unset;
-    top: 64px;
-    left: 22px;
+    top: 60px;
+    left: 16px;
     background: transparent;
+}
+#Ribbon_list .e-btntxt {
+    padding-left: 12px;
 }
 #listSubMenuListInsert {
     width: auto;
@@ -97,16 +100,12 @@
 #Ribbon_equations_ .e-split-btn {
     padding: 0 !important;
     height: unset;
-    top: 64px;
-    left: 54px;
+    top: 50px;
+    left: 20px;
     background: transparent;
 }
 #Ribbon_equations_ .e-splitbutton {
     padding: 4px !important;
-}
-#Ribbon_equations_ .e-btntxt {
-    position: absolute;
-    width: calc(100% - 20px);
 }
 
 .list-sub-menu-equations {
@@ -125,26 +124,19 @@
 #listSubMenuEuqationsDecorator .list-sub-menu-equations {
     grid-template-columns: auto auto auto auto auto;
 }
-#Ribbon_Labeled,
-#Ribbon_Accent,
-#Ribbon_Operator,
-#Ribbon_Greek,
-#Ribbon_Arrow {
-    position: relative;
-}
 
-#Ribbon_SpeakLogic_ .e-split-btn {
+#Ribbon_insert .e-split-btn {
     padding: 0 !important;
     height: unset;
-    top: 64px;
-    left: 12px;
+    top: 60px;
+    left: 20px;
     background: transparent;
 }
-#Ribbon_SpeakLogic_ .e-splitbutton {
+#Ribbon_insert .e-splitbutton {
     padding: 4px !important;
 }
 
-#Ribbon_SpeakLogic_ .e-split.e-rtl .e-padding.e-splitarrowleft,
+#Ribbon_insert .e-split.e-rtl .e-padding.e-splitarrowleft,
 .e-split .e-padding.e-splitarrowright {
     padding: 0;
 }
@@ -158,4 +150,22 @@
 }
 .tab-menu-sub-menu-decorator .item-active-tab-menu {
     border-bottom: 1px solid;
+}
+#Ribbon_insert_SpeakLogic_1.domain-theory #Ribbon_insert_SpeakLogic_Function,
+#Ribbon_insert_SpeakLogic_1.domain-theory #Ribbon_insert_SpeakLogic_Word,
+#Ribbon_insert_SpeakLogic_1.domain-theory #Ribbon_insert_SpeakLogic_Application,
+#Ribbon_insert_SpeakLogic_1.domain-theory #Ribbon_insert_SpeakLogic_Relationship {
+    display: none;
+}
+#Ribbon_insert_SpeakLogic_1.domain-communication #Ribbon_insert_SpeakLogic_Derivative,
+#Ribbon_insert_SpeakLogic_1.domain-communication #Ribbon_insert_SpeakLogic_Function2,
+#Ribbon_insert_SpeakLogic_1.domain-communication #Ribbon_insert_SpeakLogic_Fundamental1,
+#Ribbon_insert_SpeakLogic_1.domain-communication #Ribbon_insert_SpeakLogic_Fundamental2,
+#Ribbon_insert_SpeakLogic_1.domain-communication #Ribbon_insert_SpeakLogic_Instrusment,
+#Ribbon_insert_SpeakLogic_1.domain-communication #Ribbon_insert_SpeakLogic_Stability,
+#Ribbon_insert_SpeakLogic_1.domain-communication #Ribbon_insert_SpeakLogic_Theorem,
+#Ribbon_insert_SpeakLogic_1.domain-communication #Ribbon_insert_SpeakLogic_Theory1,
+#Ribbon_insert_SpeakLogic_1.domain-communication #Ribbon_insert_SpeakLogic_Theory2,
+#Ribbon_insert_SpeakLogic_1.domain-communication #Ribbon_insert_SpeakLogic_Time {
+    display: none;
 }
