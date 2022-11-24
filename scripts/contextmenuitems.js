@@ -696,6 +696,14 @@ var menuItems = [
         onClick: "",
         text: "Point word to entity",
       },
+      {
+        onClick: "",
+        text: "Replace word with audio",
+      },
+      {
+        onClick: "",
+        text: "Replace word with sketch",
+      },
       "sep",
       {
         onClick: "",
