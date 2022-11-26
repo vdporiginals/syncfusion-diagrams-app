@@ -646,11 +646,13 @@ function labelProperty() {
 
 function onClicklabelProperty() {
   let item = diagram.selectedItems.properties.connectors[0];
-  item.title = `Not ${item.title}`;
-  const valueText = document.getElementById("selected-label-text2").value;
-  item.annotations[0].content = valueText;
-  console.log(item.annotations.length);
+  if (document.getElementById("notNegateText").checked) {
+    const valueText = document.getElementById("selected-label-text2").value;
+    item.annotations[0].content = valueText;
+    item.title = `Not ${item.title}`;
+  }
   diagram.dataBind();
+
   hiddenModal();
 }
 
