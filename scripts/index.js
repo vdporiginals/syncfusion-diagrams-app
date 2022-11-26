@@ -646,7 +646,6 @@ function labelProperty() {
 
 function onClicklabelProperty() {
   let item = diagram.selectedItems.properties.connectors[0];
-  console.log(item)
   if (document.getElementById("notNegateText").checked) {
     item.annotations = [
       {
@@ -659,6 +658,9 @@ function onClicklabelProperty() {
         title:
           `Not ${item.title}`,
         content: document.getElementById("selected-label-text2").value,
+        margin: {
+          bottom: 10,
+        }
       },];
   }
   setTimeout(() => {
