@@ -650,9 +650,7 @@ function onClicklabelProperty() {
   if (document.getElementById("notNegateText").checked) {
     item.annotations = [
       {
-        template: `<div>
-    <div id="hr">   </div>
-</div>`,
+        template: `<div><div id="hr"></div></div>`,
         offset: 1,
         width: 40,
         height: 40,
