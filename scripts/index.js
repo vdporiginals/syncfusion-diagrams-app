@@ -646,12 +646,27 @@ function labelProperty() {
 
 function onClicklabelProperty() {
   let item = diagram.selectedItems.properties.connectors[0];
+  console.log(item)
   if (document.getElementById("notNegateText").checked) {
-    const valueText = document.getElementById("selected-label-text2").value;
-    item.annotations[0].content = valueText;
-    item.title = `Not ${item.title}`;
+    item.annotations = [
+      {
+        template: `<div>
+    <div id="hr">   </div>
+</div>`,
+        offset: 1,
+        width: 40,
+        height: 40,
+      },
+      {
+        title:
+          `Not ${item.title}`,
+        content: document.getElementById("selected-label-text2").value,
+      },];
   }
-  diagram.dataBind();
+  setTimeout(() => {
+    diagram.dataBind();
+    diagram.refresh();
+  })
 
   hiddenModal();
 }
@@ -1728,10 +1743,10 @@ var diagram = new ej.diagrams.Diagram({
     ) {
       URL.revokeObjectURL(
         e.element?.properties?.shape?.properties?.source ||
-          e.element?.properties?.shape?.properties?.content
-            .split("src=")[1]
-            ?.trim()
-            ?.split('"')[1]
+        e.element?.properties?.shape?.properties?.content
+          .split("src=")[1]
+          ?.trim()
+          ?.split('"')[1]
       );
     }
   },
@@ -1772,7 +1787,7 @@ var diagram = new ej.diagrams.Diagram({
     ),
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => {},
+  setNodeTemplate: (obj, diagram) => { },
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     switch (args.item.properties.text) {
@@ -1990,7 +2005,7 @@ var diagram = new ej.diagrams.Diagram({
   contextMenuOpen: function (args) {
     let bpmnShape =
       !diagram?.selectedItems?.nodes[0]?.addInfo &&
-      diagram?.selectedItems?.nodes[0]?.children?.length > 0
+        diagram?.selectedItems?.nodes[0]?.children?.length > 0
         ? diagram.getObject(diagram.selectedItems.nodes[0].children[0])
         : diagram.selectedItems.nodes[0];
     // console.log(bpmnShape)
