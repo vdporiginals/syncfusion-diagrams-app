@@ -895,7 +895,7 @@ ul {
     opacity: 0.3;
     pointer-events: none;
 }
-#hr {
+.hr_nay {
     border-top: 1px solid #000;
     height: 90px;
     /* margin-left: -117px; */

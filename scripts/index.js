@@ -647,9 +647,10 @@ function labelProperty() {
 function onClicklabelProperty() {
   let item = diagram.selectedItems.properties.connectors[0];
   if (document.getElementById("notNegateText").checked) {
+    
     item.annotations = [
       {
-        template: `<div><div id="hr"></div></div>`,
+        template: `<div><div class="hr_nay" id="hr${randomId()}"></div></div>`,
         offset: 1,
         width: 40,
         height: 40,
