@@ -237,10 +237,18 @@ function switchToTheory() {
   commModel.style.display = "none";
   theoryPalette.style.display = "block";
   theoryModel.style.display = "block";
-  document.getElementById("Ribbon_toTheoryDomain").classList.add("disabled-custom");
-  document.getElementById("Ribbon_communication").classList.remove("disabled-custom");
-  document.getElementById("Ribbon_insert_SpeakLogic_1").classList.add("domain-theory");
-  document.getElementById("Ribbon_insert_SpeakLogic_1").classList.remove("domain-communication");
+  document
+    .getElementById("Ribbon_toTheoryDomain")
+    .classList.add("disabled-custom");
+  document
+    .getElementById("Ribbon_communication")
+    .classList.remove("disabled-custom");
+  document
+    .getElementById("Ribbon_insert_SpeakLogic_1")
+    .classList.add("domain-theory");
+  document
+    .getElementById("Ribbon_insert_SpeakLogic_1")
+    .classList.remove("domain-communication");
   openTheoryTab();
 }
 
@@ -257,10 +265,18 @@ function switchToComm() {
   commModel.style.display = "block";
   theoryPalette.style.display = "none";
   theoryModel.style.display = "none";
-  document.getElementById("Ribbon_toTheoryDomain").classList.remove("disabled-custom");
-  document.getElementById("Ribbon_communication").classList.add("disabled-custom");
-  document.getElementById("Ribbon_insert_SpeakLogic_1").classList.remove("domain-theory");
-  document.getElementById("Ribbon_insert_SpeakLogic_1").classList.add("domain-communication");
+  document
+    .getElementById("Ribbon_toTheoryDomain")
+    .classList.remove("disabled-custom");
+  document
+    .getElementById("Ribbon_communication")
+    .classList.add("disabled-custom");
+  document
+    .getElementById("Ribbon_insert_SpeakLogic_1")
+    .classList.remove("domain-theory");
+  document
+    .getElementById("Ribbon_insert_SpeakLogic_1")
+    .classList.add("domain-communication");
   openCommTab();
 }
 let main = allShapes.find((a) => a.id === "mainArea");
@@ -605,6 +621,19 @@ function onDrogGroupsOfPeopleNode(args) {
 
 function labelProperty() {
   openModal("Label Property", "labeltocover", onClicklabelProperty);
+  document.getElementById("notNegateText").checked = true;
+  document
+    .getElementById("checked-negate-text")
+    .addEventListener("click", () => {
+      document.getElementById("negateText").checked = true;
+      document.getElementById("notNegateText").checked = undefined;
+    });
+  document
+    .getElementById("checked-not-negate-text")
+    .addEventListener("click", () => {
+      document.getElementById("notNegateText").checked = true;
+      document.getElementById("negateText").checked = undefined;
+    });
   for (const i of listItem[
     idElementActive.slice(0, idElementActive.length - 5)
   ]) {
@@ -620,6 +649,7 @@ function onClicklabelProperty() {
   item.title = `Not ${item.title}`;
   const valueText = document.getElementById("selected-label-text2").value;
   item.annotations[0].content = valueText;
+  console.log(item.annotations.length);
   diagram.dataBind();
   hiddenModal();
 }
@@ -1696,10 +1726,10 @@ var diagram = new ej.diagrams.Diagram({
     ) {
       URL.revokeObjectURL(
         e.element?.properties?.shape?.properties?.source ||
-        e.element?.properties?.shape?.properties?.content
-          .split("src=")[1]
-          ?.trim()
-          ?.split('"')[1]
+          e.element?.properties?.shape?.properties?.content
+            .split("src=")[1]
+            ?.trim()
+            ?.split('"')[1]
       );
     }
   },
@@ -1740,7 +1770,7 @@ var diagram = new ej.diagrams.Diagram({
     ),
     showCustomMenuOnly: true,
   },
-  setNodeTemplate: (obj, diagram) => { },
+  setNodeTemplate: (obj, diagram) => {},
   contextMenuClick: function (args) {
     currentItem = args.item.id;
     switch (args.item.properties.text) {
@@ -1819,7 +1849,9 @@ var diagram = new ej.diagrams.Diagram({
         const selectedRemove = diagram.selectedItems.nodes[0];
         const heightNewRemove = selectedRemove.height - 10;
         selectedRemove.offsetY =
-          selectedRemove.offsetY - selectedRemove.height / 2 + heightNewRemove / 2;
+          selectedRemove.offsetY -
+          selectedRemove.height / 2 +
+          heightNewRemove / 2;
         selectedRemove.height = heightNewRemove;
         diagram.dataBind();
         diagram.selectedItems.nodes[0].ports.forEach((a) => {
@@ -1879,8 +1911,10 @@ var diagram = new ej.diagrams.Diagram({
       item.id += randomId();
       let entity = diagram.add(item);
       let selected = diagram.selectedItems.properties.nodes[0];
-      if (selected.id.startsWith('group') && !selected.parentId) {
-        selected = diagram.getObject(diagram.selectedItems.properties.nodes[0].children[0]);
+      if (selected.id.startsWith("group") && !selected.parentId) {
+        selected = diagram.getObject(
+          diagram.selectedItems.properties.nodes[0].children[0]
+        );
       }
       setTimeout(() => {
         dropGrouped(entity, selected, true);
@@ -1890,11 +1924,13 @@ var diagram = new ej.diagrams.Diagram({
     if (idCheck.includes("identifypartofsentence")) {
       let item = drawShape(communicationData.find((a) => a.id === "word"));
       item.id += randomId();
-      item.annotations[0].content = 'Part';
+      item.annotations[0].content = "Part";
       let entity = diagram.add(item);
       let selected = diagram.selectedItems.properties.nodes[0];
-      if (selected.id.startsWith('group') && !selected.parentId) {
-        selected = diagram.getObject(diagram.selectedItems.properties.nodes[0].children[0]);
+      if (selected.id.startsWith("group") && !selected.parentId) {
+        selected = diagram.getObject(
+          diagram.selectedItems.properties.nodes[0].children[0]
+        );
       }
       setTimeout(() => {
         dropGrouped(entity, selected, true);
@@ -1952,7 +1988,7 @@ var diagram = new ej.diagrams.Diagram({
   contextMenuOpen: function (args) {
     let bpmnShape =
       !diagram?.selectedItems?.nodes[0]?.addInfo &&
-        diagram?.selectedItems?.nodes[0]?.children?.length > 0
+      diagram?.selectedItems?.nodes[0]?.children?.length > 0
         ? diagram.getObject(diagram.selectedItems.nodes[0].children[0])
         : diagram.selectedItems.nodes[0];
     // console.log(bpmnShape)
@@ -2490,6 +2526,7 @@ function drawStringOptionsHtml(value, name) {
     <option value="${value}">${name}</option>
   `;
 }
+
 function onGetHtmlDialog(id) {
   if (id === "dialogContinuityPerson") {
     return `<div id="dialogContinuityPerson" class="dialog-group-of-people">
@@ -2609,7 +2646,7 @@ function onGetHtmlDialog(id) {
         <select class="w-200px" id="selected-label-text2">
         </select>
       </div>
-      <div class="d-flex m-b-8 line-height-20">
+      <div class="d-flex m-b-8 line-height-20" id="checked-negate-text">
         <input
           type="checkbox"
           id="negateText"
@@ -2617,7 +2654,7 @@ function onGetHtmlDialog(id) {
         />
         <label class="m-l-8">Negate Text</label>
       </div>
-      <div class="d-flex m-b-8 line-height-20">
+      <div class="d-flex m-b-8 line-height-20" id="checked-not-negate-text">
         <input
           type="checkbox"
           id="notNegateText"
